@@ -67,6 +67,47 @@
   @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
   @media (min-width:721px){[data-mobile-bar]{display:none !important}}
   @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
+
+  /* ===== Servicios: fondo enriquecido + animaciones de scroll ===== */
+  @keyframes itel-float-a { 0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(40px,-30px,0) scale(1.08)} }
+  @keyframes itel-float-b { 0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(-50px,40px,0) scale(1.1)} }
+  @keyframes itel-float-c { 0%,100%{transform:translate3d(0,0,0) scale(.95)} 50%{transform:translate3d(30px,50px,0) scale(1.05)} }
+  @keyframes itel-drift-slow { from{background-position:0 0} to{background-position:600px 600px} }
+  @keyframes itel-drift-slow-rev { from{background-position:0 0} to{background-position:-600px 400px} }
+  @keyframes itel-pulse-dot { 0%,100%{opacity:.15;transform:scale(1)} 50%{opacity:.9;transform:scale(1.6)} }
+  @keyframes itel-flow-dash { to{stroke-dashoffset:-400} }
+  @keyframes itel-beam { 0%,100%{opacity:.0;transform:translateX(-30%) rotate(18deg)} 50%{opacity:.55;transform:translateX(120%) rotate(18deg)} }
+  @keyframes itel-shine { 0%{transform:translateX(-120%)} 100%{transform:translateX(220%)} }
+
+  #servicios [data-bg]{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  #servicios [data-bg-grid]{background-image:linear-gradient(to right,rgba(163,212,251,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(163,212,251,.07) 1px,transparent 1px);background-size:88px 88px;animation:itel-drift-slow 60s linear infinite;mask-image:radial-gradient(ellipse at 50% 45%,#000 55%,transparent 92%)}
+  #servicios [data-bg-hex]{opacity:.35;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'><g fill='none' stroke='%23a3d4fb' stroke-width='.7' stroke-opacity='.35'><path d='M30 2 L90 2 L120 52 L90 102 L30 102 L0 52 Z'/><path d='M60 26 L84 40 L84 66 L60 80 L36 66 L36 40 Z'/></g></svg>");background-size:120px 104px;animation:itel-drift-slow-rev 90s linear infinite;mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent)}
+  #servicios [data-bg-orb]{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;will-change:transform}
+  #servicios [data-bg-orb="a"]{top:-8%;left:-10%;width:46vw;height:46vw;max-width:640px;max-height:640px;background:radial-gradient(circle,rgba(35,148,238,.55),transparent 68%);animation:itel-float-a 18s ease-in-out infinite}
+  #servicios [data-bg-orb="b"]{bottom:-14%;right:-8%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(109,186,246,.35),transparent 65%);animation:itel-float-b 22s ease-in-out infinite}
+  #servicios [data-bg-orb="c"]{top:32%;left:38%;width:34vw;height:34vw;max-width:480px;max-height:480px;background:radial-gradient(circle,rgba(24,97,160,.5),transparent 70%);animation:itel-float-c 26s ease-in-out infinite}
+  #servicios [data-bg-beam]{position:absolute;top:-30%;left:0;width:38%;height:170%;background:linear-gradient(90deg,transparent,rgba(163,212,251,.10),transparent);filter:blur(4px);animation:itel-beam 14s ease-in-out infinite}
+  #servicios [data-bg-net]{position:absolute;inset:0;opacity:.55}
+  #servicios [data-bg-net] path{stroke:rgba(163,212,251,.45);stroke-width:1;fill:none;stroke-dasharray:8 14;animation:itel-flow-dash 18s linear infinite}
+  #servicios [data-bg-net] path:nth-child(2){animation-duration:26s;stroke:rgba(35,148,238,.55)}
+  #servicios [data-bg-net] path:nth-child(3){animation-duration:32s;stroke:rgba(109,186,246,.35)}
+  #servicios [data-bg-net] circle{fill:rgba(163,212,251,.9);animation:itel-pulse-dot 3s ease-in-out infinite}
+  #servicios [data-bg-net] circle:nth-child(6){animation-delay:.4s}
+  #servicios [data-bg-net] circle:nth-child(7){animation-delay:.9s}
+  #servicios [data-bg-net] circle:nth-child(8){animation-delay:1.4s}
+  #servicios [data-bg-net] circle:nth-child(9){animation-delay:2s}
+  #servicios [data-bg-vignette]{background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(20,30,44,.55) 100%)}
+
+  /* stagger de cards al hacer scroll — se ordena por JS con --i */
+  #servicios [data-stagger] > *{transition-delay:calc(var(--i,0) * 70ms)}
+  /* brillo sutil que barre la card al aparecer */
+  #servicios [data-flip]{position:relative;overflow:hidden}
+  #servicios [data-flip]::after{content:"";position:absolute;top:0;bottom:0;left:0;width:60%;background:linear-gradient(100deg,transparent,rgba(163,212,251,.14),transparent);transform:translateX(-120%);pointer-events:none;z-index:3}
+  #servicios [data-reveal][data-in] [data-flip]::after{animation:itel-shine 1.4s cubic-bezier(.2,.7,.3,1) .35s 1 forwards}
+
+  @media (prefers-reduced-motion: reduce){
+    #servicios [data-bg-grid],#servicios [data-bg-hex],#servicios [data-bg-orb],#servicios [data-bg-beam],#servicios [data-bg-net] path,#servicios [data-bg-net] circle,#servicios [data-flip]::after{animation:none !important}
+  }
 </style>
 </helmet>
 <div style="font-family:var(--font-body);color:var(--color-text);background:var(--color-bg)">
@@ -152,9 +193,27 @@
   </div>
 </section>
 
-<section id="servicios" data-screen-label="Servicios" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.055) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
-  <div aria-hidden="true" style="position:absolute;top:-10%;left:-8%;width:52vw;height:52vw;max-width:720px;max-height:720px;background:radial-gradient(circle,rgba(35,148,238,.22),transparent 68%);pointer-events:none"></div>
+<section id="servicios" data-screen-label="Servicios" style="position:relative;background:linear-gradient(180deg,#1a2432 0%,var(--color-accent-900) 45%,#1a2432 100%);color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
+  <div aria-hidden="true" data-bg data-bg-grid data-parallax="0.10"></div>
+  <div aria-hidden="true" data-bg data-bg-hex data-parallax="0.22"></div>
+  <div aria-hidden="true" data-bg data-bg-orb="a" data-parallax="0.30"></div>
+  <div aria-hidden="true" data-bg data-bg-orb="b" data-parallax="-0.25"></div>
+  <div aria-hidden="true" data-bg data-bg-orb="c" data-parallax="0.14"></div>
+  <div aria-hidden="true" data-bg data-bg-beam></div>
+  <svg aria-hidden="true" data-bg data-bg-net viewBox="0 0 1600 900" preserveAspectRatio="none">
+    <path d="M0,180 C260,120 480,260 720,200 S1180,120 1600,220"/>
+    <path d="M0,460 C300,540 520,340 820,440 S1260,600 1600,460"/>
+    <path d="M0,720 C280,660 500,820 780,760 S1240,700 1600,780"/>
+    <circle cx="260" cy="152" r="3"/>
+    <circle cx="720" cy="200" r="3.6"/>
+    <circle cx="1180" cy="164" r="3"/>
+    <circle cx="520" cy="380" r="3"/>
+    <circle cx="820" cy="440" r="3.6"/>
+    <circle cx="1260" cy="558" r="3"/>
+    <circle cx="500" cy="808" r="3"/>
+    <circle cx="1240" cy="702" r="3.6"/>
+  </svg>
+  <div aria-hidden="true" data-bg data-bg-vignette></div>
   <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:clamp(40px,4vw,60px)">
       <div>
@@ -167,7 +226,7 @@
       </div>
       <a data-reveal href="ITEL Contacto.dc.html" class="btn" data-glass-btn style="min-height:46px;padding:0 20px;white-space:nowrap;color:var(--color-neutral-100);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)">Consultar por un servicio</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px">
+    <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px">
       <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="6">
         <div data-reveal="cinematic" style="height:250px">
           <div data-flip style="height:100%">
@@ -571,6 +630,43 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Índice para el stagger de aparición de las cards
+  document.querySelectorAll('#servicios [data-stagger]').forEach(function(g){
+    Array.from(g.children).forEach(function(c,i){ c.style.setProperty('--i', i); });
+  });
+  // Parallax suave para las capas del fondo
+  var layers = [];
+  function collect(){
+    layers = Array.from(document.querySelectorAll('#servicios [data-parallax]')).map(function(el){
+      return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0 };
+    });
+  }
+  collect();
+  var section = document.getElementById('servicios');
+  var ticking = false;
+  function update(){
+    ticking = false;
+    if (!section) return;
+    var r = section.getBoundingClientRect();
+    var vh = innerHeight || document.documentElement.clientHeight;
+    if (r.bottom < -200 || r.top > vh + 200) return;
+    // progreso ~ centrado en la sección
+    var p = (vh - r.top) / (vh + r.height);
+    p = Math.max(0, Math.min(1, p));
+    var offset = (p - 0.5) * 220; // px
+    for (var i=0;i<layers.length;i++){
+      layers[i].el.style.transform = 'translate3d(0,'+ (offset*layers[i].k).toFixed(1) +'px,0)';
+    }
+  }
+  function onScroll(){ if (!ticking){ requestAnimationFrame(update); ticking = true; } }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', function(){ collect(); update(); });
+  update();
+})();
 </script>
 </body>
 </html>
