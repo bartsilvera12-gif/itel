@@ -278,26 +278,16 @@
 <section id="cobertura" data-screen-label="Cobertura" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
   <div aria-hidden="true" style="position:absolute;bottom:-20%;right:-10%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(35,148,238,.2),transparent 68%);pointer-events:none"></div>
-  <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(30px,3vw,52px);align-items:center">
-    <div>
-      <div data-reveal="left" style="display:flex;align-items:center;gap:11px;margin-bottom:22px">
+  <div data-pad style="position:relative;max-width:1400px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px">
+    <div style="text-align:center;max-width:900px;margin:0 auto">
+      <div data-reveal style="display:inline-flex;align-items:center;gap:11px;margin-bottom:22px">
         <span style="width:9px;height:9px;border-radius:50%;background:var(--color-accent-300);animation:itel-blink 2.4s ease-in-out infinite"></span>
         <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-300)">Cobertura</span>
       </div>
-      <h2 data-reveal style="font-size:clamp(38px,4.6vw,72px);line-height:.98;letter-spacing:-.025em;margin:0;max-width:17ch">Presentes en las rutas que <span style="color:var(--color-accent-300)">conectan al Paraguay.</span></h2>
-      <div data-reveal style="width:74px;height:2px;background:rgba(255,255,255,.35);margin:28px 0"></div>
-      <p data-reveal="fade" style="font-size:19px;line-height:1.6;max-width:52ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
-      <div data-reveal="below" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
-        <sc-for list="{{ todasCiudades }}" as="c" hint-placeholder-count="9">
-          <span data-glass-dark style="border-radius:999px;padding:12px 22px;font-family:var(--font-heading);font-size:15px;letter-spacing:.1em;text-transform:uppercase">{{ c }}</span>
-        </sc-for>
-      </div>
-      <div data-reveal style="margin-top:44px;display:flex;flex-direction:column;gap:16px">
-        <div style="font-family:var(--font-heading);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
-        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,60px"></x-import>
-      </div>
+      <h2 data-reveal style="font-size:clamp(40px,5vw,76px);line-height:1;letter-spacing:-.025em;margin:0 auto;max-width:20ch">Presentes en las rutas que <span style="color:var(--color-accent-300)">conectan al Paraguay.</span></h2>
+      <p data-reveal="fade" style="font-size:19px;line-height:1.6;max-width:58ch;margin:32px auto 0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
     </div>
-    <div data-reveal="right" style="position:relative;height:clamp(540px,62vw,860px)">
+    <div data-reveal="below" style="position:relative;height:clamp(520px,68vw,820px);margin-top:clamp(40px,5vw,72px)">
       <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en Paraguay" style="width:100%;height:100%;border:0;display:block;background:transparent"></iframe>
     </div>
   </div>
