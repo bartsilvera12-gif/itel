@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/ivangonzalez/Downloads/**)",
+      "Bash(unzip -l \"Diseño creativo con animaciones.zip\")"
+    ]
+  }
+}
