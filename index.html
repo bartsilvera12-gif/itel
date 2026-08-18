@@ -286,23 +286,15 @@
       </div>
       <h2 data-reveal style="font-size:clamp(38px,4.6vw,72px);line-height:.98;letter-spacing:-.025em;margin:0;max-width:17ch">Presentes en las rutas que <span style="color:var(--color-accent-300)">conectan al Paraguay.</span></h2>
       <div data-reveal style="width:74px;height:2px;background:rgba(255,255,255,.35);margin:28px 0"></div>
-      <p data-reveal="fade" style="font-size:16.5px;line-height:1.65;max-width:48ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 76%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
-      <div data-reveal="below" style="display:flex;flex-wrap:wrap;gap:9px;margin-top:30px">
+      <p data-reveal="fade" style="font-size:19px;line-height:1.6;max-width:52ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
+      <div data-reveal="below" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
         <sc-for list="{{ todasCiudades }}" as="c" hint-placeholder-count="9">
-          <span data-glass-dark style="border-radius:999px;padding:8px 15px;font-family:var(--font-heading);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">{{ c }}</span>
+          <span data-glass-dark style="border-radius:999px;padding:12px 22px;font-family:var(--font-heading);font-size:15px;letter-spacing:.1em;text-transform:uppercase">{{ c }}</span>
         </sc-for>
       </div>
-      <div data-reveal="below" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:32px">
-        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
-          <div data-glass-dark style="padding:18px 16px;text-align:center">
-            <div style="font-family:var(--font-heading);font-weight:600;font-size:clamp(28px,2.6vw,38px);line-height:1">{{ st.v }}</div>
-            <div style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-top:4px">{{ st.k }}</div>
-          </div>
-        </sc-for>
-      </div>
-      <div data-reveal style="margin-top:30px;display:flex;flex-direction:column;gap:12px">
-        <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
-        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
+      <div data-reveal style="margin-top:44px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:var(--font-heading);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
+        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,60px"></x-import>
       </div>
     </div>
     <div data-reveal="right" style="position:relative;height:clamp(540px,62vw,860px)">
