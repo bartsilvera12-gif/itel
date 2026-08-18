@@ -292,15 +292,7 @@
           <span data-glass-dark style="border-radius:999px;padding:8px 15px;font-family:var(--font-heading);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">{{ c }}</span>
         </sc-for>
       </div>
-      <div data-reveal="below" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:32px">
-        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
-          <div data-glass-dark style="padding:18px 16px;text-align:center">
-            <div style="font-family:var(--font-heading);font-weight:600;font-size:clamp(28px,2.6vw,38px);line-height:1">{{ st.v }}</div>
-            <div style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-top:4px">{{ st.k }}</div>
-          </div>
-        </sc-for>
-      </div>
-      <div data-reveal style="margin-top:30px;display:flex;flex-direction:column;gap:12px">
+      <div data-reveal style="margin-top:36px;display:flex;flex-direction:column;gap:12px">
         <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
         <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
       </div>
