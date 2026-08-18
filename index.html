@@ -106,6 +106,61 @@
   @media (prefers-reduced-motion: reduce){
     #servicios [data-bg-grid],#servicios [data-bg-hex],#servicios [data-bg-orb],#servicios [data-bg-beam],#servicios [data-bg-net] path,#servicios [data-bg-net] circle{animation:none !important}
   }
+
+  /* ===== Mobile: grillas, cards, footer, animaciones más suaves ===== */
+  html,body{max-width:100%;overflow-x:hidden}
+  section,footer{max-width:100%}
+  img,video,iframe,svg{max-width:100%}
+  @media (max-width:720px){
+    /* Servicios: 2 columnas fijas y cards que crecen con contenido, sin flip */
+    #servicios [data-pad] > div:last-child{grid-template-columns:repeat(2,1fr) !important;gap:12px !important}
+    #servicios [data-reveal="cinematic"]{height:auto !important;min-height:230px}
+    #servicios [data-flip]{height:auto !important;perspective:none;overflow:visible}
+    #servicios [data-flip-inner]{transform:none !important;transition:none !important;height:auto !important;transform-style:flat}
+    #servicios [data-flip-inner] > [data-face]{position:relative !important;inset:auto !important;height:auto !important;backface-visibility:visible !important;padding:16px 14px !important;background:rgba(255,255,255,.06) !important;border:1px solid rgba(255,255,255,.12) !important}
+    #servicios [data-flip-inner] > [data-face-back]{display:none !important}
+    #servicios [data-face] .glyph,#servicios [data-face] > div:first-child > span{width:38px !important;height:38px !important}
+    #servicios [data-face] > div:nth-child(2),#servicios [data-face] > div:first-child + div{font-size:16.5px !important;line-height:1.15 !important}
+    #servicios [data-face] p{font-size:12.5px !important;line-height:1.45 !important}
+    #servicios [data-face] > span:last-child{margin-top:10px !important;gap:5px !important}
+    #servicios [data-face] > span:last-child span{font-size:9.5px !important;padding:3px 6px !important;letter-spacing:.06em !important}
+
+    /* Nosotros: imagen sin desborde y con proporción cómoda */
+    #nosotros figure{height:auto !important;aspect-ratio:4/3 !important}
+    #nosotros figure img{height:100% !important}
+
+    /* Cobertura: mapa con altura razonable en mobile, chips y stats prolijos */
+    #cobertura iframe{min-height:380px}
+    #cobertura [data-pad]{gap:24px !important}
+
+    /* Hero: no dejar que ningún blob se pase del ancho */
+    #top{min-height:88vh !important}
+    #top [aria-hidden]{max-width:100vw}
+
+    /* Footer: dejar espacio para la barra fija inferior de 56px + safe area */
+    footer{padding-bottom:calc(56px + env(safe-area-inset-bottom, 0px) + 24px) !important}
+    /* WhatsApp float subir para no chocar con la barra */
+    [data-wa-float]{bottom:calc(72px + env(safe-area-inset-bottom, 0px)) !important;right:16px !important;width:52px !important;height:52px !important}
+
+    /* Header más compacto */
+    [data-header]{padding-left:16px !important;padding-right:16px !important}
+
+    /* Reveals más suaves y cortos en mobile */
+    [data-reveal]{transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1) !important}
+    [data-reveal="left"],[data-reveal="right"]{transform:translateY(18px) !important}
+    [data-reveal="cinematic"]{transform:translateY(22px) scale(.985) !important}
+
+    /* Parallax pesado apagado en mobile para evitar jank */
+    #servicios [data-parallax]{transform:none !important}
+
+    /* Marquee de clientes un poco más lento en mobile */
+    #clientes [style*="itel-marquee"]{animation-duration:60s !important}
+  }
+  /* Hasta 380px, aún más compacto pero sigue 2 columnas */
+  @media (max-width:380px){
+    #servicios [data-face] > div:nth-child(2),#servicios [data-face] > div:first-child + div{font-size:15px !important}
+    #servicios [data-face] p{font-size:12px !important}
+  }
 </style>
 </helmet>
 <div style="font-family:var(--font-body);color:var(--color-text);background:var(--color-bg)">
