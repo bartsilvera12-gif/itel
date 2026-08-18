@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/styles.css">
+<script src="_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/_ds_bundle.js"></script>
+<style>
+  :root {
+    --color-accent: #2394ee;
+    --color-accent-100: #eaf5fe; --color-accent-200: #cbe7fd; --color-accent-300: #a3d4fb;
+    --color-accent-400: #6dbaf6; --color-accent-500: #2394ee; --color-accent-600: #1b7ac8;
+    --color-accent-700: #1861a0; --color-accent-800: #1a4a76; --color-accent-900: #2c3844;
+  }
+  body { margin:0; background:var(--color-accent-900); }
+  a { color:var(--color-accent-700); }
+  a:hover { color:var(--color-accent); }
+  @keyframes itel-in { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+  @keyframes itel-fade { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+  @keyframes itel-drift { from{transform:translateX(0)} to{transform:translateX(-1200px)} }
+  @keyframes itel-dash { to{stroke-dashoffset:-160} }
+  @keyframes itel-blink { 0%,100%{opacity:.3} 50%{opacity:1} }
+  @keyframes itel-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes itel-draw-mouse { 0%{stroke-dashoffset:150} 45%,100%{stroke-dashoffset:0} }
+  @keyframes itel-wheel { 0%,100%{transform:translateY(0);opacity:1} 50%{transform:translateY(14px);opacity:.35} }
+  [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  [data-reveal="left"]{transform:translateX(-46px)}
+  [data-reveal="right"]{transform:translateX(46px)}
+  [data-reveal="below"]{transform:translateY(56px)}
+  [data-reveal="fade"]{transform:none}
+  [data-reveal="cinematic"]{transform:translateY(38px) scale(.955)}
+  [data-reveal][data-in]{opacity:1;transform:none}
+  [data-flip]{perspective:1500px}
+  [data-flip-inner]{position:relative;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.2,.8,.25,1);will-change:transform}
+  [data-flip]:hover [data-flip-inner]{transform:rotateY(180deg)}
+  /* sin backdrop-filter en las caras: el blur sobre un elemento que rota traba el giro */
+  [data-flip-inner] > [data-face]{position:absolute;inset:0;display:flex;flex-direction:column;backface-visibility:hidden;-webkit-backface-visibility:hidden;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;background:rgba(52,66,80,.86) !important;border-color:rgba(255,255,255,.12) !important}
+  [data-flip-inner] > [data-face-back]{transform:rotateY(180deg);background:rgba(29,80,124,.92) !important;border-color:rgba(163,212,251,.28) !important;pointer-events:none}
+  [data-flip]:hover [data-face-back]{pointer-events:auto}
+  [data-flip]:hover [data-face]:not([data-face-back]){pointer-events:none}
+  /* en táctil no hay hover: la cara trasera no existe y el frente lleva la acción */
+  [data-touch-cta]{display:none}
+  @media (hover:none){
+    [data-touch-cta]{display:flex}
+    [data-flip-inner] > [data-face-back]{display:none}
+    [data-flip-inner] > [data-face]{position:relative;height:auto}
+    [data-flip]{height:auto !important}
+  }
+  /* --- translucidez sobria --- */
+  [data-glass-card]{background:rgba(255,255,255,.5);border:1px solid rgba(44,56,68,.08);-webkit-backdrop-filter:blur(24px) saturate(140%);backdrop-filter:blur(24px) saturate(140%);transition:background .4s ease,border-color .4s ease,transform .4s cubic-bezier(.2,.7,.3,1)}
+  [data-glass-card]:hover{background:rgba(255,255,255,.7);border-color:rgba(44,56,68,.14);transform:translateY(-3px)}
+  [data-glass-dark]{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(24px) saturate(140%);backdrop-filter:blur(24px) saturate(140%);transition:background .4s ease,border-color .4s ease,transform .4s cubic-bezier(.2,.7,.3,1)}
+  [data-glass-dark]:not([data-face]):hover{background:rgba(255,255,255,.1);border-color:rgba(163,212,251,.28);transform:translateY(-3px)}
+  [data-glass-dark][data-face]:hover{background:inherit}
+  [data-glass-btn]{-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);transition:background .35s ease,border-color .35s ease,transform .35s cubic-bezier(.2,.7,.3,1)}
+  [data-glass-btn]:hover{transform:translateY(-2px)}
+  [data-navlink]:hover{opacity:1;color:var(--color-accent-700);background:rgba(44,56,68,.06)}
+  [data-navlink]::after{content:"";position:absolute;left:50%;right:50%;bottom:4px;height:1px;background:var(--color-accent);opacity:0;transition:left .35s cubic-bezier(.2,.7,.3,1),right .35s cubic-bezier(.2,.7,.3,1),opacity .35s}
+  [data-navlink]:hover::after{left:16px;right:16px;opacity:.8}
+  [data-header][data-glass]{background:rgba(255,255,255,.62) !important;-webkit-backdrop-filter:blur(26px) saturate(150%) !important;backdrop-filter:blur(26px) saturate(150%) !important;border-bottom-color:rgba(44,56,68,.08) !important;box-shadow:0 8px 24px -20px rgba(44,56,68,.35) !important}
+  @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1 !important;transform:none !important;transition:none}[data-flip-inner]{transition:none}}
+  @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
+  @media (min-width:721px){[data-mobile-bar]{display:none !important}}
+  @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
+</style>
+</helmet>
+<div style="font-family:var(--font-body);color:var(--color-text);background:var(--color-bg)">
+
+<header data-header="1" data-pad style="position:fixed;top:0;left:0;right:0;z-index:60;background:#fff;-webkit-backdrop-filter:blur(0) saturate(100%);backdrop-filter:blur(0) saturate(100%);border-bottom:1px solid rgba(44,56,68,.1);box-shadow:none;transition:background .5s ease,backdrop-filter .5s ease,-webkit-backdrop-filter .5s ease,border-color .5s ease,box-shadow .5s ease;padding:0 48px">
+  <div class="nav" style="max-width:1560px;margin:0 auto;padding:12px 0;gap:28px;color:var(--color-text)">
+    <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex:none">
+      <img src="brand/logo-color.png" alt="I-TEL Comunicaciones" style="height:40px;width:auto;display:block">
+    </a>
+    <div data-desktop-nav style="display:flex;align-items:center;gap:4px;margin-left:auto">
+      <a href="#top" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Inicio</a>
+      <a href="#nosotros" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Nosotros</a>
+      <a href="#servicios" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Servicios</a>
+      <a href="#cobertura" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Cobertura</a>
+      <a href="#clientes" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Clientes</a>
+      <a href="ITEL Contacto.dc.html" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Contacto</a>
+    </div>
+    <button data-burger onClick="{{ toggleMenu }}" aria-label="Menú" style="display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-left:auto;width:46px;height:46px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.14);cursor:pointer;color:var(--color-text)">
+      <span style="display:block;width:20px;height:1px;background:currentColor"></span>
+      <span style="display:block;width:20px;height:1px;background:currentColor"></span>
+      <span style="display:block;width:20px;height:1px;background:currentColor"></span>
+    </button>
+  </div>
+</header>
+
+<sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:70;background:var(--color-accent-900);color:var(--color-neutral-100);display:flex;flex-direction:column;padding:24px 24px 40px;animation:itel-in .3s both">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px">
+      <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:38px;width:auto">
+      <button onClick="{{ toggleMenu }}" aria-label="Cerrar" style="width:46px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.3);color:inherit;font-size:22px;cursor:pointer;font-family:var(--font-heading)">×</button>
+    </div>
+    <a href="#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Nosotros</a>
+    <a href="#servicios" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Servicios</a>
+    <a href="#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Cobertura</a>
+    <a href="#clientes" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Clientes</a>
+    <a href="ITEL Contacto.dc.html" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Contacto</a>
+    <a href="ITEL Contacto.dc.html" class="btn" style="margin-top:30px;min-height:52px;background:var(--color-accent-300);color:var(--color-accent-900);border-color:var(--color-accent-300)">Solicitar cotización</a>
+  </div>
+</sc-if>
+
+<section id="top" data-screen-label="Hero" data-topo="1" style="position:relative;height:100vh;min-height:660px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--color-accent-900);color:var(--color-neutral-100)">
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none">
+    <div style="position:absolute;inset:0;color:var(--color-accent);opacity:.34">{{ contours }}</div>
+    <div data-glow="1" style="position:absolute;inset:0;color:var(--color-accent-300);opacity:.95;-webkit-mask-image:radial-gradient(circle 230px at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,.55) 45%,transparent 72%);mask-image:radial-gradient(circle 230px at var(--mx,-999px) var(--my,-999px),#000 0%,rgba(0,0,0,.55) 45%,transparent 72%)">{{ contoursGlow }}</div>
+    <video data-hero-video="1" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease"></video>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(to top,var(--color-accent-900) 8%,color-mix(in srgb,var(--color-accent-900) 55%,transparent) 46%,transparent)"></div>
+  </div>
+  <div style="position:relative;z-index:1;padding:0 24px;animation:itel-fade 1.1s .1s both">
+    <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="display:block;width:min(84vw,660px);height:auto;transition:transform .5s cubic-bezier(.2,.7,.3,1);filter:drop-shadow(0 2px 26px rgba(0,0,0,.5))" style-hover="transform:scale(1.02)">
+  </div>
+  <a href="#nosotros" aria-label="Bajar" style="position:absolute;left:50%;bottom:34px;z-index:1;transform:translateX(-50%);color:rgba(255,255,255,.75);transition:color .2s" style-hover="color:var(--color-accent-300)">
+    <svg width="30" height="46" viewBox="0 0 30 46" fill="none" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="27" height="43" rx="13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="150" stroke-dashoffset="150" style="animation:itel-draw-mouse 2.6s ease-in-out .2s infinite"></rect>
+      <circle cx="15" cy="14" r="2.5" fill="currentColor" style="animation:itel-wheel 2.6s ease-in-out infinite"></circle>
+    </svg>
+  </a>
+</section>
+
+<section id="nosotros" data-screen-label="Nosotros" style="position:relative;background-color:var(--color-bg);background-image:linear-gradient(to right,color-mix(in srgb,var(--color-accent-900) 7%,transparent) 1px,transparent 1px),linear-gradient(to bottom,color-mix(in srgb,var(--color-accent-900) 7%,transparent) 1px,transparent 1px);background-size:84px 84px;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;top:-16%;right:-8%;width:44vw;height:44vw;max-width:620px;max-height:620px;background:radial-gradient(circle,color-mix(in srgb,var(--color-accent) 16%,transparent),transparent 66%);pointer-events:none"></div>
+  <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:clamp(36px,5vw,72px);align-items:center">
+      <figure data-reveal="cinematic" style="position:relative;margin:0;height:clamp(340px,42vw,520px);overflow:hidden;border:1px solid var(--color-divider)">
+        <img src="brand/equipo-obra.jpg" alt="Técnico de I-TEL trabajando en un tablero eléctrico" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.2s cubic-bezier(.2,.7,.3,1)" style-hover="transform:scale(1.06)">
+        <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(44,56,68,.5),transparent 55%);pointer-events:none"></span>
+        <span style="position:absolute;left:14px;bottom:14px;font-family:var(--font-heading);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff">Personal técnico en obra</span>
+      </figure>
+      <div>
+        <div data-reveal="right" style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+          <span style="width:38px;height:1px;background:var(--color-accent)"></span>
+          <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Quiénes somos</span>
+        </div>
+        <h2 data-reveal="right" style="font-size:clamp(34px,3.6vw,54px);line-height:1.02;letter-spacing:-.02em;margin:0 0 24px;max-width:22ch">Tecnología, experiencia y <span style="color:var(--color-accent-700)">capacidad técnica</span></h2>
+        <p data-reveal="fade" style="font-size:16.5px;line-height:1.65;max-width:56ch;margin:0 0 14px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">I-TEL Comunicaciones desarrolla soluciones integrales para empresas que necesitan infraestructura tecnológica confiable.</p>
+        <p data-reveal="fade" style="font-size:16.5px;line-height:1.65;max-width:56ch;margin:0;color:color-mix(in srgb,var(--color-text) 78%,transparent)">La compañía trabaja en diferentes áreas de telecomunicaciones, electrónica, electricidad, networking, seguridad, informática e infraestructura, combinando experiencia técnica con tecnologías modernas.</p>
+        <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 36px;margin:32px 0 34px;border-top:1px solid var(--color-divider)">
+          <sc-for list="{{ capacidades }}" as="c" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--color-divider);font-size:14px"><span style="width:6px;height:6px;background:var(--color-accent);transform:rotate(45deg);flex:none"></span>{{ c }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" data-screen-label="Servicios" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.055) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;top:-10%;left:-8%;width:52vw;height:52vw;max-width:720px;max-height:720px;background:radial-gradient(circle,rgba(35,148,238,.22),transparent 68%);pointer-events:none"></div>
+  <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:clamp(40px,4vw,60px)">
+      <div>
+        <div data-reveal="left" style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+          <span style="width:38px;height:1px;background:var(--color-accent-300)"></span>
+          <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-300)">Qué hacemos</span>
+        </div>
+        <h2 data-reveal style="font-size:clamp(34px,3.8vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px;max-width:24ch">Soluciones integrales <span style="color:var(--color-accent-300)">para empresas</span></h2>
+        <p data-reveal="fade" style="font-size:17px;line-height:1.6;max-width:58ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 76%,transparent)">Pasá el cursor sobre cada servicio para consultarlo.</p>
+      </div>
+      <a data-reveal href="ITEL Contacto.dc.html" class="btn" data-glass-btn style="min-height:46px;padding:0 20px;white-space:nowrap;color:var(--color-neutral-100);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)">Consultar por un servicio</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px">
+      <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="6">
+        <div data-reveal="cinematic" style="height:250px">
+          <div data-flip style="height:100%">
+          <div data-flip-inner>
+            <div data-face data-glass-dark style="justify-content:flex-start;padding:22px 20px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px">
+                <span style="display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(255,255,255,.2);background:rgba(35,148,238,.16);color:var(--color-accent-300)">{{ s.glyph }}</span>
+              </div>
+              <div style="font-family:var(--font-heading);font-weight:600;font-size:23px;line-height:1.1;margin-bottom:10px">{{ s.name }}</div>
+              <p style="font-size:14px;line-height:1.55;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 72%,transparent)">{{ s.desc }}</p>
+              <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px">
+                <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="3">
+                  <span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);border:1px solid rgba(163,212,251,.28);padding:4px 8px">{{ t }}</span>
+                </sc-for>
+              </span>
+              
+            </div>
+            <div data-face data-face-back data-glass-dark style="align-items:center;justify-content:center;text-align:center;gap:18px;background:rgba(35,148,238,.16);border-color:rgba(163,212,251,.3);padding:24px 20px">
+              <span style="display:grid;place-items:center;width:64px;height:64px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);color:#fff">{{ s.glyph }}</span>
+              <div style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:1.1">{{ s.name }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+                <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="3">
+                  <span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);border:1px solid rgba(163,212,251,.4);padding:4px 8px">{{ t }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="clientes" data-screen-label="Clientes" data-flow="1" style="position:relative;background:var(--color-bg);overflow:hidden;padding:clamp(70px,7vw,110px) 0">
+  <canvas data-flow-canvas="1" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+  <div data-pad data-reveal style="position:relative;max-width:1560px;margin:0 auto;padding:0 48px clamp(34px,3.5vw,52px)">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+      <span style="width:38px;height:1px;background:var(--color-accent)"></span>
+      <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Quiénes nos eligen</span>
+    </div>
+    <h2 style="font-size:clamp(34px,3.8vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0;max-width:24ch">Empresas que han confiado en I-TEL</h2>
+  </div>
+  <div style="position:relative;display:flex;width:max-content;animation:itel-marquee 46s linear infinite">
+    <sc-for list="{{ clientesLoop }}" as="c" hint-placeholder-count="12">
+      <span data-glass-card style="display:flex;align-items:center;justify-content:center;width:230px;height:104px;margin-right:18px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-align:center;line-height:1.15;padding:0 16px;color:color-mix(in srgb,var(--color-text) 74%,transparent)">{{ c }}</span>
+    </sc-for>
+  </div>
+</section>
+
+<section id="cobertura" data-screen-label="Cobertura" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:-20%;right:-10%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(35,148,238,.2),transparent 68%);pointer-events:none"></div>
+  <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(30px,3vw,52px);align-items:center">
+    <div>
+      <div data-reveal="left" style="display:flex;align-items:center;gap:11px;margin-bottom:22px">
+        <span style="width:9px;height:9px;border-radius:50%;background:var(--color-accent-300);animation:itel-blink 2.4s ease-in-out infinite"></span>
+        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-300)">Cobertura</span>
+      </div>
+      <h2 data-reveal style="font-size:clamp(38px,4.6vw,72px);line-height:.98;letter-spacing:-.025em;margin:0;max-width:17ch">Presentes en las rutas que <span style="color:var(--color-accent-300)">conectan al Paraguay.</span></h2>
+      <div data-reveal style="width:74px;height:2px;background:rgba(255,255,255,.35);margin:28px 0"></div>
+      <p data-reveal="fade" style="font-size:16.5px;line-height:1.65;max-width:48ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 76%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
+      <div data-reveal="below" style="display:flex;flex-wrap:wrap;gap:9px;margin-top:30px">
+        <sc-for list="{{ todasCiudades }}" as="c" hint-placeholder-count="9">
+          <span data-glass-dark style="border-radius:999px;padding:8px 15px;font-family:var(--font-heading);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">{{ c }}</span>
+        </sc-for>
+      </div>
+      <div data-reveal="below" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:32px">
+        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+          <div data-glass-dark style="padding:18px 16px;text-align:center">
+            <div style="font-family:var(--font-heading);font-weight:600;font-size:clamp(28px,2.6vw,38px);line-height:1">{{ st.v }}</div>
+            <div style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-top:4px">{{ st.k }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal style="margin-top:30px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
+        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
+      </div>
+    </div>
+    <div data-reveal="right" style="position:relative;height:clamp(540px,62vw,860px)">
+      <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en Paraguay" style="width:100%;height:100%;border:0;display:block;background:transparent"></iframe>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA final" style="position:relative;background-color:var(--color-bg);color:var(--color-text);background-image:linear-gradient(to right,color-mix(in srgb,var(--color-accent-900) 6%,transparent) 1px,transparent 1px),linear-gradient(to bottom,color-mix(in srgb,var(--color-accent-900) 6%,transparent) 1px,transparent 1px);background-size:84px 84px;border-top:1px solid var(--color-divider);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:.55">
+    <svg viewBox="0 0 1200 320" preserveAspectRatio="none" style="width:100%;height:100%">
+      <g stroke="var(--color-accent)" stroke-width="1" fill="none" stroke-opacity=".35">
+        <path d="M0 260 L240 170 L520 220 L820 120 L1200 190"></path>
+        <path d="M240 170 L300 50 L700 40 L820 120"></path>
+      </g>
+      <g stroke="var(--color-accent)" stroke-width="1.4" fill="none" stroke-dasharray="12 148" style="animation:itel-dash 7s linear infinite">
+        <path d="M0 260 L240 170 L520 220 L820 120 L1200 190"></path>
+      </g>
+    </svg>
+  </div>
+  <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,124px) 48px;text-align:center">
+    <h2 data-reveal style="font-size:clamp(34px,4.4vw,68px);line-height:1;letter-spacing:-.025em;margin:0 auto 20px;max-width:20ch">Tu próximo proyecto tecnológico <span style="color:var(--color-accent-700)">comienza acá</span></h2>
+    <p data-reveal="fade" style="font-size:17.5px;line-height:1.6;max-width:52ch;margin:0 auto 34px;color:color-mix(in srgb,var(--color-text) 76%,transparent)">Contanos qué necesita tu empresa y nuestro equipo analizará la mejor solución.</p>
+    <div data-reveal style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+      <a href="ITEL Contacto.dc.html" class="btn btn-primary" data-glass-btn style="min-height:52px;padding:0 28px;font-size:15px">Solicitar cotización</a>
+      <a href="ITEL Contacto.dc.html" class="btn btn-secondary" data-glass-btn style="min-height:52px;padding:0 24px;font-size:15px;display:inline-flex;align-items:center;gap:9px">{{ waGlyph }}Contactar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer data-pad style="background:var(--color-accent-900);color:var(--color-neutral-100);padding:clamp(56px,6vw,88px) 48px 28px;border-top:1px solid rgba(255,255,255,.14)">
+  <div style="max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
+    <div>
+      <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:56px;width:auto;margin-bottom:20px">
+      <p style="font-size:14.5px;line-height:1.6;max-width:30ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 72%,transparent)">Soluciones e Integraciones Tecnológicas</p>
+      <div style="display:flex;gap:10px;margin-top:22px">
+        <sc-for list="{{ redes }}" as="r" hint-placeholder-count="3">
+          <a href="#" aria-label="{{ r.name }}" data-glass-dark style="width:40px;height:40px;display:grid;place-items:center;color:inherit;text-decoration:none">{{ r.glyph }}</a>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:16px">Empresa</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <a href="#nosotros" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Nosotros</a>
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Servicios</a>
+        <a href="#clientes" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Clientes</a>
+        <a href="#cobertura" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Cobertura</a>
+        <a href="ITEL Contacto.dc.html" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Contacto</a>
+        <a href="ITEL Preguntas.dc.html" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Preguntas frecuentes</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:16px">Servicios</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Seguridad electrónica</a>
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Fibra óptica</a>
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Networking</a>
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Telefonía IP</a>
+        <a href="#servicios" style="color:inherit;opacity:.8;text-decoration:none;font-size:14.5px" style-hover="opacity:1;color:var(--color-accent-300)">Estructuras metálicas</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:16px">Contacto</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent)">
+        <span>Teléfono · a completar</span>
+        <span>WhatsApp · a completar</span>
+        <span>Email · a completar</span>
+        <span>Luque, Paraguay</span>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1560px;margin:44px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:color-mix(in srgb,var(--color-neutral-100) 60%,transparent)">
+    <span>© I-TEL Comunicaciones. Todos los derechos reservados.</span>
+    <span>Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--color-accent-300);text-decoration:none;font-family:var(--font-heading);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#fff;border-color:#fff">Neura</a></span>
+  </div>
+</footer>
+
+<a data-wa-float="1" href="ITEL Contacto.dc.html" aria-label="WhatsApp" style="position:fixed;right:22px;bottom:88px;z-index:55;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 10px 26px rgba(0,0,0,.3);opacity:0;visibility:hidden;transform:translateY(14px) scale(.9);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.7,.3,1),visibility .35s,background .2s" style-hover="background:#1ebe5b;transform:translateY(-3px) scale(1.04)">{{ waGlyphBig }}</a>
+
+<div data-mobile-bar style="position:fixed;left:0;right:0;bottom:0;z-index:56;display:grid;grid-template-columns:repeat(2,1fr);background:var(--color-accent-900);border-top:1px solid rgba(255,255,255,.18)">
+  <a href="ITEL Contacto.dc.html" style="min-height:56px;display:grid;place-items:center;color:var(--color-neutral-100);text-decoration:none;font-family:var(--font-heading);font-size:13px;letter-spacing:.12em;text-transform:uppercase">Contacto</a>
+  <a href="ITEL Contacto.dc.html" style="min-height:56px;display:grid;place-items:center;background:var(--color-accent-300);color:var(--color-accent-900);text-decoration:none;font-family:var(--font-heading);font-size:13px;letter-spacing:.12em;text-transform:uppercase">Cotizar</a>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menu: false };
+  q(sel) { return document.querySelector(sel); }
+
+  icon(paths, extra, size) {
+    return React.createElement("svg", { width: size || 24, height: size || 24, viewBox: "0 0 24 24", fill: "none",
+      stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" },
+      paths.map((d, i) => React.createElement("path", { key: i, d })),
+      (extra || []).map((c, i) => React.createElement("circle", { key: "c" + i, cx: c[0], cy: c[1], r: c[2] })));
+  }
+  solid(d, size) {
+    return React.createElement("svg", { width: size, height: size, viewBox: "0 0 24 24", fill: "currentColor" },
+      React.createElement("path", { d }));
+  }
+
+  contourSvg(bright) {
+    const LINES = 34, W = 1200, H = 600, STEP = 30, paths = [];
+    for (let i = 0; i < LINES; i++) {
+      const y0 = 30 + (i * (H - 60)) / (LINES - 1);
+      const amp = 12 + (i % 7) * 5, amp2 = 5 + (i % 4) * 3, ph = i * 0.42, ph2 = i * 0.77;
+      let d = "";
+      for (let x = -W; x <= 2 * W; x += STEP) {
+        const y = y0 + amp * Math.sin((x / W) * 2 * Math.PI + ph) + amp2 * Math.sin((x / (W / 2)) * 2 * Math.PI + ph2);
+        d += (d ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(2);
+      }
+      paths.push(React.createElement("path", { key: i, d, fill: "none", stroke: "currentColor",
+        strokeWidth: bright ? 1.15 : 0.85, strokeOpacity: bright ? 1 : 0.5 + (i % 5) * 0.1 }));
+    }
+    return React.createElement("svg", { viewBox: "0 0 " + W + " " + H, preserveAspectRatio: "none", fill: "none",
+      style: { position: "absolute", inset: 0, width: "100%", height: "100%" } },
+      React.createElement("g", { style: { animation: "itel-drift 42s linear infinite" } }, paths));
+  }
+
+  // campo vectorial: la retícula ondula y se abre alrededor del cursor
+  startFlowField() {
+    const host = this.q("[data-flow]"), canvas = this.q("[data-flow-canvas]");
+    if (!host || !canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let w = 0, h = 0, t = 0;
+    const m = { x: -1000, y: -1000, tx: -1000, ty: -1000 };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const r = host.getBoundingClientRect();
+      w = Math.max(1, r.width); h = Math.max(1, r.height);
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    this._flowMove = (ev) => { const r = host.getBoundingClientRect(); m.tx = ev.clientX - r.left; m.ty = ev.clientY - r.top; };
+    this._flowLeave = () => { m.tx = -1000; m.ty = -1000; };
+    host.addEventListener("mousemove", this._flowMove);
+    host.addEventListener("mouseleave", this._flowLeave);
+    this._flowRo = new ResizeObserver(resize);
+    this._flowRo.observe(host);
+    resize();
+
+    const SPACING = 34, REACH = 220;
+    const render = () => {
+      t += reduce ? 0 : 0.008;
+      m.x += (m.tx - m.x) * 0.08; m.y += (m.ty - m.y) * 0.08;
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1.2;
+      const cols = Math.ceil(w / SPACING) + 1, rows = Math.ceil(h / SPACING) + 1;
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * SPACING, y = j * SPACING;
+          let a = Math.sin(x * 0.003 + t) + Math.cos(y * 0.003 + t);
+          const dx = m.x - x, dy = m.y - y, d = Math.sqrt(dx * dx + dy * dy);
+          let near = false;
+          if (d < REACH && d > 0) {
+            near = true;
+            const push = Math.atan2(dy, dx) + Math.PI, force = 1 - d / REACH;
+            a = a * (1 - force) + push * force;
+          }
+          const len = near ? 22 : 14;
+          const alpha = near ? 0.85 : 0.14 + Math.sin(x * 0.01 + y * 0.01 + t) * 0.09;
+          ctx.strokeStyle = near ? "rgba(24,97,160," + (alpha * 0.95) + ")" : "rgba(44,56,68," + (alpha * 0.7) + ")";
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + Math.cos(a) * len, y + Math.sin(a) * len);
+          ctx.stroke();
+        }
+      }
+      this._flowRaf = requestAnimationFrame(render);
+    };
+    render();
+  }
+
+  componentDidMount() {
+    this.startFlowField();
+    this.startReveal();
+    this.trackCursor();
+    this.loadHeroVideo();
+  }
+  componentDidUpdate() { this.startReveal(); }
+  componentWillUnmount() {
+    clearInterval(this._tick);
+    cancelAnimationFrame(this._flowRaf);
+    if (this._flowRo) this._flowRo.disconnect();
+    const fh = this.q("[data-flow]");
+    if (fh) { fh.removeEventListener("mousemove", this._flowMove); fh.removeEventListener("mouseleave", this._flowLeave); }
+    const host = this.q("[data-topo]");
+    if (host) { host.removeEventListener("mousemove", this._onMove); host.removeEventListener("mouseleave", this._onLeave); }
+  }
+
+  // medimos por rect en un tick corto: el host puede scrollear con transform,
+  // donde IntersectionObserver contra el viewport nunca dispara
+  startReveal() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll("[data-reveal]").forEach((el) => el.setAttribute("data-in", ""));
+      return;
+    }
+    Array.from(document.querySelectorAll("[data-reveal]:not([data-watch])")).forEach((el, i) => {
+      el.setAttribute("data-watch", "");
+      el.style.transitionDelay = ((i % 4) * 70) + "ms";
+    });
+    if (this._tick) return;
+    const step = () => {
+      const vh = window.innerHeight || 0;
+      const pend = document.querySelectorAll("[data-reveal]:not([data-in])");
+      pend.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.9 && r.bottom > -80) el.setAttribute("data-in", "");
+      });
+      const hero = this.q("[data-topo]"), fab = this.q("[data-wa-float]"), hd = this.q("[data-header]");
+      if (hero && hd) {
+        const past = hero.getBoundingClientRect().bottom < vh * 0.88;
+        if (past) hd.setAttribute("data-glass", ""); else hd.removeAttribute("data-glass");
+      }
+      if (hero && fab) {
+        const on = hero.getBoundingClientRect().bottom < vh * 0.6;
+        fab.style.opacity = on ? "1" : "0";
+        fab.style.visibility = on ? "visible" : "hidden";
+        fab.style.transform = on ? "translateY(0) scale(1)" : "translateY(14px) scale(.9)";
+      }
+    };
+    step();
+    this._tick = setInterval(step, 150);
+  }
+
+  trackCursor() {
+    const host = this.q("[data-topo]"), layer = this.q("[data-glow]");
+    if (!host || !layer) return;
+    this._onMove = (ev) => {
+      const r = host.getBoundingClientRect();
+      layer.style.setProperty("--mx", (ev.clientX - r.left) + "px");
+      layer.style.setProperty("--my", (ev.clientY - r.top) + "px");
+    };
+    this._onLeave = () => {
+      layer.style.setProperty("--mx", "-999px");
+      layer.style.setProperty("--my", "-999px");
+    };
+    host.addEventListener("mousemove", this._onMove);
+    host.addEventListener("mouseleave", this._onLeave);
+  }
+
+  loadHeroVideo() {
+    const v = this.q("[data-hero-video]");
+    if (!v) return;
+    fetch("hero.mp4", { method: "HEAD" }).then((r) => {
+      if (!r.ok) return;
+      v.src = "hero.mp4";
+      v.style.opacity = "1";
+      v.play().catch(() => {});
+    }).catch(() => {});
+  }
+
+  renderVals() {
+    const g = (p, e) => this.icon(p, e, 24);
+    const WA = "M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.22.85.86-3.14-.2-.32a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24s8.24 3.7 8.24 8.24-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.65.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.72 2.63 4.17 3.69.58.25 1.04.4 1.39.51.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.15-1.19-.06-.1-.23-.16-.48-.29Z";
+    const FB = "M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z";
+    const IG = "M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.96.24 2.65.51.71.28 1.31.65 1.91 1.25.6.6.97 1.2 1.25 1.91.27.69.46 1.48.51 2.65.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.96-.51 2.65-.28.71-.65 1.31-1.25 1.91-.6.6-1.2.97-1.91 1.25-.69.27-1.48.46-2.65.51-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.96-.24-2.65-.51-.71-.28-1.31-.65-1.91-1.25-.6-.6-.97-1.2-1.25-1.91-.27-.69-.46-1.48-.51-2.65C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.96.51-2.65.28-.71.65-1.31 1.25-1.91.6-.6 1.2-.97 1.91-1.25.69-.27 1.48-.46 2.65-.51C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.49.01-4.72.07-.95.04-1.47.2-1.81.34-.46.18-.79.39-1.13.74-.35.34-.56.67-.74 1.13-.14.34-.3.86-.34 1.81-.06 1.23-.07 1.57-.07 4.72s.01 3.49.07 4.72c.4.95.2 1.47.34 1.81.18.46.39.79.74 1.13.34.35.67.56 1.13.74.34.14.86.3 1.81.34 1.23.06 1.57.07 4.72.07s3.49-.01 4.72-.07c.95-.04 1.47-.2 1.81-.34.46-.18.79-.39 1.13-.74.35-.34.56-.67.74-1.13.14-.34.3-.86.34-1.81.06-1.23.07-1.57.07-4.72s-.01-3.49-.07-4.72c-.04-.95-.2-1.47-.34-1.81a3.04 3.04 0 0 0-.74-1.13 3.04 3.04 0 0 0-1.13-.74c-.34-.14-.86-.3-1.81-.34-1.23-.06-1.57-.07-4.72-.07Zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98Zm0 9.05a3.56 3.56 0 1 0 0-7.12 3.56 3.56 0 0 0 0 7.12Zm6.99-9.27a1.28 1.28 0 1 1-2.56 0 1.28 1.28 0 0 1 2.56 0Z";
+    const LI = "M6.94 5.5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 21.5h3.2V9.06H3.4V21.5Zm5.86-12.44h3.06v1.7h.05c.43-.8 1.47-1.9 3.28-1.9 2.87 0 3.75 1.85 3.75 4.9V21.5h-3.2v-6.6c0-1.55-.33-2.9-1.86-2.9-1.28 0-1.85.87-1.85 2.86v6.64H9.26V9.06Z";
+    return {
+      menu: this.state.menu,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      contours: this.contourSvg(false),
+      contoursGlow: this.contourSvg(true),
+      waGlyph: this.solid(WA, 19),
+      waGlyphBig: this.solid(WA, 27),
+      redes: [{ name: "Facebook", glyph: this.solid(FB, 17) }, { name: "Instagram", glyph: this.solid(IG, 17) }, { name: "LinkedIn", glyph: this.solid(LI, 17) }],
+      capacidades: ["Local propio", "Talleres especializados", "Depósito", "Flota de vehículos", "Personal técnico capacitado", "Proyectos empresariales"],
+      servicios: [
+        { code: "01", name: "Seguridad electrónica", desc: "Soluciones de seguridad para empresas, industrias, comercios e instituciones.", tags: ["CCTV", "Cámaras IP", "Monitoreo"], glyph: g(["M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97","M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z","M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15","M2 21v-4"]) },
+        { code: "02", name: "Prevención de incendios", desc: "Detección temprana de principios de incendio y respuesta inmediata.", tags: ["Detectores", "Centrales", "Notificación"], glyph: g(["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5"]) },
+        { code: "03", name: "Seguridad perimetral", desc: "Protección de instalaciones industriales, empresariales y residenciales.", tags: ["Cercado eléctrico", "Barreras IR"], glyph: g(["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"]) },
+        { code: "04", name: "Informática", desc: "Equipos, insumos, mantenimiento, soporte y administración de redes.", tags: ["Soporte", "Mantenimiento"], glyph: g(["M8 21h8","M12 17v4","M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"]) },
+        { code: "05", name: "Networking", desc: "Diseño, implementación y mantenimiento de infraestructura de redes.", tags: ["LAN", "Wi-Fi", "Cableado"], glyph: g(["M9 2h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1","M12 8v3","M6 15h12","M6 15v3","M18 15v3","M2 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1","M17 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1"]) },
+        { code: "06", name: "Estructuras metálicas", desc: "Fabricación, instalación y mantenimiento de estructuras para telecomunicaciones.", tags: ["Torres", "Mástiles", "Pararrayos"], glyph: g(["M4.9 16.1C1 12.2 1 5.8 4.9 1.9","M7.8 4.7a6.14 6.14 0 0 0-.8 7.5","M12 9v12","M13.4 10.6 12 9l-1.4 1.6","M16.2 4.8a6.14 6.14 0 0 1 .8 7.5","M19.1 1.9a13.5 13.5 0 0 1 0 14.2","M8 21h8"]) },
+        { code: "07", name: "Enlaces punto a punto", desc: "Conectividad inalámbrica entre dos ubicaciones empresariales.", tags: ["Sede A ↔ Sede B"], glyph: g(["M8 3 4 7l4 4","M4 7h16","M16 21l4-4-4-4","M20 17H4"]) },
+        { code: "08", name: "Enlaces multipunto", desc: "Infraestructura para conectar múltiples ubicaciones hacia una central.", tags: ["Sucursales", "VoIP", "Video"], glyph: g(["M8.59 13.51l6.83 3.98","M15.41 6.51l-6.82 3.98"], [[18,5,3],[6,12,3],[18,19,3]]) },
+        { code: "09", name: "Fibra óptica", desc: "Diseño, instalación, fusión y mantenimiento de infraestructura de fibra.", tags: ["Fusión", "Migración"], glyph: g(["M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2Z","M3 5V3","M7 5V3","M19 15V6.5a3.5 3.5 0 0 0-7 0v11a3.5 3.5 0 0 1-7 0V9","M17 21v-2","M21 21v-2","M22 19h-6v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z"]) },
+        { code: "10", name: "Telefonía IP", desc: "Comunicación de voz sobre infraestructura IP, escalable y de menor costo.", tags: ["VoIP", "Sucursales"], glyph: g(["M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"]) },
+        { code: "11", name: "Comunicación rural", desc: "Conectividad donde la infraestructura tradicional es limitada.", tags: ["Radio", "Satelital"], glyph: g(["M4 10a7.31 7.31 0 0 0 10 10Z","M9 15l3-3","M17 13a6 6 0 0 0-6-6","M21 13A10 10 0 0 0 11 3"]) },
+        { code: "12", name: "Energías renovables", desc: "Soluciones de energía y eficiencia energética integradas a la infraestructura.", tags: ["Solar", "Gestión"], glyph: g(["M12 2v2","M12 20v2","m4.93 4.93 1.41 1.41","m17.66 17.66 1.41 1.41","M2 12h2","M20 12h2","m6.34 17.66-1.41 1.41","m19.07 4.93-1.41 1.41"], [[12,12,4]]) }
+      ],
+      necesidades: [
+        { code: "N.01", name: "Mejorar la seguridad", desc: "CCTV, alarmas, prevención de incendio y seguridad perimetral." },
+        { code: "N.02", name: "Conectar sucursales", desc: "Enlaces punto a punto, multipunto y fibra óptica." },
+        { code: "N.03", name: "Modernizar comunicaciones", desc: "Telefonía IP y networking." },
+        { code: "N.04", name: "Conectar ubicaciones remotas", desc: "Radio, enlaces inalámbricos e internet satelital." },
+        { code: "N.05", name: "Crear infraestructura", desc: "Torres, mástiles, antenas y estructuras de telecomunicaciones." },
+        { code: "N.06", name: "Optimizar infraestructura", desc: "Informática, redes, mantenimiento y soluciones integradas." }
+      ],
+      clientesLoop: (() => {
+        const c = ["Ganadera Chajha S.A.", "Ganadera Sofía S.A.", "Wheelco S.A.", "Payco S.A.", "Seagro S.A.", "SICBRAS PY", "Berkemeyer", "Natupar SRL", "Las Valentinas S.A.", "Maroma S.A.", "Agropecuaria Don Tani SRL", "UNISAL", "Matriz S.A.", "Technoma SAECA", "ITTI SAECA", "Las Tacuaras S.A."];
+        return c.concat(c);
+      })(),
+      todasCiudades: ["Luque", "Encarnación", "Ciudad del Este", "Pedro Juan Caballero", "Coronel Oviedo", "Pilar", "Salto del Guairá", "Concepción", "Santa Rosa del Aguaray"],
+      stats: [{ v: "+15", k: "años" }, { v: "5", k: "centros" }, { v: "9", k: "ciudades" }, { v: "12", k: "áreas" }],
+      centros: ["Luque", "Encarnación", "Ciudad del Este", "Pedro Juan Caballero", "Coronel Oviedo"],
+      confianza: [
+        { name: "Más de 15 años de experiencia", desc: "Trayectoria desarrollando soluciones tecnológicas." },
+        { name: "Personal técnico especializado", desc: "Capacidad de instalación, configuración y mantenimiento." },
+        { name: "Soluciones integrales", desc: "Ingeniería, provisión, implementación y soporte." },
+        { name: "Cobertura nacional", desc: "Capacidad para ejecutar proyectos en distintas regiones del Paraguay." }
+      ],
+      flapProps: {
+        words: ["LUQUE", "ENCARNACION", "CIUDAD DEL ESTE", "PEDRO JUAN CABALLERO", "CORONEL OVIEDO"],
+        padTo: 0, autoWidth: true, charset: "alpha", flipsPerChar: 6, flipDuration: 0.1, stagger: 0.04, cycleDelay: 2600,
+        tileColor: "#22303c", textColor: "#a3d4fb", tileRadius: 2, gap: 5,
+        fontSize: "clamp(13px,1.75vw,26px)", fontFamily: "var(--font-heading), 'Barlow Condensed', sans-serif"
+      },
+      faqs: [
+        { q: "¿I-TEL realiza proyectos completos?", a: "Sí. La empresa puede participar desde el relevamiento y diseño hasta la provisión, instalación y mantenimiento de la solución." },
+        { q: "¿Trabajan fuera de Asunción?", a: "Sí. I-TEL cuenta con cobertura y experiencia en distintas regiones del Paraguay." },
+        { q: "¿Realizan mantenimiento?", a: "Sí. Se ofrecen servicios preventivos y correctivos dependiendo del área." },
+        { q: "¿Trabajan con empresas?", a: "Sí. Las soluciones están orientadas a empresas, industrias, comercios, instituciones y proyectos rurales." },
+        { q: "¿Puedo solicitar una visita técnica?", a: "Sí. La solicitud deberá enviarse mediante el formulario de contacto o cotización." },
+        { q: "¿Realizan proyectos personalizados?", a: "Sí. Las soluciones pueden adecuarse a las características y necesidades de cada proyecto." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

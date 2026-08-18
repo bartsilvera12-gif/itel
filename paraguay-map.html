@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cobertura I-TEL — Paraguay</title>
+<link rel="stylesheet" href="_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/styles.css">
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+  :root{--itel-accent:#2394ee;--itel-light:#a3d4fb;--itel-dark:#2c3844;--itel-fill:#1a4a76;--itel-line:#1861a0;--itel-mute:#6d8496}
+  html,body{margin:0;height:100%;overflow:hidden}
+  html,body,#wrap{background:transparent !important;background-color:transparent !important;background-image:none !important}
+  #wrap{position:absolute;inset:0}
+  svg{display:block;width:100%;height:100%;overflow:visible}
+  .lbl{font-family:var(--font-heading),"Barlow Condensed",system-ui,sans-serif;font-weight:600;font-size:13px;fill:#fff;letter-spacing:.07em;pointer-events:none;paint-order:stroke;stroke:rgba(44,56,68,.85);stroke-width:3px;stroke-linejoin:round}
+  .lbl.cov{font-weight:500;font-size:11.5px;fill:var(--itel-light);opacity:.9;stroke-width:2.5px}
+  .meta{font-family:var(--font-heading),"Barlow Condensed",system-ui,sans-serif;font-weight:500;font-size:10px;fill:var(--itel-light);letter-spacing:.2em;opacity:.75;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="wrap"><svg id="map"></svg></div>
+<script>
+const CENTERS = [
+  {n:"Luque",             lat:-25.2667, lon:-57.4872, t:"op", dx:-13, dy:-8,  anchor:"end"},
+  {n:"Coronel Oviedo",    lat:-25.4464, lon:-56.4406, t:"op", dx:0,   dy:-16, anchor:"middle"},
+  {n:"Ciudad del Este",   lat:-25.5163, lon:-54.6161, t:"op", dx:13,  dy:5,   anchor:"start"},
+  {n:"Pedro Juan Caballero",lat:-22.5472,lon:-55.7333,t:"op", dx:13,  dy:-9,  anchor:"start"},
+  {n:"Encarnación",       lat:-27.3306, lon:-55.8667, t:"op", dx:0,   dy:22,  anchor:"middle"},
+  {n:"Concepción",        lat:-23.4058, lon:-57.4344, t:"cv", dx:-12, dy:-5,  anchor:"end"},
+  {n:"Santa Rosa del Aguaray",lat:-23.0333,lon:-56.4417,t:"cv", dx:13, dy:12, anchor:"start"},
+  {n:"Salto del Guairá",  lat:-24.0631, lon:-54.3061, t:"cv", dx:13,  dy:-9,  anchor:"start"},
+  {n:"Pilar",             lat:-26.8600, lon:-58.3033, t:"cv", dx:-12, dy:6,   anchor:"end"}
+];
+const HUB = CENTERS[0];
+const svg = d3.select("#map");
+let topo = null;
+
+async function load(){
+  const t = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json");
+  topo = topojson.feature(t, t.objects.countries);
+  draw();
+}
+
+function draw(){
+  if(!topo) return;
+  const el = document.getElementById("wrap");
+  const W = el.clientWidth, H = el.clientHeight;
+  if(!W || !H) return;
+  svg.selectAll("*").remove();
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+
+  const py = topo.features.find(f => f.properties && f.properties.name === "Paraguay");
+  const wide = W >= 560;
+  const proj = d3.geoMercator().fitExtent([[W*(wide?0.05:0.06), H*0.02],[W*(wide?0.78:0.70), H*0.98]], py);
+  const path = d3.geoPath(proj);
+
+  const defs = svg.append("defs");
+  const rg = defs.append("radialGradient").attr("id","glow");
+  rg.append("stop").attr("offset","0%").attr("stop-color","var(--itel-accent)").attr("stop-opacity",".5");
+  rg.append("stop").attr("offset","100%").attr("stop-color","var(--itel-accent)").attr("stop-opacity","0");
+  const lg = defs.append("linearGradient").attr("id","land").attr("x1","0").attr("y1","0").attr("x2",".3").attr("y2","1");
+  lg.append("stop").attr("offset","0%").attr("stop-color","#20527f");
+  lg.append("stop").attr("offset","100%").attr("stop-color","#17395c");
+  const halo = defs.append("filter").attr("id","halo").attr("x","-30%").attr("y","-30%").attr("width","160%").attr("height","160%");
+  halo.append("feGaussianBlur").attr("stdDeviation", Math.max(3, W/140));
+  defs.append("clipPath").attr("id","clipPy").append("path").attr("d", path(py));
+
+  // país
+  svg.append("path").attr("d",path(py)).attr("fill","url(#land)");
+
+  // retícula geográfica dentro del país
+  const grat = d3.geoGraticule().step([2,2]);
+  svg.append("g").attr("clip-path","url(#clipPy)")
+     .append("path").attr("d", path(grat())).attr("fill","none")
+     .attr("stroke","var(--itel-light)").attr("stroke-opacity",.13).attr("stroke-width",.6);
+
+  // borde
+  const outline = svg.append("path").attr("d",path(py)).attr("fill","none")
+     .attr("stroke","var(--itel-accent)").attr("stroke-width",1.5).attr("stroke-linejoin","round");
+  const len = outline.node().getTotalLength();
+  outline.attr("stroke-dasharray",len).attr("stroke-dashoffset",len)
+     .transition().duration(2200).ease(d3.easeCubicInOut).attr("stroke-dashoffset",0);
+
+  const p = c => proj([c.lon, c.lat]);
+  const hub = p(HUB);
+
+  // enlaces desde el centro principal
+  const links = svg.append("g");
+  CENTERS.slice(1).forEach((c,i)=>{
+    const q = p(c);
+    const mx = (hub[0]+q[0])/2, my = (hub[1]+q[1])/2 - Math.abs(q[0]-hub[0])*0.2 - 10;
+    const d = `M${hub[0]},${hub[1]} Q${mx},${my} ${q[0]},${q[1]}`;
+    links.append("path").attr("d",d).attr("fill","none")
+      .attr("stroke", c.t==="op" ? "var(--itel-accent)" : "var(--itel-mute)")
+      .attr("stroke-width", c.t==="op" ? 1 : .7).attr("stroke-opacity",0)
+      .transition().delay(900+i*130).duration(600).attr("stroke-opacity", c.t==="op" ? .5 : .28);
+    const ghost = links.node().appendChild(document.createElementNS("http://www.w3.org/2000/svg","path"));
+    ghost.setAttribute("d",d); ghost.setAttribute("fill","none"); ghost.setAttribute("stroke","none");
+    const L = ghost.getTotalLength();
+    const pulse = links.append("circle").attr("r", c.t==="op"?2.4:1.6)
+      .attr("fill", c.t==="op"?"#fff":"var(--itel-light)").attr("opacity",0);
+    (function run(){
+      pulse.attr("opacity",.95).transition().delay(i*420).duration(2600).ease(d3.easeLinear)
+        .attrTween("transform",()=>tt=>{const pt=ghost.getPointAtLength(tt*L);return `translate(${pt.x},${pt.y})`;})
+        .on("end",()=>{ pulse.attr("opacity",0); setTimeout(run, 700+i*120); });
+    })();
+  });
+
+  const nodes = svg.append("g");
+  CENTERS.forEach((c,i)=>{
+    const q = p(c), op = c.t==="op";
+    const gg = nodes.append("g").attr("transform",`translate(${q[0]},${q[1]})`).attr("opacity",0);
+    gg.transition().delay(700+i*90).duration(500).attr("opacity",1);
+    if(op){
+      gg.append("circle").attr("r",18).attr("fill","url(#glow)");
+      const ring = gg.append("circle").attr("r",5).attr("fill","none").attr("stroke","var(--itel-accent)").attr("stroke-width",1);
+      (function pulse(){
+        ring.attr("r",5).attr("stroke-opacity",.9).transition().duration(2000).ease(d3.easeCubicOut)
+          .attr("r",19).attr("stroke-opacity",0).on("end",()=>setTimeout(pulse, i*260));
+      })();
+      // marca de registro
+      gg.append("g").attr("stroke","#fff").attr("stroke-width",1).attr("stroke-opacity",.9)
+        .call(g=>{ g.append("line").attr("x1",-7).attr("x2",-3).attr("y1",0).attr("y2",0);
+                   g.append("line").attr("x1",3).attr("x2",7).attr("y1",0).attr("y2",0);
+                   g.append("line").attr("y1",-7).attr("y2",-3).attr("x1",0).attr("x2",0);
+                   g.append("line").attr("y1",3).attr("y2",7).attr("x1",0).attr("x2",0); });
+      gg.append("rect").attr("x",-3).attr("y",-3).attr("width",6).attr("height",6)
+        .attr("fill","#fff").attr("transform","rotate(45)");
+    } else {
+      gg.append("circle").attr("r",3.2).attr("fill","var(--itel-dark)")
+        .attr("stroke","var(--itel-light)").attr("stroke-width",1.1).attr("stroke-opacity",.8);
+    }
+    if(op || wide){
+      gg.append("text").attr("class", op?"lbl":"lbl cov").attr("x",c.dx).attr("y",c.dy)
+        .attr("text-anchor",c.anchor).text(c.n.toUpperCase())
+        .attr("data-ax", q[0]).attr("data-ay", q[1]);
+    }
+  });
+
+  declutter(nodes, W);
+}
+
+function scaleBar(proj, W, H){
+  const y = H - 20, x = 16;
+  const a = proj.invert([x, y]), b = proj.invert([x + 100, y]);
+  const km = d3.geoDistance(a, b) * 6371;
+  const nice = [50,100,200,250,500].reduce((p,v)=>Math.abs(v-km)<Math.abs(p-km)?v:p, 100);
+  const px = 100 * nice / km;
+  const g = svg.append("g").attr("opacity",0);
+  g.transition().delay(1600).duration(600).attr("opacity",1);
+  g.append("line").attr("x1",x).attr("x2",x+px).attr("y1",y).attr("y2",y)
+    .attr("stroke","var(--itel-light)").attr("stroke-opacity",.6).attr("stroke-width",1);
+  [x, x+px].forEach(v=>g.append("line").attr("x1",v).attr("x2",v).attr("y1",y-4).attr("y2",y+4)
+    .attr("stroke","var(--itel-light)").attr("stroke-opacity",.6).attr("stroke-width",1));
+  g.append("text").attr("class","meta").attr("x",x).attr("y",y-10).text(nice + " KM");
+}
+
+function declutter(nodes, W){
+  const texts = nodes.selectAll("text").nodes();
+  const box = t => {
+    const b = t.getBBox();
+    const tr = t.parentNode.getAttribute("transform").match(/-?[\d.]+/g).map(Number);
+    return { x1: tr[0] + b.x, x2: tr[0] + b.x + b.width, y1: tr[1] + b.y, y2: tr[1] + b.y + b.height };
+  };
+  const hits = (a,b) => a.x1 < b.x2 - 1 && b.x1 < a.x2 - 1 && a.y1 < b.y2 - 1 && b.y1 < a.y2 - 1;
+  const out = b => b.x1 < 2 || b.x2 > W - 2;
+  const placed = [];
+  texts.forEach(t => {
+    let b = box(t);
+    // fuera del lienzo: volteo al lado opuesto del punto
+    if (out(b)) {
+      const toEnd = t.getAttribute("text-anchor") !== "end";
+      t.setAttribute("text-anchor", toEnd ? "end" : "start");
+      t.setAttribute("x", String(-1 * (+t.getAttribute("x"))));
+      b = box(t);
+    }
+    // si aún se sale, centro sobre el punto y clampeo
+    if (out(b)) {
+      t.setAttribute("text-anchor", "middle");
+      t.setAttribute("x", "0");
+      t.setAttribute("y", String((+t.getAttribute("y")) < 0 ? -14 : 18));
+      b = box(t);
+      if (out(b)) {
+        const ax = +t.getAttribute("data-ax");
+        const w = b.x2 - b.x1;
+        const cx = Math.min(Math.max(w / 2 + 3, ax), W - w / 2 - 3);
+        t.setAttribute("x", String(cx - ax));
+        b = box(t);
+      }
+    }
+    if (placed.some(p => hits(b, p))) {
+      const ax = +t.getAttribute("data-ax");
+      const toEnd = t.getAttribute("text-anchor") !== "end";
+      if (toEnd ? ax > 90 : ax < W - 90) {
+        t.setAttribute("text-anchor", toEnd ? "end" : "start");
+        t.setAttribute("x", String(-1 * (+t.getAttribute("x"))));
+        b = box(t);
+      }
+    }
+    let guard = 0;
+    while (placed.some(p => hits(b, p)) && guard++ < 12) {
+      t.setAttribute("y", String((+t.getAttribute("y")) + 13));
+      b = box(t);
+    }
+    placed.push(b);
+  });
+}
+
+load();
+new ResizeObserver(()=>draw()).observe(document.getElementById("wrap"));
+</script>
+</body>
+</html>
