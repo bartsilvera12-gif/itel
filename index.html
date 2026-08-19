@@ -138,35 +138,39 @@
   section,footer{max-width:100%}
   img,video,iframe,svg{max-width:100%}
   @media (max-width:720px){
-    /* Servicios: 2 columnas fijas y cards que crecen con contenido, sin flip */
+    /* Servicios: 2 columnas fijas, altura igual, flip por tap */
     #servicios [data-pad] > div:last-child{grid-template-columns:repeat(2,1fr) !important;gap:12px !important}
-    #servicios [data-reveal="cinematic"]{height:auto !important;min-height:230px}
-    #servicios [data-flip]{height:auto !important;perspective:none;overflow:visible}
-    #servicios [data-flip-inner]{transform:none !important;transition:none !important;height:auto !important;transform-style:flat}
-    #servicios [data-flip-inner] > [data-face]{position:relative !important;inset:auto !important;height:auto !important;backface-visibility:visible !important;padding:16px 14px !important;background:rgba(255,255,255,.06) !important;border:1px solid rgba(255,255,255,.12) !important}
-    #servicios [data-flip-inner] > [data-face-back]{display:none !important}
-    #servicios [data-face] .glyph,#servicios [data-face] > div:first-child > span{width:38px !important;height:38px !important}
-    #servicios [data-face] > div:nth-child(2),#servicios [data-face] > div:first-child + div{font-size:16.5px !important;line-height:1.15 !important}
-    #servicios [data-face] p{font-size:12.5px !important;line-height:1.45 !important}
-    #servicios [data-face] > span:last-child{margin-top:10px !important;gap:5px !important}
-    #servicios [data-face] > span:last-child span{font-size:9.5px !important;padding:3px 6px !important;letter-spacing:.06em !important}
+    #servicios [data-reveal="cinematic"]{height:230px !important}
+    #servicios [data-flip]{height:100% !important;perspective:1500px !important;overflow:visible}
+    #servicios [data-flip-inner]{height:100% !important;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.25,1) !important}
+    #servicios [data-flip][data-flipped] [data-flip-inner]{transform:rotateY(180deg) !important}
+    #servicios [data-flip-inner] > [data-face]{position:absolute !important;inset:0 !important;height:auto !important;padding:14px 12px !important;backface-visibility:hidden !important;-webkit-backface-visibility:hidden !important;background:rgba(52,66,80,.86) !important;border:1px solid rgba(255,255,255,.12) !important;overflow:hidden}
+    #servicios [data-flip-inner] > [data-face-back]{display:flex !important;transform:rotateY(180deg) !important;background:rgba(29,80,124,.94) !important;border-color:rgba(163,212,251,.32) !important}
+    #servicios [data-face] > div:first-child > span{width:34px !important;height:34px !important}
+    #servicios [data-face] > div:first-child{margin-bottom:10px !important}
+    #servicios [data-face] > div:nth-child(2){font-size:15.5px !important;line-height:1.12 !important;margin-bottom:6px !important}
+    #servicios [data-face] p{font-size:11.5px !important;line-height:1.4 !important;-webkit-line-clamp:3;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+    #servicios [data-face] > span:last-child{margin-top:8px !important;gap:4px !important}
+    #servicios [data-face] > span:last-child span{font-size:9px !important;padding:2px 5px !important;letter-spacing:.05em !important}
+    /* pista visual: doble-flecha en la esquina para indicar giro */
+    #servicios [data-flip] [data-face]:not([data-face-back])::after{content:"↻";position:absolute;top:10px;right:10px;font-size:14px;color:var(--color-accent-300);opacity:.5}
 
     /* Nosotros: imagen sin desborde y con proporción cómoda */
-    #nosotros figure{height:auto !important;aspect-ratio:4/3 !important}
+    #nosotros figure{height:auto !important;aspect-ratio:4/3 !important;max-width:100%}
     #nosotros figure img{height:100% !important}
 
-    /* Cobertura: mapa con altura razonable en mobile, chips y stats prolijos */
-    #cobertura iframe{min-height:380px}
+    /* Cobertura: rediseño mobile para no dejarlo solo */
     #cobertura [data-pad]{gap:24px !important}
+    #cobertura iframe{min-height:340px}
 
-    /* Hero: no dejar que ningún blob se pase del ancho */
-    #top{min-height:88vh !important}
+    /* Hero: caber en pantalla dejando espacio a la mobile bar */
+    #top{height:calc(100dvh - 56px) !important;min-height:520px !important}
     #top [aria-hidden]{max-width:100vw}
 
     /* Footer: dejar espacio para la barra fija inferior de 56px + safe area */
     footer{padding-bottom:calc(56px + env(safe-area-inset-bottom, 0px) + 24px) !important}
     /* WhatsApp float subir para no chocar con la barra */
-    [data-wa-float]{bottom:calc(72px + env(safe-area-inset-bottom, 0px)) !important;right:16px !important;width:52px !important;height:52px !important}
+    [data-wa-float]{bottom:calc(76px + env(safe-area-inset-bottom, 0px)) !important;right:14px !important;width:52px !important;height:52px !important}
 
     /* Header más compacto */
     [data-header]{padding-left:16px !important;padding-right:16px !important}
@@ -184,8 +188,8 @@
   }
   /* Hasta 380px, aún más compacto pero sigue 2 columnas */
   @media (max-width:380px){
-    #servicios [data-face] > div:nth-child(2),#servicios [data-face] > div:first-child + div{font-size:15px !important}
-    #servicios [data-face] p{font-size:12px !important}
+    #servicios [data-face] > div:nth-child(2){font-size:14px !important}
+    #servicios [data-face] p{font-size:11px !important}
   }
 </style>
 </helmet>
@@ -708,6 +712,23 @@ class Component extends DCLogic {
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ===== Cards de servicios: tap para girar en touch (delegación por si el DC hidrata después)
+  if (matchMedia('(hover:none)').matches){
+    document.addEventListener('click', function(e){
+      var card = e.target.closest && e.target.closest('#servicios [data-flip]');
+      if (!card) return;
+      // si tocan un link/botón dentro, no girar
+      if (e.target.closest('a,button')) return;
+      var back = card.querySelector('[data-face-back]');
+      if (card.hasAttribute('data-flipped')){
+        card.removeAttribute('data-flipped');
+      } else {
+        document.querySelectorAll('#servicios [data-flip][data-flipped]').forEach(function(o){ o.removeAttribute('data-flipped'); });
+        card.setAttribute('data-flipped','');
+      }
+    });
+  }
 
   // ===== Interacción Cobertura: clicks en mapa/chips → shell del flap se enciende
   var activeTimer;
