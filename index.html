@@ -108,21 +108,6 @@
     #servicios [data-bg-grid],#servicios [data-bg-hex],#servicios [data-bg-orb],#servicios [data-bg-beam],#servicios [data-bg-net] path,#servicios [data-bg-net] circle{animation:none !important}
   }
 
-  /* ===== Cobertura: shell del flap con "encendido" al elegir ciudad ===== */
-  @keyframes itel-flap-glow { 0%{box-shadow:0 0 0 0 rgba(163,212,251,.55),0 12px 40px -14px rgba(163,212,251,0)} 60%{box-shadow:0 0 0 8px rgba(163,212,251,0),0 18px 46px -14px rgba(163,212,251,.35)} 100%{box-shadow:0 0 0 0 rgba(163,212,251,0),0 12px 40px -14px rgba(163,212,251,0)} }
-  @keyframes itel-city-in { 0%{opacity:0;transform:translateY(6px)} 12%{opacity:1;transform:translateY(0)} 82%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-4px)} }
-  #cobertura [data-flap-shell]{position:relative;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));transition:background .5s ease,border-color .5s ease}
-  #cobertura [data-flap-shell]::before{content:"";position:absolute;inset:0;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.86),rgba(232,244,255,.72));opacity:0;transition:opacity .55s cubic-bezier(.2,.7,.3,1);pointer-events:none}
-  #cobertura [data-flap-shell][data-active]::before{opacity:1;animation:itel-flap-glow 1.4s ease-out}
-  #cobertura [data-flap-shell][data-active] > *{position:relative;z-index:1}
-  #cobertura [data-flap-shell][data-active] .flap-label{color:var(--color-accent-800) !important}
-  #cobertura [data-flap-shell] [data-city-pin]{position:absolute;top:-14px;right:14px;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--color-accent);color:#fff;font-family:var(--font-heading);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 8px 20px -8px rgba(35,148,238,.6);opacity:0;pointer-events:none;z-index:2}
-  #cobertura [data-flap-shell] [data-city-pin]::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
-  #cobertura [data-flap-shell][data-active] [data-city-pin]{animation:itel-city-in 2.2s cubic-bezier(.2,.7,.3,1)}
-  #cobertura [data-city-chip]{cursor:pointer;user-select:none;transition:background .3s ease,border-color .3s ease,transform .25s cubic-bezier(.2,.7,.3,1),color .3s ease}
-  #cobertura [data-city-chip]:hover{background:rgba(163,212,251,.18) !important;border-color:rgba(163,212,251,.5) !important;transform:translateY(-2px)}
-  #cobertura [data-city-chip][data-selected]{background:var(--color-accent) !important;border-color:var(--color-accent) !important;color:#fff !important}
-
   /* ===== Text reveal por letras (data-reveal-chars) ===== */
   [data-reveal-chars] .ch{display:inline-block;opacity:0;transform:translateY(.6em);transition:opacity .55s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1);transition-delay:calc(var(--i,0) * 22ms)}
   [data-reveal-chars][data-in] .ch{opacity:1;transform:none}
@@ -415,15 +400,12 @@
       <p data-reveal="fade" style="font-size:16.5px;line-height:1.65;max-width:48ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 76%,transparent)">Centros operativos propios y capacidad de ejecución en distintas regiones del país, desde el sur hasta la frontera norte.</p>
       <div data-reveal="below" style="display:flex;flex-wrap:wrap;gap:9px;margin-top:30px">
         <sc-for list="{{ todasCiudades }}" as="c" hint-placeholder-count="9">
-          <span data-city-chip data-glass-dark style="border-radius:999px;padding:8px 15px;font-family:var(--font-heading);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">{{ c }}</span>
+          <span data-glass-dark style="border-radius:999px;padding:8px 15px;font-family:var(--font-heading);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase">{{ c }}</span>
         </sc-for>
       </div>
-      <div data-reveal style="margin-top:36px">
-        <div data-flap-shell>
-          <div class="flap-label" style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300);margin-bottom:10px">En operación</div>
-          <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
-          <span data-city-pin><span data-city-pin-text>—</span></span>
-        </div>
+      <div data-reveal style="margin-top:36px;display:flex;flex-direction:column;gap:12px">
+        <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300)">En operación</div>
+        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
       </div>
     </div>
     <div data-reveal="right" data-map-frame style="position:relative;height:clamp(420px,58vw,780px)">
@@ -785,34 +767,6 @@ class Component extends DCLogic {
       }
     });
   }
-
-  // ===== Interacción Cobertura: clicks en mapa/chips → shell del flap se enciende
-  var activeTimer;
-  function activateCity(name){
-    var shell = document.querySelector('#cobertura [data-flap-shell]');
-    if (!shell || !name) return;
-    var upper = name.toString().toUpperCase();
-    var pinText = shell.querySelector('[data-city-pin-text]');
-    if (pinText) pinText.textContent = upper;
-    shell.removeAttribute('data-active');
-    void shell.offsetWidth;
-    shell.setAttribute('data-active','');
-    document.querySelectorAll('#cobertura [data-city-chip]').forEach(function(c){
-      if (c.textContent.trim().toUpperCase() === upper) c.setAttribute('data-selected','');
-      else c.removeAttribute('data-selected');
-    });
-    clearTimeout(activeTimer);
-    activeTimer = setTimeout(function(){ shell.removeAttribute('data-active'); }, 2200);
-  }
-  addEventListener('message', function(ev){
-    var d = ev && ev.data;
-    if (d && d.type === 'itel-city') activateCity(d.name);
-  });
-  // Event delegation — los chips los pinta el framework después
-  document.addEventListener('click', function(e){
-    var chip = e.target.closest && e.target.closest('#cobertura [data-city-chip]');
-    if (chip) activateCity(chip.textContent.trim());
-  });
 
   // ===== Reveal por letras (data-reveal-chars) — respeta hijos con estilos
   var charCounter;
