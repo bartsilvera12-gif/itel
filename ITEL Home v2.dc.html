@@ -268,35 +268,43 @@
 <section id="nosotros" data-nosotros-moon-layout data-screen-label="Nosotros" style="position:relative;min-height:100vh;background:var(--color-accent-900);overflow:hidden">
   <!-- CAPA 1: imagen a pantalla completa como fondo -->
   <div aria-hidden="true" style="position:absolute;inset:0">
-    <img src="brand/equipo-obra.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:30% center;display:block">
-    <span style="position:absolute;inset:0;background:linear-gradient(to right,rgba(20,30,44,.25),transparent 45%);pointer-events:none"></span>
-    <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.45),transparent 55%);pointer-events:none"></span>
+    <img src="brand/equipo-obra.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:22% center;display:block">
+    <span style="position:absolute;inset:0;background:linear-gradient(to right,rgba(20,30,44,.35) 0%,transparent 40%);pointer-events:none"></span>
+    <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.5),transparent 55%);pointer-events:none"></span>
   </div>
 
-  <!-- CAPA 2: MEDIA LUNA blanca — círculo enorme desde la derecha, su borde izquierdo curvo recorta la imagen -->
-  <div aria-hidden="true" data-moon style="position:absolute;top:50%;right:-38vw;transform:translateY(-50%);width:min(180vh,150vw);aspect-ratio:1;border-radius:50%;background:linear-gradient(120deg,#fff 0%,#f0f5fb 55%,#e6eef8 100%);box-shadow:-50px 0 120px -30px rgba(0,0,0,.45),-8px 0 0 0 rgba(163,212,251,.35),inset 40px 0 80px -60px rgba(35,148,238,.15);pointer-events:none"></div>
+  <!-- CAPA 2: MEDIA LUNA blanca — círculo enorme desde la derecha, empieza al 60% para no tapar la cara -->
+  <div aria-hidden="true" data-moon style="position:absolute;top:50%;right:-55vw;transform:translateY(-50%);width:min(200vh,160vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 70% 40%,#fff 0%,#f4f8fc 60%,#e8eef7 100%);box-shadow:-60px 0 160px -40px rgba(0,0,0,.5),-1px 0 0 1px rgba(163,212,251,.4),inset 60px 0 100px -80px rgba(35,148,238,.2);pointer-events:none"></div>
+  <!-- fina línea acento siguiendo la curva de la luna -->
+  <svg aria-hidden="true" style="position:absolute;top:50%;right:-55vw;transform:translateY(-50%);width:min(200vh,160vw);aspect-ratio:1;pointer-events:none;z-index:2" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="49.6" fill="none" stroke="var(--color-accent)" stroke-width=".08" opacity=".55"/>
+  </svg>
 
   <!-- CAPA 3: contenido de texto dentro de la luna -->
   <div style="position:relative;z-index:3;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;align-items:center;max-width:1560px;margin:0 auto">
     <div></div>
-    <div style="padding:clamp(60px,7vw,110px) clamp(28px,4vw,80px) clamp(60px,7vw,110px) clamp(50px,7vw,110px);color:var(--color-text);max-width:640px">
-      <div data-reveal="right" style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
-        <span style="width:38px;height:1px;background:var(--color-accent)"></span>
-        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Quiénes somos</span>
+    <div style="padding:clamp(70px,8vw,120px) clamp(32px,5vw,90px) clamp(70px,8vw,120px) clamp(56px,6vw,88px);color:var(--color-text);max-width:600px">
+      <div data-reveal="right" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+        <span style="width:44px;height:1px;background:var(--color-accent)"></span>
+        <span style="font-family:var(--font-heading);font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--color-accent-700);font-weight:500">Quiénes somos</span>
       </div>
-      <h2 data-reveal="right" style="font-size:clamp(32px,3.4vw,52px);line-height:1.04;letter-spacing:-.02em;margin:0 0 22px;max-width:20ch;color:var(--color-text)">Tecnología, experiencia y <span style="color:var(--color-accent-700)">capacidad técnica</span></h2>
-      <p data-reveal="fade" style="font-size:16px;line-height:1.65;max-width:44ch;margin:0 0 14px;color:color-mix(in srgb,var(--color-text) 82%,transparent)">I-TEL Comunicaciones desarrolla soluciones integrales para empresas que necesitan infraestructura tecnológica confiable.</p>
-      <p data-reveal="fade" style="font-size:16px;line-height:1.65;max-width:44ch;margin:0;color:color-mix(in srgb,var(--color-text) 82%,transparent)">La compañía trabaja en diferentes áreas de telecomunicaciones, electrónica, electricidad, networking, seguridad, informática e infraestructura, combinando experiencia técnica con tecnologías modernas.</p>
-      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 32px;margin:28px 0 0;border-top:1px solid rgba(44,56,68,.14)">
+      <h2 data-reveal="right" style="font-size:clamp(30px,3.2vw,48px);font-weight:700;line-height:1.06;letter-spacing:-.022em;margin:0 0 28px;max-width:16ch;color:var(--color-accent-900)">Tecnología, experiencia y <span style="color:var(--color-accent-700);font-style:italic;font-weight:500">capacidad técnica.</span></h2>
+      <div style="width:36px;height:2px;background:var(--color-accent);margin:0 0 26px"></div>
+      <p data-reveal="fade" style="font-size:16px;line-height:1.7;max-width:42ch;margin:0 0 18px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">I-TEL Comunicaciones desarrolla soluciones integrales para empresas que necesitan infraestructura tecnológica confiable.</p>
+      <p data-reveal="fade" style="font-size:15px;line-height:1.7;max-width:42ch;margin:0;color:color-mix(in srgb,var(--color-text) 68%,transparent)">Trabajamos en telecomunicaciones, electrónica, networking, seguridad, informática e infraestructura, combinando experiencia técnica con tecnologías modernas.</p>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:36px 0 0;padding-top:24px;border-top:1px solid rgba(44,56,68,.12)">
         <sc-for list="{{ capacidades }}" as="c" hint-placeholder-count="6">
-          <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(44,56,68,.14);font-size:14px;color:var(--color-text)"><span style="width:6px;height:6px;background:var(--color-accent);transform:rotate(45deg);flex:none"></span>{{ c }}</div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 0;font-size:13.5px;color:color-mix(in srgb,var(--color-text) 88%,transparent);font-weight:500;letter-spacing:-.005em"><span style="width:5px;height:5px;background:var(--color-accent);border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(35,148,238,.12)"></span>{{ c }}</div>
         </sc-for>
       </div>
     </div>
   </div>
 
-  <!-- Label sobre la imagen -->
-  <span style="position:absolute;left:24px;bottom:24px;font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6);z-index:4">Personal técnico en obra</span>
+  <!-- Label sobre la imagen (esquina) -->
+  <div style="position:absolute;left:24px;bottom:24px;z-index:4;display:flex;align-items:center;gap:10px;color:#fff">
+    <span style="width:32px;height:1px;background:var(--color-accent-300)"></span>
+    <span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.6)">Personal técnico en obra</span>
+  </div>
 </section>
 
 <section id="servicios" data-screen-label="Servicios" style="position:relative;background:linear-gradient(180deg,#1a2432 0%,var(--color-accent-900) 45%,#1a2432 100%);color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
