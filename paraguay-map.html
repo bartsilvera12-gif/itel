@@ -110,19 +110,11 @@ function draw(){
   const nodes = svg.append("g");
   CENTERS.forEach((c,i)=>{
     const q = p(c), op = c.t==="op";
-    const gg = nodes.append("g").attr("transform",`translate(${q[0]},${q[1]})`).attr("opacity",0).style("cursor","pointer");
-    gg.on("click", () => {
-      try { parent.postMessage({ type: "itel-city", name: c.n }, "*"); } catch(e){}
-      // pulso visual local en el nodo clickeado
-      const flash = gg.append("circle").attr("r",6).attr("fill","none").attr("stroke","#fff").attr("stroke-width",1.5).attr("stroke-opacity",1);
-      flash.transition().duration(700).ease(d3.easeCubicOut).attr("r",26).attr("stroke-opacity",0).remove();
-    });
-    // aumentar zona de tap
-    gg.append("circle").attr("r",18).attr("fill","transparent").attr("pointer-events","all");
+    const gg = nodes.append("g").attr("transform",`translate(${q[0]},${q[1]})`).attr("opacity",0);
     gg.transition().delay(700+i*90).duration(500).attr("opacity",1);
     if(op){
-      gg.append("circle").attr("r",18).attr("fill","url(#glow)").attr("pointer-events","none");
-      const ring = gg.append("circle").attr("r",5).attr("fill","none").attr("stroke","var(--itel-accent)").attr("stroke-width",1).attr("pointer-events","none");
+      gg.append("circle").attr("r",18).attr("fill","url(#glow)");
+      const ring = gg.append("circle").attr("r",5).attr("fill","none").attr("stroke","var(--itel-accent)").attr("stroke-width",1);
       (function pulse(){
         ring.attr("r",5).attr("stroke-opacity",.9).transition().duration(2000).ease(d3.easeCubicOut)
           .attr("r",19).attr("stroke-opacity",0).on("end",()=>setTimeout(pulse, i*260));
