@@ -144,7 +144,7 @@
     #nosotros[data-nosotros-moon-layout]{min-height:0 !important}
     #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child{position:relative !important;aspect-ratio:4/3;height:auto;inset:auto}
     #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child img{position:relative !important;height:100% !important}
-    #nosotros[data-nosotros-moon-layout] [data-moon]{top:auto !important;bottom:-40vw !important;right:auto !important;left:50% !important;transform:translateX(-50%) !important;width:180vw !important}
+    #nosotros[data-nosotros-moon-layout] [data-moon]{position:relative !important;top:auto !important;bottom:auto !important;right:auto !important;left:auto !important;width:100% !important;height:auto !important;flex:none;order:2;background:#f4f8fc !important;clip-path:none !important;-webkit-clip-path:none !important;filter:none !important;padding-top:40px}
     #nosotros[data-nosotros-moon-layout] > div:nth-child(3){grid-template-columns:1fr !important;min-height:0 !important}
     #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:first-child{display:none}
     #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:last-child{padding:52px 24px 44px !important;max-width:100% !important}
@@ -258,8 +258,8 @@
     <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.5),transparent 55%);pointer-events:none"></span>
   </div>
 
-  <!-- CAPA 2: MEDIA LUNA BLANCA — círculo enorme desde la derecha -->
-  <div aria-hidden="true" data-moon style="position:absolute;top:50%;right:-55vw;transform:translateY(-50%);width:min(200vh,160vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 68% 45%,#fff 0%,#f4f8fc 60%,#e8eef7 100%);box-shadow:-60px 0 160px -40px rgba(0,0,0,.4),inset 60px 0 100px -80px rgba(35,148,238,.15);pointer-events:none"></div>
+  <!-- CAPA 2: MEDIA LUNA BLANCA — usa clip-path ellipse para ser 100% consistente entre browsers/OS -->
+  <div aria-hidden="true" data-moon style="position:absolute;top:0;right:0;bottom:0;width:70%;background:radial-gradient(ellipse 80% 70% at 78% 50%,#fff 0%,#f4f8fc 65%,#e8eef7 100%);clip-path:ellipse(78% 95% at 100% 50%);-webkit-clip-path:ellipse(78% 95% at 100% 50%);filter:drop-shadow(-6px 0 40px rgba(0,0,0,.35));pointer-events:none"></div>
 
   <!-- CAPA 3: contenido de texto -->
   <div style="position:relative;z-index:3;display:grid;grid-template-columns:1fr 1.05fr;min-height:100vh;align-items:center;max-width:1620px;margin:0 auto">
