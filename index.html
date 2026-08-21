@@ -108,9 +108,30 @@
     #servicios [data-bg-grid],#servicios [data-bg-hex],#servicios [data-bg-orb],#servicios [data-bg-beam],#servicios [data-bg-net] path,#servicios [data-bg-net] circle{animation:none !important}
   }
 
-  /* ===== Cards de servicios con imagen ===== */
+  /* ===== Cards de servicios con imagen (legacy) ===== */
   [data-svc-front]:hover [data-svc-img]{transform:scale(1.08);filter:grayscale(.35) contrast(1.05) brightness(.95) sepia(.15) hue-rotate(175deg) saturate(1.6)}
   [data-flip]:hover [data-svc-front]{border-color:rgba(163,212,251,.35) !important}
+
+  /* ===== Showcase servicios (scroll-jack) ===== */
+  [data-showcase-stack]{display:flex;flex-direction:column}
+  [data-showcase-stack] > div{width:100%;height:100%;flex:none}
+  [data-showcase-slides] [data-slide][data-active]{opacity:1 !important;transform:none !important;pointer-events:auto !important}
+  [data-showcase-dots] [data-dot][data-active]{width:48px !important;background:var(--color-accent-300) !important}
+  [data-showcase-dots] [data-dot]:hover{background:rgba(163,212,251,.5)}
+
+  @media (max-width:900px){
+    /* En mobile deshacemos el scroll-jack: track auto y sticky se vuelve normal, listamos las cards apiladas */
+    [data-showcase-track]{height:auto !important}
+    [data-showcase-sticky]{position:relative !important;top:auto !important;height:auto !important;display:block !important}
+    [data-showcase-grid]{display:block !important;padding:0 20px 40px !important}
+    [data-showcase-grid] > div:first-child{padding-right:0 !important;border-right:0 !important}
+    /* Ocultamos dots y stack — mostraremos las cards apiladas con imagen arriba */
+    [data-showcase-dots],[data-showcase-image-col]{display:none !important}
+    [data-showcase-slides]{position:relative !important;min-height:0 !important}
+    [data-showcase-slides] [data-slide]{position:relative !important;opacity:1 !important;transform:none !important;pointer-events:auto !important;margin-bottom:36px;padding:16px;border:1px solid rgba(163,212,251,.14);background:rgba(20,30,44,.4)}
+    [data-slide-mobile-img]{display:block !important}
+    [data-showcase-grid] > div:first-child a[href*="Contacto"]{margin:8px 0 24px !important}
+  }
 
   /* ===== Cobertura: shell del flap con "encendido" al elegir ciudad ===== */
   @keyframes itel-flap-glow { 0%{box-shadow:0 0 0 0 rgba(163,212,251,.55),0 12px 40px -14px rgba(163,212,251,0)} 60%{box-shadow:0 0 0 8px rgba(163,212,251,0),0 18px 46px -14px rgba(163,212,251,.35)} 100%{box-shadow:0 0 0 0 rgba(163,212,251,0),0 12px 40px -14px rgba(163,212,251,0)} }
@@ -328,44 +349,64 @@
       </div>
       <a data-reveal href="ITEL Contacto.dc.html" class="btn" data-glass-btn style="min-height:46px;padding:0 20px;white-space:nowrap;color:var(--color-neutral-100);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)">Consultar por un servicio</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px">
-      <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="6">
-        <div data-reveal="cinematic" style="height:280px">
-          <div data-flip style="height:100%">
-          <div data-flip-inner>
-            <div data-face data-glass-dark data-svc-front style="justify-content:flex-end;padding:0;overflow:hidden;position:relative">
-              <img src="{{ s.img }}" alt="{{ s.name }}" data-svc-img style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.55) contrast(1.05) brightness(.85) sepia(.15) hue-rotate(175deg) saturate(1.4);transition:transform .8s cubic-bezier(.2,.7,.3,1),filter .6s ease" onerror="this.style.display='none'">
-              <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,148,238,.35) 0%,rgba(29,80,124,.55) 45%,rgba(20,30,44,.92) 100%);pointer-events:none"></span>
-              <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 55%,rgba(35,148,238,.25) 100%);pointer-events:none;mix-blend-mode:overlay"></span>
-              <span aria-hidden="true" data-svc-code style="position:absolute;top:14px;left:16px;font-family:var(--font-heading);font-size:11px;letter-spacing:.24em;color:var(--color-accent-300);opacity:.9">S.{{ s.code }}</span>
-              <span aria-hidden="true" style="position:absolute;top:14px;right:16px;display:grid;place-items:center;width:40px;height:40px;border:1px solid rgba(163,212,251,.4);background:rgba(20,30,44,.35);color:var(--color-accent-300);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">{{ s.glyph }}</span>
-              <span aria-hidden="true" style="position:absolute;top:0;left:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.6);border-left:1px solid rgba(163,212,251,.6)"></span>
-              <span aria-hidden="true" style="position:absolute;top:0;right:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.6);border-right:1px solid rgba(163,212,251,.6)"></span>
-              <span aria-hidden="true" style="position:absolute;bottom:0;left:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.6);border-left:1px solid rgba(163,212,251,.6)"></span>
-              <span aria-hidden="true" style="position:absolute;bottom:0;right:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.6);border-right:1px solid rgba(163,212,251,.6)"></span>
-              <div style="position:relative;padding:20px;z-index:2">
-                <div style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:1.1;margin-bottom:8px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.4)">{{ s.name }}</div>
-                <p style="font-size:13.5px;line-height:1.5;margin:0;color:color-mix(in srgb,#fff 82%,transparent)">{{ s.desc }}</p>
-              </div>
-            </div>
-            <div data-face data-face-back data-glass-dark style="align-items:center;justify-content:center;text-align:center;gap:18px;background:rgba(29,80,124,.94) !important;border-color:rgba(163,212,251,.32);padding:24px 20px;position:relative;overflow:hidden">
-              <img src="{{ s.img }}" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;filter:grayscale(1) contrast(1.2) brightness(.9)" onerror="this.style.display='none'">
-              <span aria-hidden="true" style="position:absolute;top:0;left:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.7);border-left:1px solid rgba(163,212,251,.7)"></span>
-              <span aria-hidden="true" style="position:absolute;top:0;right:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.7);border-right:1px solid rgba(163,212,251,.7)"></span>
-              <span aria-hidden="true" style="position:absolute;bottom:0;left:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.7);border-left:1px solid rgba(163,212,251,.7)"></span>
-              <span aria-hidden="true" style="position:absolute;bottom:0;right:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.7);border-right:1px solid rgba(163,212,251,.7)"></span>
-              <span style="position:relative;display:grid;place-items:center;width:64px;height:64px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff">{{ s.glyph }}</span>
-              <div style="position:relative;font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:1.1">{{ s.name }}</div>
-              <div style="position:relative;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
-                <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="3">
-                  <span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);border:1px solid rgba(163,212,251,.4);padding:4px 8px">{{ t }}</span>
-                </sc-for>
-              </div>
-            </div>
+  </div>
+  <!-- Scroll-story showcase -->
+  <div data-showcase-track style="position:relative;height:calc(70vh * 12)">
+    <div data-showcase-sticky style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center">
+      <div data-showcase-grid style="display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;max-width:1560px;height:100%;padding:clamp(60px,7vw,110px) 48px">
+        <!-- LEFT: dots + text + CTA -->
+        <div style="position:relative;display:flex;flex-direction:column;justify-content:center;padding-right:clamp(20px,4vw,64px);border-right:1px solid rgba(255,255,255,.08)">
+          <!-- pagination dots -->
+          <div data-showcase-dots style="display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap">
+            <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="12">
+              <button data-dot type="button" aria-label="Servicio {{ s.code }}" style="height:3px;width:24px;background:rgba(163,212,251,.22);border:0;padding:0;border-radius:2px;cursor:pointer;transition:width .5s cubic-bezier(.2,.7,.3,1),background .5s ease"></button>
+            </sc-for>
           </div>
+          <!-- slides stack (all absolute-positioned, one visible at a time) -->
+          <div data-showcase-slides style="position:relative;height:auto;min-height:300px">
+            <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="12">
+              <div data-slide style="position:absolute;inset:0;opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);pointer-events:none">
+                <img data-slide-mobile-img src="{{ s.img }}" alt="{{ s.name }}" style="display:none;width:100%;aspect-ratio:16/10;object-fit:cover;margin-bottom:14px;border:1px solid rgba(163,212,251,.18);filter:grayscale(.4) contrast(1.05) brightness(.9) sepia(.12) hue-rotate(175deg) saturate(1.5)" onerror="this.style.background='linear-gradient(135deg,#1861a0,#1a4a76)';this.style.opacity='0.6'">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                  <span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-300)">Servicio S.{{ s.code }}</span>
+                  <span style="height:1px;flex:1;background:rgba(163,212,251,.25)"></span>
+                </div>
+                <h3 style="font-family:var(--font-heading);font-weight:700;font-size:clamp(34px,4vw,58px);line-height:1;letter-spacing:-.02em;margin:0 0 22px;color:#fff">{{ s.name }}</h3>
+                <p style="font-size:17px;line-height:1.6;margin:0 0 20px;max-width:46ch;color:color-mix(in srgb,#fff 78%,transparent)">{{ s.desc }}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:7px">
+                  <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="3">
+                    <span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-300);border:1px solid rgba(163,212,251,.35);padding:5px 10px">{{ t }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <!-- CTA fija -->
+          <a href="ITEL Contacto.dc.html" style="margin-top:44px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:14px 26px;background:var(--color-accent);color:#fff;text-decoration:none;font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--color-accent);transition:background .3s,transform .3s" onmouseover="this.style.background='var(--color-accent-600)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--color-accent)';this.style.transform=''">Consultar por un servicio →</a>
+        </div>
+        <!-- RIGHT: image stack -->
+        <div data-showcase-image-col style="position:relative;display:flex;align-items:center;justify-content:center;padding-left:clamp(20px,4vw,64px)">
+          <div style="position:relative;width:100%;max-width:520px;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(163,212,251,.2);background:rgba(20,30,44,.4)">
+            <!-- marcas de registro -->
+            <span aria-hidden="true" style="position:absolute;top:0;left:0;width:16px;height:16px;border-top:1px solid rgba(163,212,251,.7);border-left:1px solid rgba(163,212,251,.7);z-index:3"></span>
+            <span aria-hidden="true" style="position:absolute;top:0;right:0;width:16px;height:16px;border-top:1px solid rgba(163,212,251,.7);border-right:1px solid rgba(163,212,251,.7);z-index:3"></span>
+            <span aria-hidden="true" style="position:absolute;bottom:0;left:0;width:16px;height:16px;border-bottom:1px solid rgba(163,212,251,.7);border-left:1px solid rgba(163,212,251,.7);z-index:3"></span>
+            <span aria-hidden="true" style="position:absolute;bottom:0;right:0;width:16px;height:16px;border-bottom:1px solid rgba(163,212,251,.7);border-right:1px solid rgba(163,212,251,.7);z-index:3"></span>
+            <!-- código flotante -->
+            <div data-showcase-code style="position:absolute;top:14px;left:14px;font-family:var(--font-heading);font-size:11px;letter-spacing:.24em;color:var(--color-accent-300);z-index:3;opacity:.85"></div>
+            <div data-showcase-count style="position:absolute;top:14px;right:14px;font-family:var(--font-heading);font-size:11px;letter-spacing:.16em;color:var(--color-accent-300);z-index:3;opacity:.85"></div>
+            <!-- image stack: se traslada -100% por índice -->
+            <div data-showcase-stack style="position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.7,.3,1);will-change:transform">
+              <sc-for list="{{ servicios }}" as="s" hint-placeholder-count="12">
+                <div style="position:relative;width:100%;height:100%;flex:none">
+                  <img src="{{ s.img }}" alt="{{ s.name }}" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.4) contrast(1.05) brightness(.9) sepia(.12) hue-rotate(175deg) saturate(1.5)" onerror="this.style.background='#1a2432';this.style.opacity='0';this.parentNode.style.background='linear-gradient(135deg,#1861a0,#1a4a76)'">
+                  <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,transparent 60%,rgba(20,30,44,.65) 100%);pointer-events:none"></span>
+                </div>
+              </sc-for>
+            </div>
           </div>
         </div>
-      </sc-for>
+      </div>
     </div>
   </div>
 </section>
@@ -754,22 +795,60 @@ class Component extends DCLogic {
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ===== Cards de servicios: tap para girar en touch (delegación por si el DC hidrata después)
-  if (matchMedia('(hover:none)').matches){
-    document.addEventListener('click', function(e){
-      var card = e.target.closest && e.target.closest('#servicios [data-flip]');
-      if (!card) return;
-      // si tocan un link/botón dentro, no girar
-      if (e.target.closest('a,button')) return;
-      var back = card.querySelector('[data-face-back]');
-      if (card.hasAttribute('data-flipped')){
-        card.removeAttribute('data-flipped');
-      } else {
-        document.querySelectorAll('#servicios [data-flip][data-flipped]').forEach(function(o){ o.removeAttribute('data-flipped'); });
-        card.setAttribute('data-flipped','');
-      }
+  // ===== Servicios scroll-showcase (desactivado en mobile)
+  function initShowcase(){
+    var track = document.querySelector('[data-showcase-track]');
+    if (!track) return false;
+    var slides = track.querySelectorAll('[data-showcase-slides] [data-slide]');
+    var dots = track.querySelectorAll('[data-showcase-dots] [data-dot]');
+    var stack = track.querySelector('[data-showcase-stack]');
+    var codeEl = track.querySelector('[data-showcase-code]');
+    var countEl = track.querySelector('[data-showcase-count]');
+    if (!slides.length || !stack) return false;
+    var N = slides.length;
+    var current = -1;
+    function isMobile(){ return matchMedia('(max-width:900px)').matches; }
+    function paint(i){
+      if (i === current) return;
+      current = i;
+      slides.forEach(function(s,idx){ if (idx===i) s.setAttribute('data-active',''); else s.removeAttribute('data-active'); });
+      dots.forEach(function(d,idx){ if (idx===i) d.setAttribute('data-active',''); else d.removeAttribute('data-active'); });
+      stack.style.transform = 'translateY(-' + (i*100) + '%)';
+      if (codeEl) codeEl.textContent = 'S.' + String(i+1).padStart(2,'0');
+      if (countEl) countEl.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0');
+    }
+    function onScroll(){
+      if (isMobile()) return;
+      var r = track.getBoundingClientRect();
+      var scrolled = -r.top;
+      var stepH = (r.height - innerHeight) / N;
+      if (stepH <= 0) return;
+      var idx = Math.max(0, Math.min(N-1, Math.floor(scrolled / stepH)));
+      paint(idx);
+    }
+    // dot click → scroll a esa posición
+    dots.forEach(function(d,idx){
+      d.addEventListener('click', function(){
+        if (isMobile()) return;
+        var r = track.getBoundingClientRect();
+        var stepH = (r.height - innerHeight) / N;
+        var targetY = (window.scrollY + r.top) + (stepH * idx) + 4;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      });
     });
+    // pintar el primero
+    paint(0);
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    onScroll();
+    return true;
   }
+  // el DC puede hidratar después: reintenta hasta que aparezcan los slides
+  var attempts = 0;
+  (function retry(){
+    if (initShowcase()) return;
+    if (attempts++ < 40) setTimeout(retry, 100);
+  })();
 
   // ===== Interacción Cobertura: clicks en mapa/chips → shell del flap se enciende
   var activeTimer;
