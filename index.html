@@ -152,10 +152,8 @@
 
     /* Cobertura: rediseño mobile para no dejarlo solo */
     #cobertura [data-pad]{gap:24px !important}
-    #cobertura [data-map-frame]{height:420px !important;border:1px solid rgba(163,212,251,.14);background:rgba(255,255,255,.02)}
-    #cobertura [data-map-frame] iframe{min-height:400px}
-    #cobertura [data-map-frame] > div:last-child{font-size:9.5px !important;letter-spacing:.14em !important}
-    #cobertura [data-map-frame] > div:nth-child(6){font-size:9.5px !important;letter-spacing:.14em !important;gap:10px !important}
+    #cobertura [data-map-frame]{height:400px !important}
+    #cobertura [data-map-frame] iframe{min-height:380px}
 
     /* Hero: caber en pantalla dejando espacio a la mobile bar */
     #top{height:calc(100dvh - 56px) !important;min-height:520px !important}
@@ -405,23 +403,8 @@
         <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
       </div>
     </div>
-    <div data-reveal="right" data-map-frame style="position:relative;height:clamp(420px,58vw,780px)">
+    <div data-reveal="right" data-map-frame style="position:relative;height:clamp(420px,52vw,660px)">
       <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en Paraguay" style="width:100%;height:100%;border:0;display:block;background:transparent"></iframe>
-      <!-- marcas de registro estilo blueprint -->
-      <span aria-hidden="true" style="position:absolute;top:0;left:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.55);border-left:1px solid rgba(163,212,251,.55);pointer-events:none"></span>
-      <span aria-hidden="true" style="position:absolute;top:0;right:0;width:14px;height:14px;border-top:1px solid rgba(163,212,251,.55);border-right:1px solid rgba(163,212,251,.55);pointer-events:none"></span>
-      <span aria-hidden="true" style="position:absolute;bottom:0;left:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.55);border-left:1px solid rgba(163,212,251,.55);pointer-events:none"></span>
-      <span aria-hidden="true" style="position:absolute;bottom:0;right:0;width:14px;height:14px;border-bottom:1px solid rgba(163,212,251,.55);border-right:1px solid rgba(163,212,251,.55);pointer-events:none"></span>
-      <!-- leyenda arriba a la izquierda -->
-      <div aria-hidden="true" style="position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:14px;font-family:var(--font-heading);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(163,212,251,.85);pointer-events:none">
-        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;background:#fff;border:1px solid var(--color-accent-300);transform:rotate(45deg);display:inline-block"></span>Centro operativo</span>
-        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-900);border:1px solid rgba(163,212,251,.6);display:inline-block"></span>Cobertura</span>
-      </div>
-      <!-- pie inferior con contador -->
-      <div style="position:absolute;left:14px;right:14px;bottom:12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px;font-family:var(--font-heading);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(163,212,251,.7);pointer-events:none">
-        <span>Cobertura nacional · República del Paraguay</span>
-        <span><b style="color:#fff;font-weight:600">5</b> Centros · <b style="color:#fff;font-weight:600">9</b> Ciudades</span>
-      </div>
     </div>
   </div>
 </section>
