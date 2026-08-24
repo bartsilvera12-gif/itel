@@ -149,15 +149,18 @@
     /* pista visual: doble-flecha en la esquina para indicar giro */
     #servicios [data-flip] [data-face]:not([data-face-back])::after{content:"↻";position:absolute;top:10px;right:10px;font-size:14px;color:var(--color-accent-300);opacity:.5}
 
-    /* Nosotros con media luna: apilar en mobile — imagen arriba, luna abajo cubriendo todo el ancho */
-    #nosotros[data-nosotros-moon-layout]{min-height:0 !important}
-    #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child{position:relative !important;aspect-ratio:4/3;height:auto;inset:auto}
-    #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child img{position:relative !important;height:100% !important}
-    #nosotros[data-nosotros-moon-layout] [data-moon]{position:relative !important;top:auto !important;bottom:auto !important;right:auto !important;left:auto !important;width:100% !important;height:auto !important;flex:none;order:2;background:#f4f8fc !important;clip-path:none !important;-webkit-clip-path:none !important;filter:none !important;padding-top:40px}
-    #nosotros[data-nosotros-moon-layout] > div:nth-child(3){grid-template-columns:1fr !important;min-height:0 !important}
+    /* Nosotros en mobile: apilar limpio — imagen arriba con aspect fijo, texto abajo pegado */
+    #nosotros[data-nosotros-moon-layout]{height:auto !important;min-height:0 !important;max-height:none !important;background:#fff !important;display:flex !important;flex-direction:column !important}
+    #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child{position:relative !important;order:1;aspect-ratio:4/3;height:auto;inset:auto;width:100%}
+    #nosotros[data-nosotros-moon-layout] > div[aria-hidden]:first-child img{position:relative !important;height:100% !important;object-position:center !important}
+    #nosotros[data-nosotros-moon-layout] [data-moon]{display:none !important}
+    #nosotros[data-nosotros-moon-layout] > div:nth-child(3){display:block !important;grid-template-columns:none !important;height:auto !important;min-height:0 !important;order:2;max-width:100% !important;margin:0 !important;padding:0 !important;background:#fff}
     #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:first-child{display:none}
-    #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:last-child{padding:52px 24px 44px !important;max-width:100% !important}
-    #nosotros[data-nosotros-moon-layout] > span[style*="Personal"]{left:16px !important;bottom:auto !important;top:calc(75vw - 40px) !important}
+    #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:last-child{padding:32px 24px 40px !important;max-width:100% !important}
+    #nosotros[data-nosotros-moon-layout] > span[style*="Personal"]{left:18px !important;bottom:auto !important;top:calc(75vw - 44px) !important;font-size:10px !important}
+
+    /* Servicios en mobile: sacar el fondo parallax (se veía raro cuando la sección es alta) — dark plano del brand */
+    #servicios{background-image:linear-gradient(180deg,#1a2432 0%,var(--color-accent-900) 45%,#1a2432 100%) !important;background-attachment:scroll !important}
 
     /* Cobertura: rediseño mobile para no dejarlo solo */
     #cobertura [data-pad]{gap:24px !important}
@@ -190,8 +193,6 @@
 
     /* Parallax pesado apagado en mobile para evitar jank */
     #servicios [data-parallax]{transform:none !important}
-    /* background-attachment:fixed no funciona bien en mobile — fallback a scroll */
-    #servicios{background-attachment:scroll !important}
 
     /* Marquee de clientes un poco más lento en mobile */
     #clientes [style*="itel-marquee"]{animation-duration:60s !important}
