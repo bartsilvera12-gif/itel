@@ -181,6 +181,8 @@
 
     /* Parallax pesado apagado en mobile para evitar jank */
     #servicios [data-parallax]{transform:none !important}
+    /* background-attachment:fixed no funciona bien en mobile — fallback a scroll */
+    #servicios{background-attachment:scroll !important}
 
     /* Marquee de clientes un poco más lento en mobile */
     #clientes [style*="itel-marquee"]{animation-duration:60s !important}
@@ -251,7 +253,7 @@
 <section id="nosotros" data-nosotros-moon-layout data-screen-label="Nosotros" style="position:relative;height:100vh;min-height:640px;max-height:900px;background:var(--color-bg);overflow:hidden">
   <!-- CAPA 1: imagen a pantalla completa como fondo -->
   <div aria-hidden="true" style="position:absolute;inset:0">
-    <img src="brand/equipo-obra.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:22% center;display:block">
+    <img src="brand/nosotros-fondo.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:22% center;display:block">
     <span style="position:absolute;inset:0;background:linear-gradient(to right,rgba(20,30,44,.35) 0%,transparent 40%);pointer-events:none"></span>
     <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.5),transparent 55%);pointer-events:none"></span>
   </div>
@@ -297,7 +299,7 @@
   </div>
 </section>
 
-<section id="servicios" data-screen-label="Servicios" style="position:relative;background:linear-gradient(180deg,#1a2432 0%,var(--color-accent-900) 45%,#1a2432 100%);color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
+<section id="servicios" data-screen-label="Servicios" style="position:relative;background-image:linear-gradient(rgba(10,35,55,.82),rgba(10,35,55,.88)),url('brand/servicios/fondo.avif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
   <div aria-hidden="true" data-bg data-bg-grid data-parallax="0.10"></div>
   <div aria-hidden="true" data-bg data-bg-hex data-parallax="0.22"></div>
   <div aria-hidden="true" data-bg data-bg-orb="a" data-parallax="0.30"></div>
@@ -348,12 +350,13 @@
               </span>
               
             </div>
-            <div data-face data-face-back data-glass-dark style="align-items:center;justify-content:center;text-align:center;gap:18px;background:rgba(35,148,238,.16);border-color:rgba(163,212,251,.3);padding:24px 20px">
-              <span style="display:grid;place-items:center;width:64px;height:64px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);color:#fff">{{ s.glyph }}</span>
-              <div style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:1.1">{{ s.name }}</div>
-              <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+            <div data-face data-face-back data-glass-dark style="align-items:center;justify-content:flex-end;text-align:center;gap:12px;border-color:rgba(163,212,251,.3);padding:20px;overflow:hidden;position:relative">
+              <img src="{{ s.img }}" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0" onerror="this.style.display='none'">
+              <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,44,.35) 0%,rgba(20,30,44,.55) 45%,rgba(29,80,124,.85) 100%);z-index:1"></span>
+              <div style="position:relative;z-index:2;font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.1;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)">{{ s.name }}</div>
+              <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
                 <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="3">
-                  <span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent-300);border:1px solid rgba(163,212,251,.4);padding:4px 8px">{{ t }}</span>
+                  <span style="font-family:var(--font-heading);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.5);padding:4px 8px;background:rgba(20,30,44,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)">{{ t }}</span>
                 </sc-for>
               </div>
             </div>
@@ -675,18 +678,18 @@ class Component extends DCLogic {
       redes: [{ name: "Facebook", glyph: this.solid(FB, 17) }, { name: "Instagram", glyph: this.solid(IG, 17) }, { name: "LinkedIn", glyph: this.solid(LI, 17) }],
       capacidades: ["Local propio", "Talleres especializados", "Depósito", "Flota de vehículos", "Personal técnico capacitado", "Proyectos empresariales"],
       servicios: [
-        { code: "01", name: "Seguridad electrónica", desc: "Soluciones de seguridad para empresas, industrias, comercios e instituciones.", tags: ["CCTV", "Cámaras IP", "Monitoreo"], glyph: g(["M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97","M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z","M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15","M2 21v-4"]) },
-        { code: "02", name: "Prevención de incendios", desc: "Detección temprana de principios de incendio y respuesta inmediata.", tags: ["Detectores", "Centrales", "Notificación"], glyph: g(["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5"]) },
-        { code: "03", name: "Seguridad perimetral", desc: "Protección de instalaciones industriales, empresariales y residenciales.", tags: ["Cercado eléctrico", "Barreras IR"], glyph: g(["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"]) },
-        { code: "04", name: "Informática", desc: "Equipos, insumos, mantenimiento, soporte y administración de redes.", tags: ["Soporte", "Mantenimiento"], glyph: g(["M8 21h8","M12 17v4","M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"]) },
-        { code: "05", name: "Networking", desc: "Diseño, implementación y mantenimiento de infraestructura de redes.", tags: ["LAN", "Wi-Fi", "Cableado"], glyph: g(["M9 2h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1","M12 8v3","M6 15h12","M6 15v3","M18 15v3","M2 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1","M17 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1"]) },
-        { code: "06", name: "Estructuras metálicas", desc: "Fabricación, instalación y mantenimiento de estructuras para telecomunicaciones.", tags: ["Torres", "Mástiles", "Pararrayos"], glyph: g(["M4.9 16.1C1 12.2 1 5.8 4.9 1.9","M7.8 4.7a6.14 6.14 0 0 0-.8 7.5","M12 9v12","M13.4 10.6 12 9l-1.4 1.6","M16.2 4.8a6.14 6.14 0 0 1 .8 7.5","M19.1 1.9a13.5 13.5 0 0 1 0 14.2","M8 21h8"]) },
-        { code: "07", name: "Enlaces punto a punto", desc: "Conectividad inalámbrica entre dos ubicaciones empresariales.", tags: ["Sede A ↔ Sede B"], glyph: g(["M8 3 4 7l4 4","M4 7h16","M16 21l4-4-4-4","M20 17H4"]) },
-        { code: "08", name: "Enlaces multipunto", desc: "Infraestructura para conectar múltiples ubicaciones hacia una central.", tags: ["Sucursales", "VoIP", "Video"], glyph: g(["M8.59 13.51l6.83 3.98","M15.41 6.51l-6.82 3.98"], [[18,5,3],[6,12,3],[18,19,3]]) },
-        { code: "09", name: "Fibra óptica", desc: "Diseño, instalación, fusión y mantenimiento de infraestructura de fibra.", tags: ["Fusión", "Migración"], glyph: g(["M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2Z","M3 5V3","M7 5V3","M19 15V6.5a3.5 3.5 0 0 0-7 0v11a3.5 3.5 0 0 1-7 0V9","M17 21v-2","M21 21v-2","M22 19h-6v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z"]) },
-        { code: "10", name: "Telefonía IP", desc: "Comunicación de voz sobre infraestructura IP, escalable y de menor costo.", tags: ["VoIP", "Sucursales"], glyph: g(["M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"]) },
-        { code: "11", name: "Comunicación rural", desc: "Conectividad donde la infraestructura tradicional es limitada.", tags: ["Radio", "Satelital"], glyph: g(["M4 10a7.31 7.31 0 0 0 10 10Z","M9 15l3-3","M17 13a6 6 0 0 0-6-6","M21 13A10 10 0 0 0 11 3"]) },
-        { code: "12", name: "Energías renovables", desc: "Soluciones de energía y eficiencia energética integradas a la infraestructura.", tags: ["Solar", "Gestión"], glyph: g(["M12 2v2","M12 20v2","m4.93 4.93 1.41 1.41","m17.66 17.66 1.41 1.41","M2 12h2","M20 12h2","m6.34 17.66-1.41 1.41","m19.07 4.93-1.41 1.41"], [[12,12,4]]) }
+        { code: "01", name: "Seguridad electrónica", desc: "Soluciones de seguridad para empresas, industrias, comercios e instituciones.", tags: ["CCTV", "Cámaras IP", "Monitoreo"], img: "brand/servicios/01-seguridad-electronica.jpg", glyph: g(["M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97","M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z","M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15","M2 21v-4"]) },
+        { code: "02", name: "Prevención de incendios", desc: "Detección temprana de principios de incendio y respuesta inmediata.", tags: ["Detectores", "Centrales", "Notificación"], img: "brand/servicios/02-incendios.jpg", glyph: g(["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5"]) },
+        { code: "03", name: "Seguridad perimetral", desc: "Protección de instalaciones industriales, empresariales y residenciales.", tags: ["Cercado eléctrico", "Barreras IR"], img: "brand/servicios/03-seguridad-perimetral.jpg", glyph: g(["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"]) },
+        { code: "04", name: "Informática", desc: "Equipos, insumos, mantenimiento, soporte y administración de redes.", tags: ["Soporte", "Mantenimiento"], img: "brand/servicios/04-informatica.jpg", glyph: g(["M8 21h8","M12 17v4","M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"]) },
+        { code: "05", name: "Networking", desc: "Diseño, implementación y mantenimiento de infraestructura de redes.", tags: ["LAN", "Wi-Fi", "Cableado"], img: "brand/servicios/05-networking.jpg", glyph: g(["M9 2h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1","M12 8v3","M6 15h12","M6 15v3","M18 15v3","M2 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1","M17 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1"]) },
+        { code: "06", name: "Estructuras metálicas", desc: "Fabricación, instalación y mantenimiento de estructuras para telecomunicaciones.", tags: ["Torres", "Mástiles", "Pararrayos"], img: "brand/servicios/06-estructuras-metalicas.avif", glyph: g(["M4.9 16.1C1 12.2 1 5.8 4.9 1.9","M7.8 4.7a6.14 6.14 0 0 0-.8 7.5","M12 9v12","M13.4 10.6 12 9l-1.4 1.6","M16.2 4.8a6.14 6.14 0 0 1 .8 7.5","M19.1 1.9a13.5 13.5 0 0 1 0 14.2","M8 21h8"]) },
+        { code: "07", name: "Enlaces punto a punto", desc: "Conectividad inalámbrica entre dos ubicaciones empresariales.", tags: ["Sede A ↔ Sede B"], img: "brand/servicios/07-enlaces-p2p.jpg", glyph: g(["M8 3 4 7l4 4","M4 7h16","M16 21l4-4-4-4","M20 17H4"]) },
+        { code: "08", name: "Enlaces multipunto", desc: "Infraestructura para conectar múltiples ubicaciones hacia una central.", tags: ["Sucursales", "VoIP", "Video"], img: "brand/servicios/08-enlaces-multipunto.avif", glyph: g(["M8.59 13.51l6.83 3.98","M15.41 6.51l-6.82 3.98"], [[18,5,3],[6,12,3],[18,19,3]]) },
+        { code: "09", name: "Fibra óptica", desc: "Diseño, instalación, fusión y mantenimiento de infraestructura de fibra.", tags: ["Fusión", "Migración"], img: "brand/servicios/09-fibra-optica.jpg", glyph: g(["M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2Z","M3 5V3","M7 5V3","M19 15V6.5a3.5 3.5 0 0 0-7 0v11a3.5 3.5 0 0 1-7 0V9","M17 21v-2","M21 21v-2","M22 19h-6v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z"]) },
+        { code: "10", name: "Telefonía IP", desc: "Comunicación de voz sobre infraestructura IP, escalable y de menor costo.", tags: ["VoIP", "Sucursales"], img: "brand/servicios/10-telefonia-ip.jpg", glyph: g(["M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"]) },
+        { code: "11", name: "Comunicación rural", desc: "Conectividad donde la infraestructura tradicional es limitada.", tags: ["Radio", "Satelital"], img: "brand/servicios/11-comunicacion-rural.avif", glyph: g(["M4 10a7.31 7.31 0 0 0 10 10Z","M9 15l3-3","M17 13a6 6 0 0 0-6-6","M21 13A10 10 0 0 0 11 3"]) },
+        { code: "12", name: "Energías renovables", desc: "Soluciones de energía y eficiencia energética integradas a la infraestructura.", tags: ["Solar", "Gestión"], img: "brand/servicios/12-energias-renovables.avif", glyph: g(["M12 2v2","M12 20v2","m4.93 4.93 1.41 1.41","m17.66 17.66 1.41 1.41","M2 12h2","M20 12h2","m6.34 17.66-1.41 1.41","m19.07 4.93-1.41 1.41"], [[12,12,4]]) }
       ],
       necesidades: [
         { code: "N.01", name: "Mejorar la seguridad", desc: "CCTV, alarmas, prevención de incendio y seguridad perimetral." },
