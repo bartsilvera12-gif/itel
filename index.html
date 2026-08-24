@@ -134,7 +134,7 @@
   @media (max-width:720px){
     /* Servicios: 2 columnas fijas, altura igual, flip por tap */
     #servicios [data-pad] > div:last-child{grid-template-columns:repeat(2,1fr) !important;gap:12px !important}
-    #servicios [data-reveal="cinematic"]{height:300px !important}
+    #servicios [data-reveal="cinematic"]{height:240px !important}
     #servicios [data-flip]{height:100% !important;perspective:1500px !important;overflow:visible}
     #servicios [data-flip-inner]{height:100% !important;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.25,1) !important}
     #servicios [data-flip][data-flipped] [data-flip-inner]{transform:rotateY(180deg) !important}
@@ -159,8 +159,9 @@
     #nosotros[data-nosotros-moon-layout] > div:nth-child(3) > div:last-child{padding:32px 24px 40px !important;max-width:100% !important}
     #nosotros[data-nosotros-moon-layout] > span[style*="Personal"]{left:18px !important;bottom:auto !important;top:calc(75vw - 44px) !important;font-size:10px !important}
 
-    /* Servicios en mobile: sacar el fondo parallax (se veía raro cuando la sección es alta) — dark plano del brand */
-    #servicios{background-image:linear-gradient(180deg,#1a2432 0%,var(--color-accent-900) 45%,#1a2432 100%) !important;background-attachment:scroll !important}
+    /* Servicios en mobile: mantener foto de fondo pero attachment scroll (iOS no soporta fixed) y padding compacto */
+    #servicios{background-attachment:scroll !important;background-size:cover !important;background-position:center !important}
+    #servicios [data-pad]{padding-top:clamp(50px,7vw,80px) !important;padding-bottom:clamp(40px,6vw,70px) !important}
 
     /* Cobertura: rediseño mobile para no dejarlo solo */
     #cobertura [data-pad]{gap:24px !important}
