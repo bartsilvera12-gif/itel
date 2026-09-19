@@ -62,9 +62,43 @@ function draw(){
   const lg = defs.append("linearGradient").attr("id","land").attr("x1","0").attr("y1","0").attr("x2",".3").attr("y2","1");
   lg.append("stop").attr("offset","0%").attr("stop-color","#20527f");
   lg.append("stop").attr("offset","100%").attr("stop-color","#17395c");
+  const ng = defs.append("linearGradient").attr("id","neighbor").attr("x1","0").attr("y1","0").attr("x2",".3").attr("y2","1");
+  ng.append("stop").attr("offset","0%").attr("stop-color","#0f2035");
+  ng.append("stop").attr("offset","100%").attr("stop-color","#0a1725");
   const halo = defs.append("filter").attr("id","halo").attr("x","-30%").attr("y","-30%").attr("width","160%").attr("height","160%");
   halo.append("feGaussianBlur").attr("stdDeviation", Math.max(3, W/140));
   defs.append("clipPath").attr("id","clipPy").append("path").attr("d", path(py));
+
+  // países vecinos (Brasil, Argentina, Bolivia) — recortados a un bbox alrededor de Paraguay
+  const NEIGHBORS = ["Brazil","Argentina","Bolivia"];
+  const bounds = path.bounds(py);
+  const bx = bounds[0][0], by = bounds[0][1], bw = bounds[1][0]-bounds[0][0], bh = bounds[1][1]-bounds[0][1];
+  const pad = Math.max(W, H) * 0.06;
+  const cbx = bx - pad, cby = by - pad, cbw = bw + pad*2, cbh = bh + pad*2;
+  defs.append("clipPath").attr("id","clipNeighbors").append("rect")
+    .attr("x", cbx).attr("y", cby).attr("width", cbw).attr("height", cbh);
+  const nGroup = svg.append("g").attr("clip-path","url(#clipNeighbors)").attr("opacity",0);
+  nGroup.transition().duration(1400).attr("opacity",1);
+  NEIGHBORS.forEach(name => {
+    const f = topo.features.find(x => x.properties && x.properties.name === name);
+    if(!f) return;
+    nGroup.append("path").attr("d", path(f))
+      .attr("fill","url(#neighbor)")
+      .attr("stroke","rgba(163,212,251,.18)")
+      .attr("stroke-width",.6);
+    // etiqueta discreta del país en su lado que colinda con PY
+    const cent = path.centroid(f);
+    // clampear al bbox para que la etiqueta quede visible dentro del clip
+    const lx = Math.max(cbx+16, Math.min(cbx+cbw-16, cent[0]));
+    const ly = Math.max(cby+18, Math.min(cby+cbh-8,  cent[1]));
+    nGroup.append("text").attr("x", lx).attr("y", ly)
+      .attr("text-anchor","middle")
+      .attr("fill","rgba(163,212,251,.35)")
+      .attr("font-family","var(--font-heading),'Barlow Condensed',system-ui,sans-serif")
+      .attr("font-weight","500").attr("font-size", Math.max(9, W/95))
+      .attr("letter-spacing",".24em")
+      .text(name === "Brazil" ? "BRASIL" : name.toUpperCase());
+  });
 
   // país
   svg.append("path").attr("d",path(py)).attr("fill","url(#land)");
