@@ -388,11 +388,13 @@
       <span style="width:38px;height:1px;background:var(--color-accent)"></span>
       <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Quiénes nos eligen</span>
     </div>
-    <h2 style="font-size:clamp(34px,3.8vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0;max-width:24ch">Empresas que han confiado en I-TEL</h2>
+    <h2 style="font-size:clamp(34px,3.8vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0;max-width:26ch">Empresas que han confiado en nuestros servicios</h2>
   </div>
   <div style="position:relative;display:flex;width:max-content;animation:itel-marquee 46s linear infinite">
     <sc-for list="{{ clientesLoop }}" as="c" hint-placeholder-count="12">
-      <span data-glass-card style="display:flex;align-items:center;justify-content:center;width:230px;height:104px;margin-right:18px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-align:center;line-height:1.15;padding:0 16px;color:color-mix(in srgb,var(--color-text) 74%,transparent)">{{ c }}</span>
+      <span data-glass-card style="display:flex;align-items:center;justify-content:center;width:230px;height:104px;margin-right:18px;padding:0 20px">
+        <img src="{{ c.logo }}" alt="{{ c.name }}" loading="lazy" style="max-width:100%;max-height:64px;width:auto;height:auto;object-fit:contain;filter:grayscale(.2);opacity:.85;transition:filter .3s ease,opacity .3s ease" onmouseover="this.style.filter='grayscale(0)';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(.2)';this.style.opacity='.85'">
+      </span>
     </sc-for>
   </div>
 </section>
@@ -717,7 +719,29 @@ class Component extends DCLogic {
         { code: "N.06", name: "Optimizar infraestructura", desc: "Informática, redes, mantenimiento y soluciones integradas." }
       ],
       clientesLoop: (() => {
-        const c = ["Ganadera Chajha S.A.", "Ganadera Sofía S.A.", "Wheelco S.A.", "Payco S.A.", "Seagro S.A.", "SICBRAS PY", "Berkemeyer", "Natupar SRL", "Las Valentinas S.A.", "Maroma S.A.", "Agropecuaria Don Tani SRL", "UNISAL", "Matriz S.A.", "Technoma SAECA", "ITTI SAECA", "Las Tacuaras S.A."];
+        const c = [
+          { name: "ueno bank", logo: "brand/clientes/ueno-bank.png" },
+          { name: "Itaú", logo: "brand/clientes/itau.webp" },
+          { name: "Personal", logo: "brand/clientes/personal.png" },
+          { name: "Tigo", logo: "brand/clientes/tigo.webp" },
+          { name: "Claro", logo: "brand/clientes/claro.png" },
+          { name: "Ganadera Chajha S.A.", logo: "brand/clientes/ganadera-chajha.svg" },
+          { name: "Ganadera Sofía S.A.", logo: "brand/clientes/ganadera-sofia.svg" },
+          { name: "Wheelco S.A.", logo: "brand/clientes/wheelco.svg" },
+          { name: "Payco S.A.", logo: "brand/clientes/payco.svg" },
+          { name: "Seagro S.A.", logo: "brand/clientes/seagro.svg" },
+          { name: "SICBRAS PY", logo: "brand/clientes/sicbras-py.svg" },
+          { name: "Berkemeyer", logo: "brand/clientes/berkemeyer.svg" },
+          { name: "Natupar SRL", logo: "brand/clientes/natupar.svg" },
+          { name: "Las Valentinas S.A.", logo: "brand/clientes/las-valentinas.svg" },
+          { name: "Maroma S.A.", logo: "brand/clientes/maroma.svg" },
+          { name: "Agropecuaria Don Tani SRL", logo: "brand/clientes/don-tani.svg" },
+          { name: "UNISAL", logo: "brand/clientes/unisal.svg" },
+          { name: "Matriz S.A.", logo: "brand/clientes/matriz.svg" },
+          { name: "Technoma SAECA", logo: "brand/clientes/technoma.svg" },
+          { name: "ITTI SAECA", logo: "brand/clientes/itti.svg" },
+          { name: "Las Tacuaras S.A.", logo: "brand/clientes/las-tacuaras.svg" }
+        ];
         return c.concat(c);
       })(),
       todasCiudades: ["Luque", "Encarnación", "Ciudad del Este", "Pedro Juan Caballero", "Coronel Oviedo", "Pilar", "Salto del Guairá", "Concepción", "Santa Rosa del Aguaray"],
