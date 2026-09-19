@@ -18,8 +18,8 @@
 
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/styles.css">
-<script src="_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/_ds_bundle.js"></script>
+<link rel="stylesheet" href="/_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/styles.css">
+<script src="/_ds/industry-9770d33c-fdaa-47de-9012-d4d2f815fba7/_ds_bundle.js"></script>
 <style>
   :root {
     --color-accent: #2394ee;
@@ -75,7 +75,7 @@
   [data-navlink]:hover::after{transform:scaleX(1)}
   [data-header][data-glass]{background:rgba(255,255,255,.62) !important;-webkit-backdrop-filter:blur(26px) saturate(150%) !important;backdrop-filter:blur(26px) saturate(150%) !important;border-bottom-color:rgba(44,56,68,.08) !important;box-shadow:0 8px 24px -20px rgba(44,56,68,.35) !important}
   @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1 !important;transform:none !important;transition:none}[data-flip-inner]{transition:none}}
-  @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
+  @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}[data-lang-toggle][data-desktop-only]{display:none !important}}
   @media (min-width:721px){[data-mobile-bar]{display:none !important}}
   @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
 
@@ -215,7 +215,7 @@
 <header data-header="1" data-pad style="position:fixed;top:0;left:0;right:0;z-index:60;background:#fff;-webkit-backdrop-filter:blur(0) saturate(100%);backdrop-filter:blur(0) saturate(100%);border-bottom:1px solid rgba(44,56,68,.1);box-shadow:none;transition:background .5s ease,backdrop-filter .5s ease,-webkit-backdrop-filter .5s ease,border-color .5s ease,box-shadow .5s ease;padding:0 48px">
   <div class="nav" style="max-width:1560px;margin:0 auto;padding:12px 0;gap:28px;color:var(--color-text)">
     <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex:none">
-      <img src="brand/logo-color.png" alt="I-TEL Comunicaciones" style="height:40px;width:auto;display:block">
+      <img src="/brand/logo-color.png" alt="I-TEL Comunicaciones" style="height:40px;width:auto;display:block">
     </a>
     <div data-desktop-nav style="display:flex;align-items:center;gap:4px;margin-left:auto">
       <a href="#top" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Home</a>
@@ -225,8 +225,8 @@
       <a href="#clientes" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Clients</a>
       <a href="/en/contacto/" data-navlink style="position:relative;color:var(--color-text);opacity:.78;text-decoration:none;font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid transparent;transition:opacity .3s,color .3s,background .35s,border-color .35s,box-shadow .35s,transform .35s,backdrop-filter .35s">Contact</a>
     </div>
-    <div data-lang-toggle style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:4px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:12px;letter-spacing:.08em">
-<style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:6px 11px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
+    <div data-lang-toggle data-desktop-only style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:3px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:11.5px;letter-spacing:.06em">
+<style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:5px 9px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
 <a href="/" data-lang="es" style="opacity:.65">ES</a><a href="/en/" data-lang="en" style="opacity:1;font-weight:700;color:var(--color-accent-700);background:rgba(35,148,238,.09)">EN</a><a href="/zh/" data-lang="zh" style="opacity:.65">中</a>
 </div>
     <button data-burger onClick="{{ toggleMenu }}" aria-label="Menú" style="display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-left:auto;width:46px;height:46px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.14);cursor:pointer;color:var(--color-text)">
@@ -240,7 +240,7 @@
 <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
   <div style="position:fixed;inset:0;z-index:70;background:var(--color-accent-900);color:var(--color-neutral-100);display:flex;flex-direction:column;padding:24px 24px 40px;animation:itel-in .3s both">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px">
-      <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:38px;width:auto">
+      <img src="/brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:38px;width:auto">
       <button onClick="{{ toggleMenu }}" aria-label="Close" style="width:46px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.3);color:inherit;font-size:22px;cursor:pointer;font-family:var(--font-heading)">×</button>
     </div>
     <a href="#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">About</a>
@@ -248,6 +248,10 @@
     <a href="#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Coverage</a>
     <a href="#clientes" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Clients</a>
     <a href="/en/contacto/" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Contact</a>
+        <div data-lang-toggle-mobile style="display:flex;gap:8px;margin-top:24px;padding:0">
+<style>[data-lang-toggle-mobile] a{text-align:center;text-decoration:none;padding:12px 0;border-radius:999px;font-family:var(--font-heading);font-size:13px;letter-spacing:.12em;text-transform:uppercase;transition:all .25s}</style>
+<a href="/" style="flex:1;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18)">Español</a><a href="/en/" style="flex:1;color:var(--color-accent-300);border:1px solid var(--color-accent-300);font-weight:600">English</a><a href="/zh/" style="flex:1;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18)">中文</a>
+</div>
     <a href="/en/contacto/" class="btn" style="margin-top:30px;min-height:52px;background:var(--color-accent-300);color:var(--color-accent-900);border-color:var(--color-accent-300)">Request a quote</a>
   </div>
 </sc-if>
@@ -260,7 +264,7 @@
     <div style="position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(to top,var(--color-accent-900) 8%,color-mix(in srgb,var(--color-accent-900) 55%,transparent) 46%,transparent)"></div>
   </div>
   <div style="position:relative;z-index:1;padding:0 24px;animation:itel-fade 1.1s .1s both">
-    <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="display:block;width:min(84vw,660px);height:auto;transition:transform .5s cubic-bezier(.2,.7,.3,1);filter:drop-shadow(0 2px 26px rgba(0,0,0,.5))" style-hover="transform:scale(1.02)">
+    <img src="/brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="display:block;width:min(84vw,660px);height:auto;transition:transform .5s cubic-bezier(.2,.7,.3,1);filter:drop-shadow(0 2px 26px rgba(0,0,0,.5))" style-hover="transform:scale(1.02)">
   </div>
   <a href="#nosotros" aria-label="Bajar" style="position:absolute;left:50%;bottom:34px;z-index:1;transform:translateX(-50%);color:rgba(255,255,255,.75);transition:color .2s" style-hover="color:var(--color-accent-300)">
     <svg width="30" height="46" viewBox="0 0 30 46" fill="none" aria-hidden="true">
@@ -273,7 +277,7 @@
 <section id="nosotros" data-nosotros-moon-layout data-screen-label="Nosotros" style="position:relative;height:100vh;min-height:640px;max-height:900px;background:var(--color-bg);overflow:hidden">
   <!-- CAPA 1: imagen a pantalla completa como fondo -->
   <div aria-hidden="true" style="position:absolute;inset:0">
-    <img src="brand/nosotros-fondo.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:22% center;display:block">
+    <img src="/brand/nosotros-fondo.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:22% center;display:block">
     <span style="position:absolute;inset:0;background:linear-gradient(to right,rgba(20,30,44,.35) 0%,transparent 40%);pointer-events:none"></span>
     <span style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.5),transparent 55%);pointer-events:none"></span>
   </div>
@@ -320,7 +324,7 @@
   </div>
 </section>
 
-<section id="servicios" data-screen-label="Servicios" style="position:relative;background-image:url('brand/servicios/fondo.avif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
+<section id="servicios" data-screen-label="Servicios" style="position:relative;background-image:url('/brand/servicios/fondo.avif');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;color:var(--color-neutral-100);overflow:hidden;isolation:isolate">
   <div aria-hidden="true" data-bg data-bg-grid data-parallax="0.10"></div>
   <div aria-hidden="true" data-bg data-bg-hex data-parallax="0.22"></div>
   <div aria-hidden="true" data-bg data-bg-orb="a" data-parallax="0.30"></div>
@@ -461,7 +465,7 @@
 <footer data-pad style="background:var(--color-accent-900);color:var(--color-neutral-100);padding:clamp(56px,6vw,88px) 48px 28px;border-top:1px solid rgba(255,255,255,.14)">
   <div style="max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
     <div>
-      <img src="brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:56px;width:auto;margin-bottom:20px">
+      <img src="/brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:56px;width:auto;margin-bottom:20px">
       <p style="font-size:14.5px;line-height:1.6;max-width:30ch;margin:0;color:color-mix(in srgb,var(--color-neutral-100) 72%,transparent)">Technology Solutions & Integrations</p>
       <div style="display:flex;gap:10px;margin-top:22px">
         <sc-for list="{{ redes }}" as="r" hint-placeholder-count="3">

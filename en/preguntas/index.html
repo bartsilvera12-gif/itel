@@ -39,7 +39,7 @@
   [data-navlink]:hover{opacity:1;color:var(--color-accent-700)}
   [data-navlink]::after{content:"";position:absolute;left:15px;right:15px;bottom:4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .4s cubic-bezier(.7,0,.2,1);opacity:.85}
   [data-navlink]:hover::after{transform:scaleX(1)}
-  @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
+  @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}[data-lang-toggle][data-desktop-only]{display:none !important}}
   @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
 </style>
 </helmet>
@@ -57,8 +57,8 @@
       <a href="index.html#cobertura" data-navlink>Coverage</a>
       <a href="/en/contacto/" data-navlink>Contact</a>
     </nav>
-    <div data-lang-toggle style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:4px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:12px;letter-spacing:.08em">
-<style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:6px 11px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
+    <div data-lang-toggle data-desktop-only style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:3px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:11.5px;letter-spacing:.06em">
+<style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:5px 9px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
 <a href="/preguntas/" data-lang="es" style="opacity:.65">ES</a><a href="/en/preguntas/" data-lang="en" style="opacity:1;font-weight:700;color:var(--color-accent-700);background:rgba(35,148,238,.09)">EN</a><a href="/zh/preguntas/" data-lang="zh" style="opacity:.65">中</a>
 </div>
     <button data-burger onClick="{{ toggleMenu }}" aria-label="Menú" style="display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-left:auto;width:46px;height:46px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.14);cursor:pointer;color:var(--color-text)">
