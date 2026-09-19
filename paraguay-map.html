@@ -119,9 +119,9 @@ function draw(){
   };
   // Puntos de anclaje relativos al bbox de Paraguay
   const anchors = [
-    { name:"BRASIL",    x: bx + bw*0.85, y: by - bh*0.06 },   // arriba-derecha, ligeramente afuera
-    { name:"ARGENTINA", x: bx + bw*0.40, y: by + bh*1.04 },   // abajo-centro
-    { name:"BOLIVIA",   x: bx - bw*0.05, y: by - bh*0.02 }    // arriba-izquierda, justo afuera del bbox
+    { name:"BRASIL",    x: bx + bw*0.87, y: by + bh*0.06 },
+    { name:"ARGENTINA", x: bx + bw*0.40, y: by + bh*1.02 },
+    { name:"BOLIVIA",   x: bx + bw*0.15, y: by + bh*0.05 }
   ];
   anchors.forEach(a => {
     nLabels.append("text").attr("x", a.x).attr("y", a.y)
