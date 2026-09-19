@@ -38,8 +38,8 @@
   [data-navlink]:hover::after{transform:scaleX(1)}
   @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
   @media (max-width:900px){
-    section[data-screen-label="联系 hero"] > div[data-pad]{grid-template-columns:1fr !important;min-height:0 !important}
-    section[data-screen-label="联系 hero"] > div[data-pad] > div:first-child{padding:44px 20px 32px !important}
+    section[data-screen-label="聯絡 hero"] > div[data-pad]{grid-template-columns:1fr !important;min-height:0 !important}
+    section[data-screen-label="聯絡 hero"] > div[data-pad] > div:first-child{padding:44px 20px 32px !important}
     [data-hero-figure]{height:clamp(240px,55vw,380px) !important;order:2}
   }
   @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
@@ -53,11 +53,11 @@
       <img src="/brand/logo-color.png" alt="I-TEL Comunicaciones" style="height:36px;width:auto;display:block">
     </a>
     <nav data-desktop-nav style="margin-left:auto;display:flex;align-items:center;gap:6px">
-      <a href="/zh/" data-navlink>首页</a>
-      <a href="index.html#nosotros" data-navlink>关于我们</a>
-      <a href="index.html#servicios" data-navlink>服务</a>
-      <a href="index.html#cobertura" data-navlink>覆盖范围</a>
-      <a href="/zh/preguntas/" data-navlink>常见问题</a>
+      <a href="/zh/" data-navlink>首頁</a>
+      <a href="index.html#nosotros" data-navlink>關於我們</a>
+      <a href="index.html#servicios" data-navlink>服務</a>
+      <a href="index.html#cobertura" data-navlink>覆蓋範圍</a>
+      <a href="/zh/preguntas/" data-navlink>常見問題</a>
     </nav>
     <div data-lang-toggle style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:4px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:12px;letter-spacing:.08em">
 <style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:6px 11px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
@@ -75,34 +75,34 @@
   <div style="position:fixed;inset:0;z-index:70;background:var(--color-accent-900);color:var(--color-neutral-100);display:flex;flex-direction:column;padding:24px 24px 40px;animation:itel-in .3s both">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:34px">
       <img src="/brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:38px;width:auto">
-      <button onClick="{{ toggleMenu }}" aria-label="关闭" style="width:46px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.3);color:inherit;font-size:22px;cursor:pointer;font-family:var(--font-heading)">×</button>
+      <button onClick="{{ toggleMenu }}" aria-label="關閉" style="width:46px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.3);color:inherit;font-size:22px;cursor:pointer;font-family:var(--font-heading)">×</button>
     </div>
-    <a href="/zh/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">首页</a>
-    <a href="index.html#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">关于我们</a>
-    <a href="index.html#servicios" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">服务</a>
-    <a href="index.html#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">覆盖范围</a>
-    <a href="/zh/preguntas/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">常见问题</a>
+    <a href="/zh/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">首頁</a>
+    <a href="index.html#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">關於我們</a>
+    <a href="index.html#servicios" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">服務</a>
+    <a href="index.html#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">覆蓋範圍</a>
+    <a href="/zh/preguntas/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">常見問題</a>
   </div>
 </sc-if>
 
-<section data-screen-label="联系 hero" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+<section data-screen-label="聯絡 hero" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.055) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
   <div aria-hidden="true" style="position:absolute;top:-20%;right:-8%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(35,148,238,.22),transparent 68%);pointer-events:none"></div>
   <div data-pad style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:clamp(520px,72vh,720px);padding:0 !important">
     <div style="display:flex;flex-direction:column;justify-content:center;padding:clamp(70px,7vw,110px) clamp(28px,4vw,72px) clamp(70px,7vw,110px) clamp(28px,5vw,88px)">
       <div style="display:flex;align-items:center;gap:11px;margin-bottom:22px;animation:itel-in .6s both">
         <span style="width:9px;height:9px;border-radius:50%;background:var(--color-accent-300);animation:itel-blink 2.4s ease-in-out infinite"></span>
-        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-300)">联系</span>
+        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-300)">聯絡</span>
       </div>
       <h1 style="font-size:clamp(36px,4.6vw,68px);line-height:1;letter-spacing:-.028em;margin:0;max-width:20ch;animation:itel-in .75s .05s both">Contanos qué necesitás y <span style="color:var(--color-accent-300)">te armamos la solución.</span></h1>
-      <p style="font-size:17px;line-height:1.65;max-width:48ch;margin:26px 0 0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent);animation:itel-in .8s .12s both">我们的技术团队会分析每个项目,评估设备、基础设施和范围后再报价。</p>
+      <p style="font-size:17px;line-height:1.65;max-width:48ch;margin:26px 0 0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent);animation:itel-in .8s .12s both">我們的技術團隊會分析每個專案,評估裝置、基礎設施和範圍後再報價。</p>
     </div>
     <figure data-hero-figure style="margin:0;position:relative;overflow:hidden;animation:itel-in .9s .18s both">
       <img src="/brand/equipo-obra.jpg" alt="Personal técnico de I-TEL en obra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
       <!-- caption -->
       <div style="position:absolute;left:24px;bottom:22px;display:flex;align-items:center;gap:10px;color:#fff;z-index:2">
         <span style="width:28px;height:1px;background:var(--color-accent-300)"></span>
-        <span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,.65)">现场技术人员</span>
+        <span style="font-family:var(--font-heading);font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,.65)">現場技術人員</span>
       </div>
       <!-- gradient sutil abajo para legibilidad del caption -->
       <span aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,transparent,rgba(20,30,44,.55));pointer-events:none;z-index:1"></span>
@@ -117,7 +117,7 @@
       <div data-reveal>
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
           <span style="width:38px;height:1px;background:var(--color-accent)"></span>
-          <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">联系资料</span>
+          <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">聯絡資料</span>
         </div>
         <div style="border-top:1px solid var(--color-divider)">
           <sc-for list="{{ contacto }}" as="c" hint-placeholder-count="6">
@@ -127,23 +127,23 @@
             </div>
           </sc-for>
         </div>
-        <p style="font-size:12.5px;margin-top:14px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">这些数据从站点配置中编辑。</p>
+        <p style="font-size:12.5px;margin-top:14px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">這些資料從站點配置中編輯。</p>
 
         <div style="margin-top:34px;display:flex;flex-direction:column;gap:12px">
           <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:#25D366;padding:16px 20px;transition:background .2s,transform .2s" style-hover="background:#1ebe5b;transform:translateY(-2px)">
             {{ waGlyph }}
-            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">通过WhatsApp联系</span>
+            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">透過WhatsApp聯絡</span>
           </a>
           <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--color-text);border:1px solid var(--color-divider);background:var(--color-surface);padding:16px 20px;transition:border-color .2s,transform .2s" style-hover="border-color:var(--color-accent);transform:translateY(-2px)">
             <span style="color:var(--color-accent-700);display:flex">{{ phoneGlyph }}</span>
-            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">通过电话联系</span>
+            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">透過電話聯絡</span>
           </a>
         </div>
 
         <figure style="margin:34px 0 0;height:240px;position:relative;overflow:hidden;border:1px solid var(--color-divider)">
-          <img src="/brand/oficina.jpg" alt="Oficina I-TEL en 卢克, 巴拉圭" style="width:100%;height:100%;object-fit:cover;display:block">
+          <img src="/brand/oficina.jpg" alt="Oficina I-TEL en 盧克, 巴拉圭" style="width:100%;height:100%;object-fit:cover;display:block">
           <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,30,44,.7),transparent 55%);pointer-events:none"></span>
-          <span style="position:absolute;left:14px;bottom:14px;font-family:var(--font-heading);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)">Oficina I-TEL · 卢克, 巴拉圭</span>
+          <span style="position:absolute;left:14px;bottom:14px;font-family:var(--font-heading);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)">Oficina I-TEL · 盧克, 巴拉圭</span>
         </figure>
       </div>
 
@@ -152,41 +152,41 @@
           <div style="background:var(--color-accent-900);color:var(--color-neutral-100);padding:clamp(30px,4vw,52px);min-height:420px;display:flex;flex-direction:column;justify-content:center;gap:14px;animation:itel-in .4s both">
             <div style="width:46px;height:46px;border:1px solid var(--color-accent-300);display:grid;place-items:center;margin-bottom:8px"><span style="width:13px;height:13px;background:var(--color-accent-300);transform:rotate(45deg)"></span></div>
             <h2 style="font-size:clamp(28px,3vw,40px);margin:0;line-height:1.04">Solicitud recibida</h2>
-            <p style="font-size:16px;line-height:1.6;margin:0;max-width:38ch;color:color-mix(in srgb,var(--color-neutral-100) 78%,transparent)">Gracias por contactar con I-TEL Comunicaciones. 我们的团队 revisará tu solicitud y se pondrá en contacto.</p>
-            <button onClick="{{ reset }}" class="btn" style="align-self:flex-start;margin-top:14px;min-height:46px;padding:0 22px;color:var(--color-neutral-100);border-color:rgba(255,255,255,.3);background:transparent;cursor:pointer" style-hover="background:rgba(255,255,255,.08)">发送 otra solicitud</button>
+            <p style="font-size:16px;line-height:1.6;margin:0;max-width:38ch;color:color-mix(in srgb,var(--color-neutral-100) 78%,transparent)">Gracias por contactar con I-TEL Comunicaciones. 我們的團隊 revisará tu solicitud y se pondrá en contacto.</p>
+            <button onClick="{{ reset }}" class="btn" style="align-self:flex-start;margin-top:14px;min-height:46px;padding:0 22px;color:var(--color-neutral-100);border-color:rgba(255,255,255,.3);background:transparent;cursor:pointer" style-hover="background:rgba(255,255,255,.08)">傳送 otra solicitud</button>
           </div>
         </sc-if>
         <sc-if value="{{ noEnviado }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ enviar }}" style="background:var(--color-surface);border:1px solid var(--color-divider);padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
             <div style="grid-column:1/-1;display:flex;align-items:center;gap:11px;margin-bottom:4px">
               <span style="width:38px;height:1px;background:var(--color-accent)"></span>
-              <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">申请报价</span>
+              <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">申請報價</span>
             </div>
             <div class="field"><label for="c-nombre">姓名</label><input class="input" id="c-nombre" name="nombre" style="min-height:46px" required="true"></div>
             <div class="field"><label for="c-empresa">公司</label><input class="input" id="c-empresa" name="empresa" style="min-height:46px"></div>
-            <div class="field"><label for="c-tel">电话</label><input class="input" id="c-tel" name="telefono" type="tel" style="min-height:46px" required="true"></div>
-            <div class="field"><label for="c-email">电子邮件</label><input class="input" id="c-email" name="email" type="email" style="min-height:46px"></div>
+            <div class="field"><label for="c-tel">電話</label><input class="input" id="c-tel" name="telefono" type="tel" style="min-height:46px" required="true"></div>
+            <div class="field"><label for="c-email">電子郵件</label><input class="input" id="c-email" name="email" type="email" style="min-height:46px"></div>
             <div class="field"><label for="c-ciudad">城市</label><input class="input" id="c-ciudad" name="ciudad" style="min-height:46px"></div>
-            <div class="field"><label for="c-pais">国家</label>
+            <div class="field"><label for="c-pais">國家</label>
               <select class="input" id="c-pais" name="pais" style="min-height:46px">
                 <option>巴拉圭</option>
                 <option>阿根廷</option>
                 <option>巴西</option>
-                <option>玻利维亚</option>
+                <option>玻利維亞</option>
                 <option>其他</option>
               </select>
             </div>
-            <div class="field"><label for="c-servicio">服务类型</label>
+            <div class="field"><label for="c-servicio">服務型別</label>
               <select class="input" id="c-servicio" name="servicio" style="min-height:46px">
                 <sc-for list="{{ opciones }}" as="o" hint-placeholder-count="13">
                   <option>{{ o }}</option>
                 </sc-for>
               </select>
             </div>
-            <div class="field" style="grid-column:1/-1"><label for="c-msg">服务或项目描述</label><textarea class="input" id="c-msg" name="mensaje" style="min-height:140px" required="true"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><label for="c-msg">服務或專案描述</label><textarea class="input" id="c-msg" name="mensaje" style="min-height:140px" required="true"></textarea></div>
             <div style="grid-column:1/-1;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-              <button type="submit" class="btn btn-primary" style="min-height:50px;padding:0 28px;font-size:15px">申请报价</button>
-              <span style="font-size:12.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">我们在工作时间内回复。</span>
+              <button type="submit" class="btn btn-primary" style="min-height:50px;padding:0 28px;font-size:15px">申請報價</button>
+              <span style="font-size:12.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">我們在工作時間內回覆。</span>
             </div>
           </form>
         </sc-if>
@@ -195,14 +195,14 @@
   </div>
 </section>
 
-<section data-screen-label="覆盖范围 contacto" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+<section data-screen-label="覆蓋範圍 contacto" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
   <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(60px,6vw,100px) 48px">
     <div data-reveal style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
       <span style="width:38px;height:1px;background:var(--color-accent-300)"></span>
-      <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-300)">我们所在</span>
+      <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-300)">我們所在</span>
     </div>
-    <h2 data-reveal style="font-size:clamp(30px,3.4vw,50px);line-height:1.02;letter-spacing:-.02em;margin:0 0 30px;max-width:20ch">遍布全国的运营中心</h2>
+    <h2 data-reveal style="font-size:clamp(30px,3.4vw,50px);line-height:1.02;letter-spacing:-.02em;margin:0 0 30px;max-width:20ch">遍佈全國的運營中心</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
       <sc-for list="{{ centros }}" as="c" hint-placeholder-count="5">
         <div data-reveal style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);padding:20px 18px;transition:border-color .25s,background .25s" style-hover="border-color:var(--color-accent-300);background:rgba(35,148,238,.12)">
@@ -215,8 +215,8 @@
 
 <footer data-pad style="background:var(--color-accent-900);color:var(--color-neutral-100);border-top:1px solid rgba(255,255,255,.14);padding:34px 48px">
   <div style="max-width:1560px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:color-mix(in srgb,var(--color-neutral-100) 62%,transparent)">
-    <span>© I-TEL Comunicaciones. 版权所有.</span>
-    <span>开发者: <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--color-accent-300);text-decoration:none;font-family:var(--font-heading);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#fff;border-color:#fff">Neura</a></span>
+    <span>© I-TEL Comunicaciones. 版權所有.</span>
+    <span>開發者: <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--color-accent-300);text-decoration:none;font-family:var(--font-heading);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#fff;border-color:#fff">Neura</a></span>
   </div>
 </footer>
 
@@ -271,14 +271,14 @@ class Component extends DCLogic {
       waGlyph: this.solid(WA, 20),
       phoneGlyph: this.solid(PH, 19),
       contacto: [
-        { k: "电话", v: "+595 971 103908" },
+        { k: "電話", v: "+595 971 103908" },
         { k: "WhatsApp", v: "+595 971 103908" },
-        { k: "电子邮件", v: "administración@i-tel.com.py" },
+        { k: "電子郵件", v: "administración@i-tel.com.py" },
         { k: "地址", v: "Avda. Tsunesaburo Makiguchi" },
-        { k: "城市", v: "卢克, 巴拉圭" }
+        { k: "城市", v: "盧克, 巴拉圭" }
       ],
-      opciones: ["电子安防", "消防预警", "信息技术", "网络工程", "金属结构", "点对点链路", "多点链路", "光纤", "IP电话", "卫星互联网", "可再生能源", "无线电通讯", "移动电话", "ISP解决方案", "家居与建筑自动化", "海事解决方案", "其他"],
-      centros: ["卢克", "恩卡纳西翁", "城市 del Este", "佩德罗胡安卡瓦列罗", "奥维耶多上校市"]
+      opciones: ["電子安防", "消防預警", "資訊科技", "網路工程", "金屬結構", "點對點鏈路", "多點鏈路", "光纖", "IP電話", "衛星網際網路", "可再生能源", "無線電通訊", "行動電話", "ISP解決方案", "家居與建築自動化", "海事解決方案", "其他"],
+      centros: ["盧克", "恩卡納西翁", "城市 del Este", "佩德羅胡安卡瓦列羅", "奧維耶多上校市"]
     };
   }
 }
