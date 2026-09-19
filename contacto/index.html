@@ -163,6 +163,15 @@
             <div class="field"><label for="c-tel">Teléfono</label><input class="input" id="c-tel" name="telefono" type="tel" style="min-height:46px" required="true"></div>
             <div class="field"><label for="c-email">Email</label><input class="input" id="c-email" name="email" type="email" style="min-height:46px"></div>
             <div class="field"><label for="c-ciudad">Ciudad</label><input class="input" id="c-ciudad" name="ciudad" style="min-height:46px"></div>
+            <div class="field"><label for="c-pais">País</label>
+              <select class="input" id="c-pais" name="pais" style="min-height:46px">
+                <option>Paraguay</option>
+                <option>Argentina</option>
+                <option>Brasil</option>
+                <option>Bolivia</option>
+                <option>Otro</option>
+              </select>
+            </div>
             <div class="field"><label for="c-servicio">Tipo de servicio</label>
               <select class="input" id="c-servicio" name="servicio" style="min-height:46px">
                 <sc-for list="{{ opciones }}" as="o" hint-placeholder-count="13">
@@ -265,7 +274,7 @@ class Component extends DCLogic {
         { k: "Ciudad", v: "Luque, Paraguay" },
         { k: "Horarios", v: "a completar" }
       ],
-      opciones: ["Seguridad electrónica", "CCTV", "Prevención de incendios", "Seguridad perimetral", "Networking", "Informática", "Fibra óptica", "Enlaces inalámbricos", "Telefonía IP", "Comunicación rural", "Estructuras metálicas", "Energías renovables", "Otro"],
+      opciones: ["Seguridad electrónica", "Prevención de incendios", "Informática", "Networking", "Estructuras metálicas", "Enlaces punto a punto", "Enlaces multipunto", "Fibra óptica", "Telefonía IP", "Internet satelital", "Energías renovables", "Radiocomunicaciones", "Telefonía celular", "Soluciones para ISP", "Domótica y automatización", "Soluciones marinas", "Otro"],
       centros: ["Luque", "Encarnación", "Ciudad del Este", "Pedro Juan Caballero", "Coronel Oviedo"]
     };
   }
