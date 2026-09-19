@@ -69,35 +69,43 @@ function draw(){
   halo.append("feGaussianBlur").attr("stdDeviation", Math.max(3, W/140));
   defs.append("clipPath").attr("id","clipPy").append("path").attr("d", path(py));
 
-  // países vecinos (Brasil, Argentina, Bolivia) — recortados a un bbox alrededor de Paraguay
+  // países vecinos (Brasil, Argentina, Bolivia) — con máscara radial que fade a transparente
+  // simula que el mapa continúa fuera del área visible
   const NEIGHBORS = ["Brazil","Argentina","Bolivia"];
   const bounds = path.bounds(py);
-  const bx = bounds[0][0], by = bounds[0][1], bw = bounds[1][0]-bounds[0][0], bh = bounds[1][1]-bounds[0][1];
-  const pad = Math.max(W, H) * 0.06;
-  const cbx = bx - pad, cby = by - pad, cbw = bw + pad*2, cbh = bh + pad*2;
-  defs.append("clipPath").attr("id","clipNeighbors").append("rect")
-    .attr("x", cbx).attr("y", cby).attr("width", cbw).attr("height", cbh);
-  const nGroup = svg.append("g").attr("clip-path","url(#clipNeighbors)").attr("opacity",0);
-  nGroup.transition().duration(1400).attr("opacity",1);
+  const bx = bounds[0][0], by = bounds[0][1];
+  const bw = bounds[1][0]-bounds[0][0], bh = bounds[1][1]-bounds[0][1];
+  const cx = bx + bw/2, cy = by + bh/2;
+  const rMax = Math.max(bw, bh) * 0.95;
+
+  // máscara con degradado radial (blanco al centro → transparente en el borde)
+  const nMask = defs.append("mask").attr("id","neighborsFade").attr("maskUnits","userSpaceOnUse");
+  const nrg = defs.append("radialGradient").attr("id","neighborsMaskGrad")
+    .attr("cx", cx).attr("cy", cy).attr("r", rMax).attr("gradientUnits","userSpaceOnUse");
+  nrg.append("stop").attr("offset","0%").attr("stop-color","#fff").attr("stop-opacity","1");
+  nrg.append("stop").attr("offset","55%").attr("stop-color","#fff").attr("stop-opacity",".9");
+  nrg.append("stop").attr("offset","85%").attr("stop-color","#fff").attr("stop-opacity",".25");
+  nrg.append("stop").attr("offset","100%").attr("stop-color","#fff").attr("stop-opacity","0");
+  nMask.append("rect")
+    .attr("x", cx-rMax).attr("y", cy-rMax)
+    .attr("width", rMax*2).attr("height", rMax*2)
+    .attr("fill","url(#neighborsMaskGrad)");
+
+  const nGroup = svg.append("g").attr("mask","url(#neighborsFade)").attr("opacity",0);
+  nGroup.transition().duration(1600).attr("opacity",1);
   NEIGHBORS.forEach(name => {
     const f = topo.features.find(x => x.properties && x.properties.name === name);
     if(!f) return;
+    // relleno tenue del vecino
     nGroup.append("path").attr("d", path(f))
       .attr("fill","url(#neighbor)")
-      .attr("stroke","rgba(163,212,251,.18)")
-      .attr("stroke-width",.6);
-    // etiqueta discreta del país en su lado que colinda con PY
-    const cent = path.centroid(f);
-    // clampear al bbox para que la etiqueta quede visible dentro del clip
-    const lx = Math.max(cbx+16, Math.min(cbx+cbw-16, cent[0]));
-    const ly = Math.max(cby+18, Math.min(cby+cbh-8,  cent[1]));
-    nGroup.append("text").attr("x", lx).attr("y", ly)
-      .attr("text-anchor","middle")
-      .attr("fill","rgba(163,212,251,.35)")
-      .attr("font-family","var(--font-heading),'Barlow Condensed',system-ui,sans-serif")
-      .attr("font-weight","500").attr("font-size", Math.max(9, W/95))
-      .attr("letter-spacing",".24em")
-      .text(name === "Brazil" ? "BRASIL" : name.toUpperCase());
+      .attr("stroke","none");
+    // solo la línea de frontera con estilo suave
+    nGroup.append("path").attr("d", path(f))
+      .attr("fill","none")
+      .attr("stroke","rgba(163,212,251,.35)")
+      .attr("stroke-width",.7)
+      .attr("stroke-linejoin","round");
   });
 
   // país
