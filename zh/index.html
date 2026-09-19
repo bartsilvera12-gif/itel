@@ -877,5 +877,35 @@ class Component extends DCLogic {
   update();
 })();
 </script>
+
+<script>
+(function(){
+  // Fallback nativo: forzar cerrar overlay del menu mobile
+  // por si el binding onClick={{ toggleMenu }} del design-system falla
+  document.addEventListener('click', function(e){
+    var target = e.target;
+    var overlay = document.querySelector('[data-mobile-overlay]');
+    if (!overlay) return;
+    // Botón × (cerrar)
+    if (target.closest && target.closest('[data-mobile-overlay] button[aria-label]')) {
+      overlay.style.display = 'none';
+      return;
+    }
+    // Cualquier <a> dentro del overlay
+    var link = target.closest && target.closest('[data-mobile-overlay] a');
+    if (link) {
+      overlay.style.display = 'none';
+    }
+  }, true);
+  // Reabrir al tocar la hamburguesa (por si el state DS no re-hidrata)
+  document.addEventListener('click', function(e){
+    var burger = e.target.closest && e.target.closest('[data-burger]');
+    if (!burger) return;
+    var overlay = document.querySelector('[data-mobile-overlay]');
+    if (overlay) overlay.style.display = 'flex';
+  }, true);
+})();
+</script>
+
 </body>
 </html>
