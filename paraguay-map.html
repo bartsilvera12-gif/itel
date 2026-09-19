@@ -108,6 +108,36 @@ function draw(){
       .attr("stroke-linejoin","round");
   });
 
+  // etiquetas de países vecinos — posicionadas cerca de Paraguay para que queden dentro de la máscara radial
+  // (BRASIL arriba-derecha, ARGENTINA abajo-izquierda, BOLIVIA arriba-izquierda)
+  const nLabels = svg.append("g").attr("opacity",0);
+  nLabels.transition().delay(1400).duration(900).attr("opacity",1);
+  const labelStyle = {
+    fontFamily:"var(--font-heading),'Barlow Condensed',system-ui,sans-serif",
+    fontWeight:600, letterSpacing:".28em",
+    fontSize: Math.max(10, Math.min(15, W/78))
+  };
+  // Puntos de anclaje relativos al bbox de Paraguay
+  const anchors = [
+    { name:"BRASIL",    x: bx + bw*1.08, y: by + bh*0.30 },
+    { name:"ARGENTINA", x: bx - bw*0.15, y: by + bh*1.02 },
+    { name:"BOLIVIA",   x: bx - bw*0.12, y: by + bh*0.20 }
+  ];
+  anchors.forEach(a => {
+    nLabels.append("text").attr("x", a.x).attr("y", a.y)
+      .attr("text-anchor","middle")
+      .attr("fill","rgba(163,212,251,.55)")
+      .attr("font-family", labelStyle.fontFamily)
+      .attr("font-weight", labelStyle.fontWeight)
+      .attr("font-size",   labelStyle.fontSize)
+      .attr("letter-spacing", labelStyle.letterSpacing)
+      .attr("paint-order","stroke")
+      .attr("stroke","rgba(20,30,44,.6)")
+      .attr("stroke-width","3")
+      .attr("stroke-linejoin","round")
+      .text(a.name);
+  });
+
   // país
   svg.append("path").attr("d",path(py)).attr("fill","url(#land)");
 
