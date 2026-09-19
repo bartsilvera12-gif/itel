@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" href="favicon-512.png" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2c3844">
 <title>I-TEL Comunicaciones — 企業技術解決方案</title>
 <link rel="alternate" hreflang="es" href="https://i-tel.com.py/">
 <link rel="alternate" hreflang="en" href="https://i-tel.com.py/en/">
 <link rel="alternate" hreflang="zh" href="https://i-tel.com.py/zh/">
 <link rel="alternate" hreflang="x-default" href="https://i-tel.com.py/">
-<script src="./support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 
@@ -430,12 +430,12 @@
       </div>
       <div data-reveal style="margin-top:36px;display:flex;flex-direction:column;gap:12px">
         <div style="font-family:var(--font-heading);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-300)">運營中</div>
-        <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
+        <x-import component="SplitFlapText" from="/SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
       </div>
     </div>
     <div data-reveal="right" data-map-frame style="position:relative;height:clamp(460px,54vw,700px)">
       <div aria-hidden="true" style="position:absolute;inset:-8%;background:radial-gradient(ellipse at 55% 50%,rgba(35,148,238,.22),transparent 62%);filter:blur(30px);pointer-events:none"></div>
-      <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en 巴拉圭" style="position:relative;width:100%;height:100%;border:0;display:block;background:transparent;-webkit-mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%);mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%)"></iframe>
+      <iframe src="/paraguay-map.html" title="Mapa de cobertura I-TEL en 巴拉圭" style="position:relative;width:100%;height:100%;border:0;display:block;background:transparent;-webkit-mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%);mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%)"></iframe>
     </div>
   </div>
 </section>
@@ -706,22 +706,22 @@ class Component extends DCLogic {
       redes: [{ name: "Facebook", glyph: this.solid(FB, 17) }, { name: "Instagram", glyph: this.solid(IG, 17) }, { name: "LinkedIn", glyph: this.solid(LI, 17) }],
       capacidades: ["自有場地", "專業工場", "倉庫", "車隊", "專業技術人員", "企業專案"],
       servicios: [
-        { code: "01", name: "電子安防", desc: "為企業、工業、商業和機構提供的安全解決方案。", tags: ["CCTV", "IP 攝像頭", "監控"], img: "brand/servicios/01-seguridad-electronica.jpg", glyph: g(["M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97","M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z","M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15","M2 21v-4"]) },
-        { code: "02", name: "消防預警", desc: "早期火災探測與即時響應。", tags: ["探測器", "控制面板", "通知"], img: "brand/servicios/02-incendios.jpg", glyph: g(["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5"]) },
-        { code: "04", name: "資訊科技", desc: "裝置、耗材、維護、支援和網路管理。", tags: ["技術支援", "維護"], img: "brand/servicios/04-informatica.jpg", glyph: g(["M8 21h8","M12 17v4","M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"]) },
-        { code: "05", name: "網路工程", desc: "網路基礎設施的設計、實施和維護。", tags: ["LAN", "Wi-Fi", "佈線"], img: "brand/servicios/05-networking.jpg", glyph: g(["M9 2h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1","M12 8v3","M6 15h12","M6 15v3","M18 15v3","M2 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1","M17 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1"]) },
-        { code: "06", name: "金屬結構", desc: "電信結構的製造、安裝和維護。", tags: ["塔架", "桅杆", "避雷針"], img: "brand/servicios/06-estructuras-metalicas.avif", glyph: g(["M4.9 16.1C1 12.2 1 5.8 4.9 1.9","M7.8 4.7a6.14 6.14 0 0 0-.8 7.5","M12 9v12","M13.4 10.6 12 9l-1.4 1.6","M16.2 4.8a6.14 6.14 0 0 1 .8 7.5","M19.1 1.9a13.5 13.5 0 0 1 0 14.2","M8 21h8"]) },
-        { code: "07", name: "點對點鏈路", desc: "兩個企業地點之間的無線連線。", tags: ["總部 A ↔ 總部 B"], img: "brand/servicios/07-enlaces-p2p.jpg", glyph: g(["M8 3 4 7l4 4","M4 7h16","M16 21l4-4-4-4","M20 17H4"]) },
-        { code: "08", name: "多點鏈路", desc: "將多個地點連線到中心的基礎設施。", tags: ["分支機構", "VoIP", "影片"], img: "brand/servicios/08-enlaces-multipunto.avif", glyph: g(["M8.59 13.51l6.83 3.98","M15.41 6.51l-6.82 3.98"], [[18,5,3],[6,12,3],[18,19,3]]) },
-        { code: "09", name: "光纖", desc: "光纖基礎設施的設計、安裝、熔接和維護。", tags: ["熔接", "遷移"], img: "brand/servicios/09-fibra-optica.jpg", glyph: g(["M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2Z","M3 5V3","M7 5V3","M19 15V6.5a3.5 3.5 0 0 0-7 0v11a3.5 3.5 0 0 1-7 0V9","M17 21v-2","M21 21v-2","M22 19h-6v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z"]) },
-        { code: "10", name: "IP電話", desc: "基於IP基礎設施的語音通訊 — 可擴充套件且成本更低。", tags: ["VoIP", "分支機構"], img: "brand/servicios/10-telefonia-ip.jpg", glyph: g(["M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"]) },
-        { code: "11", name: "衛星網際網路", desc: "陸地、空中和海上衛星網際網路連線 — Starlink及其他平臺,適用於傳統基礎設施無法覆蓋的地區。", tags: ["陸地", "航空", "海事"], img: "brand/servicios/11-comunicacion-rural.jpg", glyph: g(["M4 10a7.31 7.31 0 0 0 10 10Z","M9 15l3-3","M17 13a6 6 0 0 0-6-6","M21 13A10 10 0 0 0 11 3"]) },
-        { code: "12", name: "可再生能源", desc: "整合於基礎設施的能源和能效解決方案。", tags: ["太陽能", "管理"], img: "brand/servicios/12-energias-renovables.avif", glyph: g(["M12 2v2","M12 20v2","m4.93 4.93 1.41 1.41","m17.66 17.66 1.41 1.41","M2 12h2","M20 12h2","m6.34 17.66-1.41 1.41","m19.07 4.93-1.41 1.41"], [[12,12,4]]) },
-        { code: "13", name: "無線電通訊", desc: "VHF、UHF和HF解決方案 — 涵蓋商業、海事和航空頻段。", tags: ["VHF", "UHF", "HF"], img: "brand/servicios/13-radiocomunicaciones.jpg", glyph: g(["M4.9 19.1C1 15.2 1 8.8 4.9 4.9","M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5","M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5","M19.1 4.9C23 8.8 23 15.2 19.1 19.1"],[[12,12,2]]) },
-        { code: "14", name: "行動電話", desc: "為移動運營商實施基站和電力系統專案。", tags: ["基站", "電力", "運營商"], img: "brand/servicios/14-telefonia-celular.jpg", glyph: g(["M5 18a10 10 0 0 1 14 0","M8.5 21.5a5 5 0 0 1 7 0","M2 14a14 14 0 0 1 20 0"],[[12,21.5,.5]]) },
-        { code: "15", name: "ISP解決方案", desc: "網際網路節點的供應、安裝和除錯,光纖佈線、接續箱、NAP以及最後一公里客戶網際網路安裝。", tags: ["節點", "NAP", "最後一公里"], img: "brand/servicios/15-isp.jpg", glyph: g(["M2 3h20a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1","M2 15h20a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1","M6 6h.01","M6 18h.01","M10 6h.01","M10 18h.01"]) },
-        { code: "16", name: "家居與建築自動化", desc: "家居、企業、工業和建築的自動化 — 採用最新一代技術。", tags: ["家居", "工業", "建築物"], img: "brand/servicios/16-domotica.jpg", glyph: g(["M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z","M8.5 12.5 12 9l3.5 3.5"]) },
-        { code: "17", name: "海事解決方案", desc: "為船舶、推船和小型船隻提供的技術解決方案 — 連線、無線電通訊和導航。", tags: ["船舶", "拖船", "船隻"], img: "brand/servicios/17-marinas.jpg", glyph: g(["M12 2v7","M8 5h8","M12 22a8 8 0 0 0 8-8h-16a8 8 0 0 0 8 8","M3 14l1-3h16l1 3"]) }
+        { code: "01", name: "電子安防", desc: "為企業、工業、商業和機構提供的安全解決方案。", tags: ["CCTV", "IP 攝像頭", "監控"], img: "/brand/servicios/01-seguridad-electronica.jpg", glyph: g(["M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97","M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z","M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15","M2 21v-4"]) },
+        { code: "02", name: "消防預警", desc: "早期火災探測與即時響應。", tags: ["探測器", "控制面板", "通知"], img: "/brand/servicios/02-incendios.jpg", glyph: g(["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5"]) },
+        { code: "04", name: "資訊科技", desc: "裝置、耗材、維護、支援和網路管理。", tags: ["技術支援", "維護"], img: "/brand/servicios/04-informatica.jpg", glyph: g(["M8 21h8","M12 17v4","M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"]) },
+        { code: "05", name: "網路工程", desc: "網路基礎設施的設計、實施和維護。", tags: ["LAN", "Wi-Fi", "佈線"], img: "/brand/servicios/05-networking.jpg", glyph: g(["M9 2h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1","M12 8v3","M6 15h12","M6 15v3","M18 15v3","M2 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1","M17 18h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1"]) },
+        { code: "06", name: "金屬結構", desc: "電信結構的製造、安裝和維護。", tags: ["塔架", "桅杆", "避雷針"], img: "/brand/servicios/06-estructuras-metalicas.avif", glyph: g(["M4.9 16.1C1 12.2 1 5.8 4.9 1.9","M7.8 4.7a6.14 6.14 0 0 0-.8 7.5","M12 9v12","M13.4 10.6 12 9l-1.4 1.6","M16.2 4.8a6.14 6.14 0 0 1 .8 7.5","M19.1 1.9a13.5 13.5 0 0 1 0 14.2","M8 21h8"]) },
+        { code: "07", name: "點對點鏈路", desc: "兩個企業地點之間的無線連線。", tags: ["總部 A ↔ 總部 B"], img: "/brand/servicios/07-enlaces-p2p.jpg", glyph: g(["M8 3 4 7l4 4","M4 7h16","M16 21l4-4-4-4","M20 17H4"]) },
+        { code: "08", name: "多點鏈路", desc: "將多個地點連線到中心的基礎設施。", tags: ["分支機構", "VoIP", "影片"], img: "/brand/servicios/08-enlaces-multipunto.avif", glyph: g(["M8.59 13.51l6.83 3.98","M15.41 6.51l-6.82 3.98"], [[18,5,3],[6,12,3],[18,19,3]]) },
+        { code: "09", name: "光纖", desc: "光纖基礎設施的設計、安裝、熔接和維護。", tags: ["熔接", "遷移"], img: "/brand/servicios/09-fibra-optica.jpg", glyph: g(["M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2Z","M3 5V3","M7 5V3","M19 15V6.5a3.5 3.5 0 0 0-7 0v11a3.5 3.5 0 0 1-7 0V9","M17 21v-2","M21 21v-2","M22 19h-6v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2Z"]) },
+        { code: "10", name: "IP電話", desc: "基於IP基礎設施的語音通訊 — 可擴充套件且成本更低。", tags: ["VoIP", "分支機構"], img: "/brand/servicios/10-telefonia-ip.jpg", glyph: g(["M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"]) },
+        { code: "11", name: "衛星網際網路", desc: "陸地、空中和海上衛星網際網路連線 — Starlink及其他平臺,適用於傳統基礎設施無法覆蓋的地區。", tags: ["陸地", "航空", "海事"], img: "/brand/servicios/11-comunicacion-rural.jpg", glyph: g(["M4 10a7.31 7.31 0 0 0 10 10Z","M9 15l3-3","M17 13a6 6 0 0 0-6-6","M21 13A10 10 0 0 0 11 3"]) },
+        { code: "12", name: "可再生能源", desc: "整合於基礎設施的能源和能效解決方案。", tags: ["太陽能", "管理"], img: "/brand/servicios/12-energias-renovables.avif", glyph: g(["M12 2v2","M12 20v2","m4.93 4.93 1.41 1.41","m17.66 17.66 1.41 1.41","M2 12h2","M20 12h2","m6.34 17.66-1.41 1.41","m19.07 4.93-1.41 1.41"], [[12,12,4]]) },
+        { code: "13", name: "無線電通訊", desc: "VHF、UHF和HF解決方案 — 涵蓋商業、海事和航空頻段。", tags: ["VHF", "UHF", "HF"], img: "/brand/servicios/13-radiocomunicaciones.jpg", glyph: g(["M4.9 19.1C1 15.2 1 8.8 4.9 4.9","M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5","M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5","M19.1 4.9C23 8.8 23 15.2 19.1 19.1"],[[12,12,2]]) },
+        { code: "14", name: "行動電話", desc: "為移動運營商實施基站和電力系統專案。", tags: ["基站", "電力", "運營商"], img: "/brand/servicios/14-telefonia-celular.jpg", glyph: g(["M5 18a10 10 0 0 1 14 0","M8.5 21.5a5 5 0 0 1 7 0","M2 14a14 14 0 0 1 20 0"],[[12,21.5,.5]]) },
+        { code: "15", name: "ISP解決方案", desc: "網際網路節點的供應、安裝和除錯,光纖佈線、接續箱、NAP以及最後一公里客戶網際網路安裝。", tags: ["節點", "NAP", "最後一公里"], img: "/brand/servicios/15-isp.jpg", glyph: g(["M2 3h20a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1","M2 15h20a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1","M6 6h.01","M6 18h.01","M10 6h.01","M10 18h.01"]) },
+        { code: "16", name: "家居與建築自動化", desc: "家居、企業、工業和建築的自動化 — 採用最新一代技術。", tags: ["家居", "工業", "建築物"], img: "/brand/servicios/16-domotica.jpg", glyph: g(["M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z","M8.5 12.5 12 9l3.5 3.5"]) },
+        { code: "17", name: "海事解決方案", desc: "為船舶、推船和小型船隻提供的技術解決方案 — 連線、無線電通訊和導航。", tags: ["船舶", "拖船", "船隻"], img: "/brand/servicios/17-marinas.jpg", glyph: g(["M12 2v7","M8 5h8","M12 22a8 8 0 0 0 8-8h-16a8 8 0 0 0 8 8","M3 14l1-3h16l1 3"]) }
       ],
       necesidades: [
         { code: "N.01", name: "提升安全", desc: "CCTV、警報和消防預警。" },
@@ -733,28 +733,28 @@ class Component extends DCLogic {
       ],
       clientesLoop: (() => {
         const c = [
-          { name: "ueno bank", logo: "brand/clientes/ueno-bank.png" },
-          { name: "Minerva Foods", logo: "brand/clientes/minerva-foods.jpg" },
-          { name: "Itaú", logo: "brand/clientes/itau.webp" },
-          { name: "Personal", logo: "brand/clientes/personal.png" },
-          { name: "Tigo", logo: "brand/clientes/tigo.webp" },
-          { name: "Claro", logo: "brand/clientes/claro.png" },
-          { name: "Ganadera Chajha S.A.", logo: "brand/clientes/ganadera-chajha.jpg" },
-          { name: "Ganadera Sofía S.A.", logo: "brand/clientes/ganadera-sofia.jpg" },
-          { name: "Wheelco S.A.", logo: "brand/clientes/wheelco.jpg" },
-          { name: "Payco S.A.", logo: "brand/clientes/payco.jpg" },
-          { name: "Seagro S.A.", logo: "brand/clientes/seagro.jpg" },
-          { name: "SICBRAS PY", logo: "brand/clientes/sicbras-py.jpg" },
-          { name: "Berkemeyer", logo: "brand/clientes/berkemeyer.jpg" },
-          { name: "Natupar SRL", logo: "brand/clientes/natupar.jpg" },
-          { name: "Las Valentinas S.A.", logo: "brand/clientes/las-valentinas.svg" },
-          { name: "Maroma S.A.", logo: "brand/clientes/maroma.svg" },
-          { name: "Agropecuaria Don Tani SRL", logo: "brand/clientes/don-tani.svg" },
-          { name: "UNISAL", logo: "brand/clientes/unisal.jpg" },
-          { name: "Matriz S.A.", logo: "brand/clientes/matriz.png" },
-          { name: "Technoma SAECA", logo: "brand/clientes/technoma.jpg" },
-          { name: "ITTI SAECA", logo: "brand/clientes/itti.png" },
-          { name: "Las Tacuaras S.A.", logo: "brand/clientes/las-tacuaras.jpg" }
+          { name: "ueno bank", logo: "/brand/clientes/ueno-bank.png" },
+          { name: "Minerva Foods", logo: "/brand/clientes/minerva-foods.jpg" },
+          { name: "Itaú", logo: "/brand/clientes/itau.webp" },
+          { name: "Personal", logo: "/brand/clientes/personal.png" },
+          { name: "Tigo", logo: "/brand/clientes/tigo.webp" },
+          { name: "Claro", logo: "/brand/clientes/claro.png" },
+          { name: "Ganadera Chajha S.A.", logo: "/brand/clientes/ganadera-chajha.jpg" },
+          { name: "Ganadera Sofía S.A.", logo: "/brand/clientes/ganadera-sofia.jpg" },
+          { name: "Wheelco S.A.", logo: "/brand/clientes/wheelco.jpg" },
+          { name: "Payco S.A.", logo: "/brand/clientes/payco.jpg" },
+          { name: "Seagro S.A.", logo: "/brand/clientes/seagro.jpg" },
+          { name: "SICBRAS PY", logo: "/brand/clientes/sicbras-py.jpg" },
+          { name: "Berkemeyer", logo: "/brand/clientes/berkemeyer.jpg" },
+          { name: "Natupar SRL", logo: "/brand/clientes/natupar.jpg" },
+          { name: "Las Valentinas S.A.", logo: "/brand/clientes/las-valentinas.svg" },
+          { name: "Maroma S.A.", logo: "/brand/clientes/maroma.svg" },
+          { name: "Agropecuaria Don Tani SRL", logo: "/brand/clientes/don-tani.svg" },
+          { name: "UNISAL", logo: "/brand/clientes/unisal.jpg" },
+          { name: "Matriz S.A.", logo: "/brand/clientes/matriz.png" },
+          { name: "Technoma SAECA", logo: "/brand/clientes/technoma.jpg" },
+          { name: "ITTI SAECA", logo: "/brand/clientes/itti.png" },
+          { name: "Las Tacuaras S.A.", logo: "/brand/clientes/las-tacuaras.jpg" }
         ];
         return c.concat(c);
       })(),
