@@ -400,7 +400,7 @@
 </section>
 
 <section id="cobertura" data-screen-label="Cobertura" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.03) 1px,transparent 1px);background-size:96px 96px;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 25%,transparent 85%);mask-image:radial-gradient(ellipse at 50% 50%,#000 25%,transparent 85%)"></div>
   <div aria-hidden="true" style="position:absolute;bottom:-20%;right:-10%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(35,148,238,.2),transparent 68%);pointer-events:none"></div>
   <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(80px,8vw,128px) 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(30px,3vw,52px);align-items:center">
     <div>
@@ -421,8 +421,9 @@
         <x-import component="SplitFlapText" from="./SplitFlapText.jsx" dc-props="{{ flapProps }}" hint-size="100%,44px"></x-import>
       </div>
     </div>
-    <div data-reveal="right" data-map-frame style="position:relative;height:clamp(420px,52vw,660px)">
-      <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en Paraguay" style="width:100%;height:100%;border:0;display:block;background:transparent"></iframe>
+    <div data-reveal="right" data-map-frame style="position:relative;height:clamp(460px,54vw,700px)">
+      <div aria-hidden="true" style="position:absolute;inset:-8%;background:radial-gradient(ellipse at 55% 50%,rgba(35,148,238,.22),transparent 62%);filter:blur(30px);pointer-events:none"></div>
+      <iframe src="paraguay-map.html" title="Mapa de cobertura I-TEL en Paraguay" style="position:relative;width:100%;height:100%;border:0;display:block;background:transparent;-webkit-mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%);mask-image:radial-gradient(ellipse at 55% 50%,#000 55%,rgba(0,0,0,.4) 80%,transparent 100%)"></iframe>
     </div>
   </div>
 </section>
