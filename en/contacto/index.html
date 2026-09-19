@@ -38,8 +38,8 @@
   [data-navlink]:hover::after{transform:scaleX(1)}
   @media (max-width:1120px){[data-desktop-nav]{display:none !important}[data-burger]{display:inline-flex !important}}
   @media (max-width:900px){
-    section[data-screen-label="Contacto hero"] > div[data-pad]{grid-template-columns:1fr !important;min-height:0 !important}
-    section[data-screen-label="Contacto hero"] > div[data-pad] > div:first-child{padding:44px 20px 32px !important}
+    section[data-screen-label="Contact hero"] > div[data-pad]{grid-template-columns:1fr !important;min-height:0 !important}
+    section[data-screen-label="Contact hero"] > div[data-pad] > div:first-child{padding:44px 20px 32px !important}
     [data-hero-figure]{height:clamp(240px,55vw,380px) !important;order:2}
   }
   @media (max-width:720px){[data-pad]{padding-left:20px !important;padding-right:20px !important}}
@@ -49,19 +49,19 @@
 
 <header data-pad style="position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid rgba(44,56,68,.1);padding:0 48px">
   <div class="nav" style="max-width:1560px;margin:0 auto;padding:12px 0;display:flex;align-items:center;gap:22px;color:var(--color-text)">
-    <a href="/" style="display:flex;align-items:center;text-decoration:none;flex:none">
+    <a href="/en/" style="display:flex;align-items:center;text-decoration:none;flex:none">
       <img src="/brand/logo-color.png" alt="I-TEL Comunicaciones" style="height:36px;width:auto;display:block">
     </a>
     <nav data-desktop-nav style="margin-left:auto;display:flex;align-items:center;gap:6px">
-      <a href="/" data-navlink>Inicio</a>
-      <a href="index.html#nosotros" data-navlink>Nosotros</a>
-      <a href="index.html#servicios" data-navlink>Servicios</a>
-      <a href="index.html#cobertura" data-navlink>Cobertura</a>
-      <a href="/preguntas/" data-navlink>Preguntas</a>
+      <a href="/en/" data-navlink>Home</a>
+      <a href="index.html#nosotros" data-navlink>About</a>
+      <a href="index.html#servicios" data-navlink>Services</a>
+      <a href="index.html#cobertura" data-navlink>Coverage</a>
+      <a href="/en/preguntas/" data-navlink>Preguntas</a>
     </nav>
     <div data-lang-toggle style="display:inline-flex;align-items:center;gap:2px;margin-left:14px;padding:4px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.12);border-radius:999px;font-family:var(--font-heading);font-size:12px;letter-spacing:.08em">
 <style>[data-lang-toggle] a{color:var(--color-text);text-decoration:none;padding:6px 11px;border-radius:999px;opacity:.65;transition:opacity .25s,background .25s,color .25s}[data-lang-toggle] a:hover{opacity:1;background:rgba(35,148,238,.08)}</style>
-<a href="/contacto/" data-lang="es" style="opacity:1;font-weight:700;color:var(--color-accent-700);background:rgba(35,148,238,.09)">ES</a><a href="/en/contacto/" data-lang="en" style="opacity:.65">EN</a><a href="/zh/contacto/" data-lang="zh" style="opacity:.65">中</a>
+<a href="/contacto/" data-lang="es" style="opacity:.65">ES</a><a href="/en/contacto/" data-lang="en" style="opacity:1;font-weight:700;color:var(--color-accent-700);background:rgba(35,148,238,.09)">EN</a><a href="/zh/contacto/" data-lang="zh" style="opacity:.65">中</a>
 </div>
     <button data-burger onClick="{{ toggleMenu }}" aria-label="Menú" style="display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-left:auto;width:46px;height:46px;background:rgba(44,56,68,.05);border:1px solid rgba(44,56,68,.14);cursor:pointer;color:var(--color-text)">
       <span style="display:block;width:20px;height:1px;background:currentColor"></span>
@@ -77,22 +77,22 @@
       <img src="/brand/logo-reverse.png" alt="I-TEL Comunicaciones" style="height:38px;width:auto">
       <button onClick="{{ toggleMenu }}" aria-label="Cerrar" style="width:46px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.3);color:inherit;font-size:22px;cursor:pointer;font-family:var(--font-heading)">×</button>
     </div>
-    <a href="/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Inicio</a>
-    <a href="index.html#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Nosotros</a>
-    <a href="index.html#servicios" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Servicios</a>
-    <a href="index.html#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Cobertura</a>
-    <a href="/preguntas/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Preguntas</a>
+    <a href="/en/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Home</a>
+    <a href="index.html#nosotros" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">About</a>
+    <a href="index.html#servicios" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Services</a>
+    <a href="index.html#cobertura" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Coverage</a>
+    <a href="/en/preguntas/" onClick="{{ toggleMenu }}" style="color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:32px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)">Preguntas</a>
   </div>
 </sc-if>
 
-<section data-screen-label="Contacto hero" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+<section data-screen-label="Contact hero" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.055) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
   <div aria-hidden="true" style="position:absolute;top:-20%;right:-8%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(35,148,238,.22),transparent 68%);pointer-events:none"></div>
   <div data-pad style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:clamp(520px,72vh,720px);padding:0 !important">
     <div style="display:flex;flex-direction:column;justify-content:center;padding:clamp(70px,7vw,110px) clamp(28px,4vw,72px) clamp(70px,7vw,110px) clamp(28px,5vw,88px)">
       <div style="display:flex;align-items:center;gap:11px;margin-bottom:22px;animation:itel-in .6s both">
         <span style="width:9px;height:9px;border-radius:50%;background:var(--color-accent-300);animation:itel-blink 2.4s ease-in-out infinite"></span>
-        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-300)">Contacto</span>
+        <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-300)">Contact</span>
       </div>
       <h1 style="font-size:clamp(36px,4.6vw,68px);line-height:1;letter-spacing:-.028em;margin:0;max-width:20ch;animation:itel-in .75s .05s both">Contanos qué necesitás y <span style="color:var(--color-accent-300)">te armamos la solución.</span></h1>
       <p style="font-size:17px;line-height:1.65;max-width:48ch;margin:26px 0 0;color:color-mix(in srgb,var(--color-neutral-100) 80%,transparent);animation:itel-in .8s .12s both">Nuestro equipo técnico analiza cada proyecto para dimensionar equipamiento, infraestructura y alcance antes de cotizar.</p>
@@ -127,16 +127,16 @@
             </div>
           </sc-for>
         </div>
-        <p style="font-size:12.5px;margin-top:14px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Estos datos se editan desde la configuración del sitio.</p>
+        <p style="font-size:12.5px;margin-top:14px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">This information can be edited from the site settings.</p>
 
         <div style="margin-top:34px;display:flex;flex-direction:column;gap:12px">
           <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:#25D366;padding:16px 20px;transition:background .2s,transform .2s" style-hover="background:#1ebe5b;transform:translateY(-2px)">
             {{ waGlyph }}
-            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">Escribir por WhatsApp</span>
+            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">Message on WhatsApp</span>
           </a>
           <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--color-text);border:1px solid var(--color-divider);background:var(--color-surface);padding:16px 20px;transition:border-color .2s,transform .2s" style-hover="border-color:var(--color-accent);transform:translateY(-2px)">
             <span style="color:var(--color-accent-700);display:flex">{{ phoneGlyph }}</span>
-            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">Llamar por teléfono</span>
+            <span style="font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase">Call by phone</span>
           </a>
         </div>
 
@@ -160,33 +160,33 @@
           <form onSubmit="{{ enviar }}" style="background:var(--color-surface);border:1px solid var(--color-divider);padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
             <div style="grid-column:1/-1;display:flex;align-items:center;gap:11px;margin-bottom:4px">
               <span style="width:38px;height:1px;background:var(--color-accent)"></span>
-              <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Solicitud de cotización</span>
+              <span style="font-family:var(--font-heading);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Request a quote</span>
             </div>
-            <div class="field"><label for="c-nombre">Nombre</label><input class="input" id="c-nombre" name="nombre" style="min-height:46px" required="true"></div>
-            <div class="field"><label for="c-empresa">Empresa</label><input class="input" id="c-empresa" name="empresa" style="min-height:46px"></div>
-            <div class="field"><label for="c-tel">Teléfono</label><input class="input" id="c-tel" name="telefono" type="tel" style="min-height:46px" required="true"></div>
+            <div class="field"><label for="c-nombre">Name</label><input class="input" id="c-nombre" name="nombre" style="min-height:46px" required="true"></div>
+            <div class="field"><label for="c-empresa">Company</label><input class="input" id="c-empresa" name="empresa" style="min-height:46px"></div>
+            <div class="field"><label for="c-tel">Phone</label><input class="input" id="c-tel" name="telefono" type="tel" style="min-height:46px" required="true"></div>
             <div class="field"><label for="c-email">Email</label><input class="input" id="c-email" name="email" type="email" style="min-height:46px"></div>
-            <div class="field"><label for="c-ciudad">Ciudad</label><input class="input" id="c-ciudad" name="ciudad" style="min-height:46px"></div>
-            <div class="field"><label for="c-pais">País</label>
+            <div class="field"><label for="c-ciudad">City</label><input class="input" id="c-ciudad" name="ciudad" style="min-height:46px"></div>
+            <div class="field"><label for="c-pais">Country</label>
               <select class="input" id="c-pais" name="pais" style="min-height:46px">
                 <option>Paraguay</option>
                 <option>Argentina</option>
-                <option>Brasil</option>
+                <option>Brazil</option>
                 <option>Bolivia</option>
-                <option>Otro</option>
+                <option>Other</option>
               </select>
             </div>
-            <div class="field"><label for="c-servicio">Tipo de servicio</label>
+            <div class="field"><label for="c-servicio">Type of service</label>
               <select class="input" id="c-servicio" name="servicio" style="min-height:46px">
                 <sc-for list="{{ opciones }}" as="o" hint-placeholder-count="13">
                   <option>{{ o }}</option>
                 </sc-for>
               </select>
             </div>
-            <div class="field" style="grid-column:1/-1"><label for="c-msg">Descripción del servicio o del proyecto</label><textarea class="input" id="c-msg" name="mensaje" style="min-height:140px" required="true"></textarea></div>
+            <div class="field" style="grid-column:1/-1"><label for="c-msg">Service or project description</label><textarea class="input" id="c-msg" name="mensaje" style="min-height:140px" required="true"></textarea></div>
             <div style="grid-column:1/-1;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-              <button type="submit" class="btn btn-primary" style="min-height:50px;padding:0 28px;font-size:15px">Solicitar cotización</button>
-              <span style="font-size:12.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Respondemos en horario laboral.</span>
+              <button type="submit" class="btn btn-primary" style="min-height:50px;padding:0 28px;font-size:15px">Request a quote</button>
+              <span style="font-size:12.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">We reply during business hours.</span>
             </div>
           </form>
         </sc-if>
@@ -195,7 +195,7 @@
   </div>
 </section>
 
-<section data-screen-label="Cobertura contacto" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
+<section data-screen-label="Coverage contacto" style="position:relative;background:var(--color-accent-900);color:var(--color-neutral-100);overflow:hidden">
   <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:76px 76px;pointer-events:none"></div>
   <div data-pad style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(60px,6vw,100px) 48px">
     <div data-reveal style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
@@ -215,7 +215,7 @@
 
 <footer data-pad style="background:var(--color-accent-900);color:var(--color-neutral-100);border-top:1px solid rgba(255,255,255,.14);padding:34px 48px">
   <div style="max-width:1560px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12.5px;color:color-mix(in srgb,var(--color-neutral-100) 62%,transparent)">
-    <span>© I-TEL Comunicaciones. Todos los derechos reservados.</span>
+    <span>© I-TEL Comunicaciones. All rights reserved.</span>
     <span>Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--color-accent-300);text-decoration:none;font-family:var(--font-heading);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid transparent;transition:color .2s,border-color .2s" style-hover="color:#fff;border-color:#fff">Neura</a></span>
   </div>
 </footer>
@@ -271,14 +271,14 @@ class Component extends DCLogic {
       waGlyph: this.solid(WA, 20),
       phoneGlyph: this.solid(PH, 19),
       contacto: [
-        { k: "Teléfono", v: "+595 971 103908" },
+        { k: "Phone", v: "+595 971 103908" },
         { k: "WhatsApp", v: "+595 971 103908" },
         { k: "Email", v: "administración@i-tel.com.py" },
-        { k: "Dirección", v: "Avda. Tsunesaburo Makiguchi" },
-        { k: "Ciudad", v: "Luque, Paraguay" }
+        { k: "Address", v: "Avda. Tsunesaburo Makiguchi" },
+        { k: "City", v: "Luque, Paraguay" }
       ],
-      opciones: ["Seguridad electrónica", "Prevención de incendios", "Informática", "Networking", "Estructuras metálicas", "Enlaces punto a punto", "Enlaces multipunto", "Fibra óptica", "Telefonía IP", "Internet satelital", "Energías renovables", "Radiocomunicaciones", "Telefonía celular", "Soluciones para ISP", "Domótica y automatización", "Soluciones marinas", "Otro"],
-      centros: ["Luque", "Encarnación", "Ciudad del Este", "Pedro Juan Caballero", "Coronel Oviedo"]
+      opciones: ["Electronic security", "Fire prevention", "IT", "Networking", "Metal structures", "Point-to-point links", "Multipoint links", "Fibre optics", "IP telephony", "Satellite internet", "Renewable energy", "Radiocommunications", "Mobile telephony", "ISP solutions", "Home & building automation", "Marine solutions", "Other"],
+      centros: ["Luque", "Encarnación", "City del Este", "Pedro Juan Caballero", "Coronel Oviedo"]
     };
   }
 }
